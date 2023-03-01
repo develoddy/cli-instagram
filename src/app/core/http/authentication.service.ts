@@ -20,16 +20,6 @@ import { User } from "@data/models/post";
 export interface Identity {
   success: string,
   user: User
-  /*code: string;
-  created_at: string;
-  email: string;
-  id: number;
-  is_active: boolean;
-  is_admin: boolean;
-  lastname: string;
-  name: string;
-  updated_at: string;
-  username: string;*/
 }
 
 export interface TokenPayload {
@@ -55,7 +45,7 @@ export class AuthenticationService {
   public token: string = "";
   private email: string = "";
   private username: string = "";
-  public identity;
+  public identity = null;
   private readonly JWT_TOKEN = "JWT_TOKEN";
   private readonly REFRESH_TOKEN = "REFRESH_TOKEN";
   public authTokenNew: string = "new_auth_token";
@@ -67,12 +57,11 @@ export class AuthenticationService {
     private router: Router 
   ) {
     this.token = "";
-    this.identity = {};
   }
 
   // TODO: Helpers
 
-  private saveToken(token: string, email: string, identity: Identity): void {
+  private saveToken(token: string, email: string, identity: User): void {
     localStorage.setItem("usertoken", token);
     localStorage.setItem("email", email);
     localStorage.setItem("identity", JSON.stringify(identity));
@@ -107,27 +96,25 @@ export class AuthenticationService {
   }
   
   login( user: User ) {
-    const response = { error: false, msg: "", data: null };
-    return this.http.post(this.url + "users/login/", user).pipe(
+    const response = { error: false, msg: "", data: {} };
+    return this.http.post <Identity>(this.url + "users/login/", user).pipe(
         map( ( r ) => {
-          console.log("DEBUG: Service login");
-          console.log(r);
-          response.data ? r : null;
-          /*if ( response.data.success ) {
-              var token = response.data.success;
-              var email = response.data.user.email;
-              var identity = response.data.user;
-
-              this.saveToken(token, email, identity);
-          }*/
-          return ( response );
+          var data = response.data ? r  : null;
+          //response.data = data!;
+          if ( data?.success ) {
+            var token = data.success;
+            var email = data.user.email!;
+            var identity = data.user;
+            this.saveToken(token, email, identity);
+          }
+          return ( data );
         }),
     );
   }
 
   public logout(): void {
     window.localStorage.clear();
-    this.identity = {};
+    //this.identity = null;
     this.router.navigate(["/"]);
   }
 

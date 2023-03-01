@@ -14,8 +14,6 @@ export class ScriptsService {
 
         let body = document.getElementsByTagName("body")[0];
         body.appendChild( script );
-        console.log("DEBUG: ");
-        console.log(script);
     }
   }
 }

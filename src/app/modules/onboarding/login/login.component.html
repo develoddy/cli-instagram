@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="limiter">
     <div class="container-login100">
             <div class="wrap-login100">
@@ -49,5 +49,30 @@
                     </form>
 
             </div>
+    </div>
+</div> -->
+
+<div class="login-page">
+    <div class="avatar">
+        <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="Avatar">
+    </div>
+    <div class="form">
+        <h2>Login</h2>
+        <form class="login100-form validate-form" #loginForm="ngForm" (ngSubmit)="onSubmit()" action="">
+            <input type="text" placeholder="Username" name="email" [(ngModel)]="user.email">
+            <input type="password" placeholder="Password" name="password" [(ngModel)]="user.password">
+            <button> 
+                <div *ngIf="spinnerLogin" class="spinner-border spinner-border-sm" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <span *ngIf="textSuccess">Log in</span>
+                
+            </button>
+        </form>
+        <div class="text-center p-b-20">
+            <p *ngIf="status == 'error'" class="text-danger mt-4 text-center">Tu contraseña no es correcta. vuelve a comprobarla.</p>
+        </div>
+        <p class="message">Not registered? <a href="#">Create an account</a></p>
+        <p class="message">Forgot your password? <a href="#">Click here to reset it</a></p>
     </div>
 </div>

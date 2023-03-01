@@ -24,7 +24,7 @@ const routes: Routes = [
     component: SkeletonComponent,
     children: [
       {
-        path: '',
+        path: 'feed',
         loadChildren: () =>
         import('./modules/user/user.module').then ( (m) => m.UserModule )
       }
