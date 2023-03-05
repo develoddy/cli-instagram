@@ -19,6 +19,6 @@ export class HeaderComponent implements OnInit, DoCheck  {
   ngDoCheck() {}
 
   logout() {
-    this.auth.logout();
+    this.auth.SignOut();
   }
 }

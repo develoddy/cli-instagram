@@ -49,8 +49,8 @@ export class ProfileComponent implements OnInit {
         this.cssUrl = "/assets/css/responsive.css";
         console.log("DEBUG: Componente Feed cargado correctamente..");
 
-        this.getPosts(0);
-        this.getUsers(0);
+        //this.getPosts(0);
+        //this.getUsers(0);
     }
 
     // TODO: HELPERS

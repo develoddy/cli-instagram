@@ -12,6 +12,14 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+// FIREBASE
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from 'environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 @NgModule({
   declarations: [
@@ -27,7 +35,13 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    // FIREBASE
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule
   ],
   exports: [RouterModule],
   providers: [

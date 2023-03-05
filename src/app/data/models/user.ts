@@ -14,7 +14,7 @@ export interface ResponseUser {
     currentPage: number;
 }
 
-export interface User {
+/*export interface User {
     id: number;
     name: string;
     lastname?: string;
@@ -27,7 +27,16 @@ export interface User {
     created_at?: string;
     updated_at?: string;
     profile?: Profile;
+}*/
+
+export interface User {
+    uid: string;
+    email: string;
+    displayName: string;
+    photoURL: string;
+    emailVerified: boolean;
 }
+
 
 export interface Profile {
     image_header: string;

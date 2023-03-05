@@ -15,7 +15,7 @@ export class LoginComponent  implements OnInit  {
   public textSuccess: boolean = true;
 	public spinnerLogin: boolean = false;
 	public title: string = "";
-  public user: User = {
+  /*public user: User = {
 		id: 0,
 		name: "",
 		lastname: "",
@@ -27,7 +27,7 @@ export class LoginComponent  implements OnInit  {
 		is_admin: false,
 		created_at: "",
 		updated_at: ""
-	};
+	};*/
   public status: string = "";
 	public identity;
 	public token = "";
@@ -37,7 +37,7 @@ export class LoginComponent  implements OnInit  {
 
   // TODO: Lifecycle
   constructor( 
-    private _auth: AuthenticationService, 
+    public _authService: AuthenticationService, 
     private _router: Router, 
     private _route: ActivatedRoute,
     private _userService: UserService
@@ -45,18 +45,18 @@ export class LoginComponent  implements OnInit  {
     this.identity = {}
     this.error = {}
     // Comprobar si el usuario actual tiene token
-    if ( this._auth.getIdentity() ) {
+    /*if ( this._authService.getIdentity() ) {
 			this._router.navigate(["/feed"]);
-		}
+		}*/
   }
 
   ngOnInit() {
-    this.title = "Identificate";
+    this.title = "Login";
   }
 
   // TODO: Helpers
 
-  onSubmit() {
+  /*onSubmit() {
     this.loginSubscription = this._auth.login( this.user ).subscribe( 
       response => {
         if ( response?.success ) {
@@ -75,7 +75,7 @@ export class LoginComponent  implements OnInit  {
         }
       }
     )
-  }
+  }*/
 
   getCounters() {
     this.loginSubscription = this._userService.getCounters().subscribe(

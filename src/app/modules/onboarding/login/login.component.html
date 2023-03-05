@@ -1,58 +1,4 @@
-<!-- 
-<div class="limiter">
-    <div class="container-login100">
-            <div class="wrap-login100">
-                <form class="login100-form validate-form" #loginForm="ngForm" (ngSubmit)="onSubmit()" action="">
-                            <h2 class="login100-form-title p-b-43 text-uppercase letter-spacing-2 f-w-700">Red social</h2>
-                            
-                            <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                                    <input class="input100" type="text" name="email" [(ngModel)]="user.email" >
-                                    <span class="focus-input100"></span>
-                                    <span class="label-input100">Email</span>
-                            </div>
-                            
-                            <div class="wrap-input100 validate-input" data-validate="Password is required">
-                                    <input class="input100" type="password" name="password" [(ngModel)]="user.password" >
-                                    <span class="focus-input100"></span>
-                                    <span class="label-input100">Password</span>
-                            </div>
-
-                            <div class="flex-sb-m w-full p-t-3 p-b-32">
-                                    <div class="contact100-form-checkbox">
-                                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                                            <label class="label-checkbox100" for="ckb1">Remember me</label>
-                                    </div>
-                                    <div><a href="#" class="txt1">Forgot Password?</a></div>
-                            </div>
-            
-                            <div class="container-login100-form-btn">
-                                    <button class="login100-form-btn">
-                                            <span >Entrar</span>
-                                            <div class="spinner-border spinner-border-sm" role="status">
-                                                    <span class="sr-only">Loading...</span>
-                                            </div>
-                                    </button>
-                            </div>
-
-                            <div class="text-center p-t-46 p-b-20">
-                                    <p class="text-danger mt-4 text-center">Tu contraseña no es correcta. vuelve a comprobarla.</p>
-                            </div>
-                            
-                            <div class="text-center p-t-46 p-b-20">
-                                    <span class="txt2">or sign up using</span>
-                            </div>
-
-                            <div class="login100-form-social flex-c-m">
-                                    <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5"><i class="fa fa-facebook-f" aria-hidden="true"></i></a>
-                                    <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </div>
-                    </form>
-
-            </div>
-    </div>
-</div> -->
-
-<div class="login-page">
+<!-- <div class="login-page">
     <div class="avatar">
         <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="Avatar">
     </div>
@@ -75,4 +21,68 @@
         <p class="message">Not registered? <a href="#">Create an account</a></p>
         <p class="message">Forgot your password? <a href="#">Click here to reset it</a></p>
     </div>
+</div> -->
+
+<div class="login-page">
+        <div class="avatar">
+            <img src="https://cdn.pixabay.com/photo/2014/04/02/14/10/female-306407_960_720.png" alt="Avatar">
+        </div>
+        <div class="form">
+            <h2>Login</h2>
+            <form>
+                <input type="text" #userName placeholder="Username" name="email">
+                <input type="password" #userPassword placeholder="Password" name="password">
+                <button (click)="_authService.signIn(userName.value, userPassword.value)" >Login</button>
+            </form>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+            <p class="message">Forgot your password? <a href="#">Click here to reset it</a></p>
+        </div>
 </div>
+
+<!-- Top navigation -->
+
+<!-- Sidebar navigation -->
+<!-- <div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active">
+              <i class="fas fa-user"></i>User Profile
+            </a>
+          </li>
+       
+          <li class="nav-item">
+            <a class="nav-link" (click)="authService.SignOut()">
+              <i class="fas fa-sign-out-alt"></i>Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">User Profile</h1>
+        </div>
+      
+        <div class="row" *ngIf="authService.userData as user">
+          <div class="col-md-12">
+            <div class="media">
+              <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+                alt="{{user.displayName}}">
+              <div class="media-body">
+                <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+                <p>User ID: <strong>{{user.uid}}</strong></p>
+                <p>Email: <strong>{{user.email}}</strong></p>
+                <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div> -->

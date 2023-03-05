@@ -22,11 +22,11 @@ export class JwtTokenInterceptorService implements HttpInterceptor {
   constructor(private authService: AuthenticationService, private spinner: SpinnerService ) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const currentUser = this.authService.getIdentity();
-    const token = this.authService.getToken();
-    if ( currentUser && token ) {
+    //const token = this.authService.getToken();
+    if ( currentUser ) {
       req = req.clone( {
         setHeaders: {
-          Authorization: `Bearer ${token}`,
+          //Authorization: `Bearer ${token}`,
           'Content-Type' : 'application/json; charset=utf-8',
           'Accept'       : 'application/json',
         }

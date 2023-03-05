@@ -44,7 +44,7 @@ export class FeedComponent implements OnInit  {
   ngOnInit() {
     this.cssUrl = '/assets/css/responsive.css';
     console.log("DEBUG: Componente Feed cargado correctamente..");
-    this.getPosts(0);
+    //this.getPosts(0);
   }
 
   // TODO: HELPERS
