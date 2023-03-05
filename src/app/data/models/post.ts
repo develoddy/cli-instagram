@@ -1,4 +1,62 @@
-import { Conversation } from "./conversation";
+import { User } from "./user";
+import { Image } from "./image";
+
+export interface ReqResPosts {
+    response: ResponsePosts;
+    comments: any[];
+}
+
+export interface ResponsePosts {
+    totalItems: number;
+    posts: Post[];
+    totalPages: number;
+    currentPage:number;
+    limit: number;
+}
+
+export interface Post {
+    id: number;
+    content: string;
+    createdAt: string;
+    user: User;
+    images: Image[];
+    comments: any[];
+    hearts: Heart[];
+}
+/*
+export class Post {
+    constructor(
+        public id: number,
+        public content : string,
+        public createdAt : Date,
+        public user: User,
+        public images: Image[],
+        public comments: any[],
+        public hearts: Heart[],
+    ){}
+}*/
+
+export interface Heart {
+    id: number;
+    refID: number;
+    userID: number;
+    user: User;
+}
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+/*import { Conversation } from "./conversation";
 
 export interface ReqResPosts {
     ResPostImages: ResPostImages;
@@ -95,13 +153,7 @@ export class PostImage {
     ) {}
 }
 
-/*export interface Follow {
-    id?: number,
-    user_id : number,
-    followed_id : number,
-    created_at?: string,
-    updated_at?: string,
-}*/
+
 export interface Follow {
     id?:       number;
     user_id?: number,
@@ -189,7 +241,7 @@ export interface ResUsers__profile {
     image_header: string;
 }
 
-// ==== Messages =====
+
 export interface ResMessagesFollows {
     follows: Follow[];
 }
@@ -208,10 +260,6 @@ export interface ResMessagesFollowUser {
     name: string;
 }
 
-
-
-// Messages emit
-//export interface ResEmitMessages {
 
 export interface ResEmitMessages {
     totalItems:  number;
@@ -241,8 +289,4 @@ export interface ResEmitMessage {
 
 export interface ResEmitProfile {
     image_header: string;
-}
-    
-
-
-
+}*/

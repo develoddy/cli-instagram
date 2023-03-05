@@ -1,111 +1,142 @@
-
 <div class="row">
     <div class="col-sm-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="new-users-social">
-                    <div class="media">
-                        <img class="rounded-circle image-radius m-r-15" src="../assets/images/user/1.jpg" alt="" />
-                        <div class="media-body">
-                            <h6 class="mb-0 f-w-700">ELANA</h6>
-                            <p>January, 12,2019</p>
-                        </div>
-                        <span class="pull-right mt-0">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="feather feather-more-vertical"
-                            >
-                                <circle cx="12" cy="12" r="1"></circle>
-                                <circle cx="12" cy="5" r="1"></circle>
-                                <circle cx="12" cy="19" r="1"></circle>
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-                <img class="img-fluid" alt="" src="../assets/images/social-app/timeline-1.png" />
-                <div class="timeline-content">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed urna in justo euismod condimentum. Fusce placerat enim et odio molestie sagittis.
-                    </p>
-                    <div class="like-content">
-                        <span><i class="fa fa-heart font-danger"></i></span>
-                        <span class="pull-right comment-number">
-                            <span>20 </span><span><i class="fa fa-share-alt me-0"></i></span>
-                        </span>
-                        <span class="pull-right comment-number">
-                            <span>10 </span><span><i class="fa fa-comments-o"></i></span>
-                        </span>
-                    </div>
-                    <div class="social-chat">
-                        <div class="your-msg">
-                            <div class="media">
-                                <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/1.jpg" />
-                                <div class="media-body">
-                                    <span class="f-w-600">
-                                        Jason Borne <span>1 Year Ago <i class="fa fa-reply font-primary"></i></span>
-                                    </span>
-                                    <p>we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="other-msg">
-                            <div class="media">
-                                <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/2.png" />
-                                <div class="media-body">
-                                    <span class="f-w-600">
-                                        Alexendra Dhadio <span>1 Month Ago <i class="fa fa-reply font-primary"></i></span>
-                                    </span>
-                                    <p>yes, really very awesome car i see the features of this car in the official website of #Mercedes-Benz and really impressed :-)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="other-msg">
-                            <div class="media">
-                                <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/3.png" />
-                                <div class="media-body">
-                                    <span class="f-w-600">
-                                        Olivia Jon <span>15 Days Ago <i class="fa fa-reply font-primary"></i></span>
-                                    </span>
-                                    <p>i like lexus cars, lexus cars are most beautiful with the awesome features, but this car is really outstanding than lexus</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="your-msg">
-                            <div class="media">
-                                <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/1.jpg" />
-                                <div class="media-body">
-                                    <span class="f-w-600">
-                                        Issa Bell <span>1 Year Ago <i class="fa fa-reply font-primary"></i></span>
-                                    </span>
-                                    <p>we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center"><a href="#">More Commnets</a></div>
-                    </div>
-                    <div class="comments-box">
+        <!-- NG Container -->
+        <ng-container  *ngFor="let post of posts; let l = count">
+            <div class="card">
+                <div class="card-body">
+                    <div class="new-users-social">
                         <div class="media">
-                            <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/1.jpg" />
+                            <img class="rounded-circle image-radius m-r-15" src="{{ url + 'users/get-image-user/' + post.user.profile.image_header }}" alt="" />
                             <div class="media-body">
-                                <div class="input-group text-box">
-                                    <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Post Your commnets" />
-                                    <div class="input-group-append">
-                                        <button class="btn btn-transparent" type="button"><i class="fa fa-smile-o"> </i></button>
+                                <h6 class="mb-0 f-w-700">{{ post.user.username }}</h6>
+                                <p> {{ post.createdAt }} </p>
+                            </div>
+                            <span class="pull-right mt-0">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-more-vertical"
+                                >
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="12" cy="5" r="1"></circle>
+                                    <circle cx="12" cy="19" r="1"></circle>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <img class="img-fluid" alt="" src="{{ url + 'posts/get-image-post/' + post.images[0].title }}" />
+                    <div class="timeline-content">
+
+                        <!-- BOTONES DE LIKES -->
+                            <div class="like-content pt-2">
+                                <span><i class="fa fa-heart font-danger"></i></span>
+                                <span class="pull-right comment-number">
+                                    <span><i class="fa fa-bookmark-o me-0"></i></span>
+                                </span>
+                                <span class="comment-number px-2">
+                                    <span><i class="fa fa-comment-o"></i></span>
+                                </span>
+                            </div>
+
+                            <span>{{ post.hearts.length }} Me gusta </span>
+
+                        <!-- CONTENIDO DE PUBLICACIÓN -->
+                            <p><b> {{ post.user.username }} </b> {{ post.content }}</p>
+                            
+                        <!-- LINK VER MÁS COMENTARIOS -->
+                            <p>Ver los 2 comentarios</p>
+
+                        <!-- COMENTARIOS -->
+                            <div class="social-chat">
+                                <ng-container *ngIf="post.comments.length > 0; else empty">
+                                    <ng-container *ngFor="let comment of post.comments; let i = index; count as total">
+                                        <div class="your-msg">
+                                            <div class="media">
+                                                <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ url + 'users/get-image-user/' + comment.user.profile.image_header }}" />
+                                                <div class="media-body">
+                                                    <span class="f-w-600">
+                                                        {{ comment.user.username }} <span>1 Year Ago <i class="fa fa-reply font-primary"></i></span>
+                                                    </span>
+                                                    <p>{{ comment.content }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                                
+                                <ng-template #empty>
+                                    <ng-container>
+                                        <div class="text-center text-secondary"><a>No hay comentarios de momento.</a></div>
+                                    </ng-container>
+                                </ng-template>
+                              
+                                <!-- <div class="other-msg">
+                                    <div class="media">
+                                        <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/2.png" />
+                                        <div class="media-body">
+                                            <span class="f-w-600">
+                                                Alexendra Dhadio <span>1 Month Ago <i class="fa fa-reply font-primary"></i></span>
+                                            </span>
+                                            <p>yes, really very awesome car i see the features of this car in the official website of #Mercedes-Benz and really impressed :-)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="other-msg">
+                                    <div class="media">
+                                        <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/3.png" />
+                                        <div class="media-body">
+                                            <span class="f-w-600">
+                                                Olivia Jon <span>15 Days Ago <i class="fa fa-reply font-primary"></i></span>
+                                            </span>
+                                            <p>i like lexus cars, lexus cars are most beautiful with the awesome features, but this car is really outstanding than lexus</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="your-msg">
+                                    <div class="media">
+                                        <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/1.jpg" />
+                                        <div class="media-body">
+                                            <span class="f-w-600">
+                                                Issa Bell <span>1 Year Ago <i class="fa fa-reply font-primary"></i></span>
+                                            </span>
+                                            <p>we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post</p>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="text-center"><a>Más comentarios</a></div> -->
+                            </div>
+                        <!-- / END COMENTARIOS -->
+
+                        <!-- INPUT RESPONDER COMENTARIO -->
+                            <div class="comments-box">
+                                <div class="media">
+                                    <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ url + 'users/get-image-user/' + this.identity.profile.image_header }}" />
+                                    <div class="media-body">
+                                        <div class="input-group text-box">
+                                            <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Publica tu comentario" />
+                                            <div class="input-group-append">
+                                                <button class="btn btn-transparent" type="button"><i class="fa fa-smile-o"> </i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <!-- / END INPUT  -->
                     </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
+        <!-- End NG Container -->
+    </div>
+
+    <div class="col-sm-12 text-center">
+        <button class="btn btn-primary" (click)="viewMore()" *ngIf="!noMore" >Ver más publicaciones</button>
     </div>
 </div>

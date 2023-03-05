@@ -2,20 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { environment } from "environments/environment";
-import { 
-  delay, 
-  map, 
-  tap, 
-  catchError 
-} from "rxjs/operators";
-import { 
-  Observable, 
-  of as observableOf, 
-  BehaviorSubject, 
-  of 
-} from "rxjs";
+import { delay, map, tap, catchError } from "rxjs/operators";
+import { Observable, of as observableOf, BehaviorSubject, of } from "rxjs";
 
-import { User } from "@data/models/post";
+//import { User } from "@data/models/post";
+import { User } from '@data/models/user';
 
 export interface Identity {
   success: string,
@@ -60,7 +51,6 @@ export class AuthenticationService {
   }
 
   // TODO: Helpers
-
   private saveToken(token: string, email: string, identity: User): void {
     localStorage.setItem("usertoken", token);
     localStorage.setItem("email", email);
@@ -69,7 +59,6 @@ export class AuthenticationService {
   }
 
   public getToken(): string {
-    //return !this.token ? localStorage.getItem("usertoken") : null;
     if ( !this.token ) {
       this.token = localStorage.getItem("usertoken")!;
     }
@@ -127,5 +116,4 @@ export class AuthenticationService {
     }
     return of({ error: true, msg: errorMessage, data: null });
   }
-
 }

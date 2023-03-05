@@ -3178,7 +3178,7 @@ table tbody tr {
   margin-top: 2px;
 }
 .default-according .card .card-body {
-  border: 1px solid #ecf3fa;
+  border: 0px solid rgba(255, 255, 255);
   border-top: none;
 }
 
@@ -5355,8 +5355,8 @@ body.modal-open .select2-container--open .select2-dropdown {
   border: none;
   transition: all 0.3s ease;
   letter-spacing: 0.5px;
-  border-radius: 15px;
-  box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);
+  border-radius: 15px !important;
+  /* box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07); */
 }
 .card:hover {
   box-shadow: 0 0 40px rgba(8, 21, 66, 0.05);
@@ -5423,7 +5423,7 @@ body.modal-open .select2-container--open .select2-dropdown {
   font-size: 13px;
 }
 .card .card-body {
-  padding: 30px;
+  padding: 0px;
   background-color: transparent;
 }
 .card .card-body p:last-child {
@@ -5581,7 +5581,8 @@ body.modal-open .select2-container--open .select2-dropdown {
 
 .social-profile {
   text-align: center;
-  background-image: url(./assets/images/dashboard/profile.jpeg);
+  /* background-image: url(./assets/images/dashboard/profile-bg.png); */
+  background-color: rgb(219, 219, 219);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -23880,7 +23881,11 @@ html {
 }
 
 .new-users-social {
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 .new-users-social svg {
   cursor: pointer;
@@ -23896,11 +23901,18 @@ html {
 }
 
 .like-content span i {
-  font-size: 14px;
+  font-size: 20px;
+}
+
+.timeline-content {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .timeline-content p {
-  margin-top: 30px;
+  margin-top: 5px;
   color: #999999;
 }
 .timeline-content .comment-number i {
@@ -23926,7 +23938,7 @@ html {
 }
 
 .social-chat {
-  margin-top: 30px;
+  margin-top: 0px;
 }
 .social-chat span span {
   font-weight: normal;
@@ -24894,7 +24906,7 @@ html {
   color: #242934;
   font-size: 20px;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 900;
 }
 .user-profile .hovercard .info .desc {
   overflow: hidden;
@@ -29602,7 +29614,7 @@ body[class*=dark-] .for-light {
   text-align: left;
   letter-spacing: 0.7px;
   font-family: Roboto;
-  border: 1px solid #efefef;
+  border: 0px solid rgba(255, 255, 255);
   border-radius: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -30564,8 +30576,8 @@ button[data-toggle=dropdown]:hover ~ .dropdown-menu {
   top: 0;
   z-index: 8;
   transition: 0.5s;
-  background-color: #fff;
-  box-shadow: 0px 4px 40px rgba(39, 32, 120, 0.1);
+  background-color: rgba(255, 255, 255);
+  /* box-shadow: 0px 4px 40px rgba(39, 32, 120, 0.1); */
 }
 .page-wrapper .page-header .header-wrapper {
   width: 100%;
@@ -31041,7 +31053,7 @@ button[data-toggle=dropdown]:hover ~ .dropdown-menu {
   stroke: #2c323f;
 }
 .page-wrapper .page-body-wrapper {
-  background-color: #F7F8F9;
+  background-color: rgba(255, 255, 255);/*#F7F8F9;*/
 }
 .page-wrapper .page-body-wrapper .page-body {
   min-height: calc(100vh - 136px);
@@ -31536,16 +31548,17 @@ button[data-toggle=dropdown]:hover ~ .dropdown-menu {
   z-index: 9;
   height: auto;
   line-height: inherit;
-  background: #fff;
+  background: rgba(255, 255, 255);
   width: 265px;
   text-align: left;
   transition: 0.3s;
-  box-shadow: 0 0 21px 0 rgba(89, 102, 122, 0.1);
+  border-right: 1px solid rgba(219 219 219);
+  /* box-shadow: 0 0 21px 0 rgba(89, 102, 122, 0.1); */
 }
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .logo-wrapper,
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .logo-icon-wrapper {
   padding: 22px 30px;
-  box-shadow: -9px 0 20px rgba(89, 102, 122, 0.1);
+  /* box-shadow: -9px 0 20px rgba(89, 102, 122, 0.1); */
 }
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .logo-icon-wrapper {
   display: none;
@@ -32028,7 +32041,7 @@ button[data-toggle=dropdown]:hover ~ .dropdown-menu {
 }
 .page-wrapper.compact-wrapper .page-body-wrapper .page-body {
   min-height: calc(100vh - 80px);
-  margin-top: 0px;/*80px;*/
+  margin-top: 100px;
   margin-left: 265px;
 }
 .page-wrapper.compact-wrapper.dark-sidebar .sidebar-main-title h6, .page-wrapper.compact-wrapper.color-sidebar .sidebar-main-title h6 {

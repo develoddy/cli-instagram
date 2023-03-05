@@ -1198,7 +1198,7 @@
   .page-wrapper .card .card-header,
 .page-wrapper .card .card-body,
 .page-wrapper .card .card-footer {
-    padding: 20px;
+    padding: 0px;
   }
   .page-wrapper .card .card-header .tab-content .m-t-30,
 .page-wrapper .card .card-body .tab-content .m-t-30,
@@ -1365,7 +1365,11 @@
     margin-top: 20px;
   }
   .new-users-social {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
   }
   .timeline-small .media {
     margin-bottom: 20px;

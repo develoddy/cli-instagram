@@ -15,7 +15,6 @@ const routes: Routes = [
           path: "",
           loadChildren: () =>
           import('./modules/onboarding/onboarding.module').then ( (m) => m.OnboardingModule )
-          //loadChildren: "./modules/login/login.module#LoginModule",
         },
     ],
   },
@@ -26,10 +25,11 @@ const routes: Routes = [
       {
         path: 'feed',
         loadChildren: () =>
-        import('./modules/user/user.module').then ( (m) => m.UserModule )
+        //import('./modules/user/user.module').then ( (m) => m.UserModule )
+        import('./modules/sidebar/sidebar.module').then ( (m) => m.SidebarModule )
       }
     ]
-  }
+  },
 ];
 
 @NgModule({
