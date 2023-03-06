@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { AuthenticationService } from "@core/http/authentication.service";
 import { ScriptsService } from "app/services/scripts/scripts.service";
-import { ReqResUser, User } from "@data/models/user";
+import { User } from "@data/models/user";
 import { UserService } from "@data/services/api/user.service";
 import { PostService } from "@data/services/api/post.service";
 import * as moment from "moment";
@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
   public totalPages = 0;
   public profiles: User[] = [];
   public followings: any[] = [];
-  public data?: ReqResUser;
+  
 
   // TODO: LIFECYCLE
   constructor(
@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
       this.cssUrl = "/assets/css/responsive.css";
-      this.getUsers(0);
+      
   }
 
   // TODO: HELPERS
@@ -55,7 +55,7 @@ export class UsersComponent implements OnInit {
    * @Param adding
    * @Return
    */
-  getUsers( page: number ) {
+  /*getUsers( page: number ) {
       this._userService.getUsers(page).subscribe(
         ( response ) => {
             this.data = response!;
@@ -64,5 +64,5 @@ export class UsersComponent implements OnInit {
             this.totalPages = this.data?.users.totalPages!;
             this.followings = this.data?.followings!;
       });
-  }
+  }*/
 }

@@ -1,6 +1,6 @@
 // import { Conversation } from "./conversation";
 
-
+/*
 export interface ReqResUser {
     users: ResponseUser;
     followings: number[];
@@ -27,7 +27,7 @@ export interface ResponseUser {
     created_at?: string;
     updated_at?: string;
     profile?: Profile;
-}*/
+}
 
 export interface User {
     uid: string;
@@ -41,5 +41,31 @@ export interface User {
 export interface Profile {
     image_header: string;
     bio: string;
-}
+}*/
 
+
+export class User {
+    email?: string;
+    fullname?: string;
+    profileImageURL?: string;
+    username?: string;
+    uid?: string;
+    displayName?: string;
+    photoURL?: string;
+    emailVerified?: boolean;
+
+
+    constructor(
+        email: string,
+        fullname: string,
+        profileImageURL: string,
+        username: string,
+        uid: string
+     ) {
+        this.email = email;
+        this.fullname = fullname;
+        this.profileImageURL = profileImageURL;
+        this.username = username;
+        this.uid = uid;
+    }
+}

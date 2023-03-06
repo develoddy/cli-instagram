@@ -1,107 +1,92 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthenticationService } from '@core/http/authentication.service';
 import { ScriptsService } from 'app/services/scripts/scripts.service';
 import { Post } from "@data/models/post";
 import { UserService } from '@data/services/api/user.service';
 import { PostService } from '@data/services/api/post.service';
+import { Router } from "@angular/router";
 import * as moment from "moment";
 import * as $ from "jquery";
+import { Observable } from 'rxjs';
+import { User } from '@data/models/user';
+
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css']
 })
+
 export class FeedComponent implements OnInit  {
   // TODO: PROPERTIES
   public cssUrl: string = "";
-  public identity = null;
-  public url = "";
-  public page = 0;
-  public limit = 0;
-  public status = "";
-  public userSubscription:any;
-  public currentPage = 0;
-  public totalItems = 0;
-  public totalPages = 0;
-  public posts: Post[] = [];
+  posts: Post[] = [];
+  public user: any;
 
   // TODO: LIFECYCLE
   constructor( 
-    public _loadScripts: ScriptsService, 
+    public loadScripts: ScriptsService, 
     public sanitizer: DomSanitizer, 
-    private _auth: AuthenticationService, 
-    private _userService: UserService,
-    private _postService: PostService
+    private authService: AuthenticationService, 
+    private postService: PostService,
+    private userService: UserService,
+    private router: Router
   ) {
-    this._loadScripts.loadFiles(["icons/feather-icon/feather.min"]);
-    this._loadScripts.loadFiles(["icons/feather-icon/feather-icon"]);
-    this._loadScripts.loadFiles(["jquery-3.5.1.min"]);
-    this.identity = this._auth.getIdentity();
+    this.loadScripts.loadFiles(["icons/feather-icon/feather.min"]);
+    this.loadScripts.loadFiles(["icons/feather-icon/feather-icon"]);
+    this.loadScripts.loadFiles(["jquery-3.5.1.min"]);
   }
 
   ngOnInit() {
     this.cssUrl = '/assets/css/responsive.css';
-    console.log("DEBUG: Componente Feed cargado correctamente..");
-    //this.getPosts(0);
+    this.getPostsAll();
   }
 
   // TODO: HELPERS
-
-  /***
-   * Get Publicationes
-   * @Param page
-   * @Param adding
-   * @Return
-   */
-  
-  private getPosts( page: number, adding = false  ) {
-    this._postService.getPosts( page ).subscribe(
-      ( response ) => {
-        this.currentPage = response?.response.currentPage!;
-        this.totalItems = response?.response.totalItems!;
-        this.totalPages = response?.response.totalPages!;
-
-        moment.locale("es");
-        
-        response?.response.posts.forEach( ( element ) => {
-          element.createdAt = moment( element.createdAt ).startOf("hour").fromNow();
-        })
-
-        if( !adding ) {
-          this.posts = response?.response.posts!;
-          if ( this.posts.length == this.totalItems ) {
-              this.noMore = true;
-          }
-        } else {
-          var arrayA = this.posts;
-          var arrayB = response?.response.posts;
-          this.posts = arrayA.concat( arrayB! );
-          if ( this.posts.length == this.totalItems ) {
-            this.noMore = true;
-          }
-
-          $("html, body").animate({ 
-            scrollTo: $("body").prop("scrollHeight") }, 
-            200
-          );
-        }
-      }
-    );
+  getPostsAll() {
+      this.postService.fetchPosts().subscribe(res => {
+          this.posts = [];
+          res.forEach( ( element:any ) => {
+              this.posts.push({
+                id: element.payload.doc.id,
+                ...element.payload.doc.data()
+              })
+          });
+      });
   }
 
- 
-  /**
-   * Ver más publicaciones
-   */
-  public noMore = false;
-  viewMore(event:any) {
-    if ( this.posts.length == this.totalItems ) {
-      this.noMore = true; // true
-    } else {
-      this.page += 1;
-    }
-    this.getPosts(this.page, event); // true
+  /* Se navega al perfil del usuario enviadole por 
+  parametros sus datos*/
+  goToProfile( user: User ) {
+    console.log("DEBUG: GotoProfile");
+    console.log(event);
+    
+    
+    this.router.navigate(['/', user.username ]);
+      /*this.user = event;
+      this.router.navigate(['/feed/profile'], {
+          state: {
+              key: 1,
+              data: this.user
+          }
+      });*/
+  }
+
+  goPostToProfile( post: Post ) {
+    //[routerLink]="['/', post.ownerUsername]"
+    this.router.navigate(['/', post.ownerUsername]);
+
+    /*this.userService.fetchUser(post.ownerUid).subscribe( snapshot => {
+        this.user = snapshot.data();
+        this.router.navigate(['/profile'], {
+            state: {
+                key: 1,
+                data: this.user
+            }
+        });
+    })*/
+    
+    
   }
 }

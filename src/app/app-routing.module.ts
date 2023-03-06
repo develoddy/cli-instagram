@@ -4,31 +4,24 @@ import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
 
 const routes: Routes = [
 
-  { path: "", redirectTo: "login", pathMatch: "full" },
-
+  // { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "login", redirectTo: "login", pathMatch: "full" },
   {
     path: "login",
     component: SkeletonComponent,
-    
-    children: [
-      {
-          path: "",
-          loadChildren: () =>
-          import('./modules/onboarding/onboarding.module').then ( (m) => m.OnboardingModule )
-        },
-    ],
+    children: [{
+      path: "", 
+      loadChildren: () => import('./modules/onboarding/onboarding.module').then ( (m) => m.OnboardingModule ) 
+    }],
   },
   {
     path: '',
     component: SkeletonComponent,
-    children: [
-      {
-        path: 'feed',
-        loadChildren: () =>
-        //import('./modules/user/user.module').then ( (m) => m.UserModule )
-        import('./modules/sidebar/sidebar.module').then ( (m) => m.SidebarModule )
-      }
-    ]
+    children: [{
+      //path: 'feed',
+      path: '',
+      loadChildren: () => import('./modules/sidebar/sidebar.module').then ( (m) => m.SidebarModule )
+    }]
   },
 ];
 

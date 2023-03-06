@@ -6,10 +6,11 @@
                 <div class="card-body">
                     <div class="new-users-social">
                         <div class="media">
-                            <img class="rounded-circle image-radius m-r-15" src="{{ url + 'users/get-image-user/' + post.user.profile.image_header }}" alt="" />
+                            <img class="rounded-circle image-radius m-r-15"  src="{{ post.ownerImageURL }}" alt="" />
                             <div class="media-body">
-                                <h6 class="mb-0 f-w-700">{{ post.user.username }}</h6>
-                                <p> {{ post.createdAt }} </p>
+                                <h6 class="mb-0 f-w-700" (click)="gotoProfile(post)" >{{ post.ownerUsername }}</h6>
+                                <!-- <h6 class="mb-0 f-w-700" [routerLink]="['/', post.ownerUsername]" >{{ post.ownerUsername }}</h6> -->
+                                <p> {{ post.timestamp }} </p>
                             </div>
                             <span class="pull-right mt-0">
                                 <svg
@@ -31,7 +32,7 @@
                             </span>
                         </div>
                     </div>
-                    <img class="img-fluid" alt="" src="{{ url + 'posts/get-image-post/' + post.images[0].title }}" />
+                    <img class="img-fluid" alt="" width="100%" src="{{ post.imageURL }}" />
                     <div class="timeline-content">
 
                         <!-- BOTONES DE LIKES -->
@@ -45,17 +46,17 @@
                                 </span>
                             </div>
 
-                            <span>{{ post.hearts.length }} Me gusta </span>
+                            <span> {{ post.likes }} Me gusta </span>
 
                         <!-- CONTENIDO DE PUBLICACIÓN -->
-                            <p><b> {{ post.user.username }} </b> {{ post.content }}</p>
+                            <p><b> {{ post.ownerUsername }} </b> {{ post.caption }}</p>
                             
                         <!-- LINK VER MÁS COMENTARIOS -->
                             <p>Ver los 2 comentarios</p>
 
                         <!-- COMENTARIOS -->
                             <div class="social-chat">
-                                <ng-container *ngIf="post.comments.length > 0; else empty">
+                                <!-- <ng-container *ngIf="post.comments.length > 0; else empty">
                                     <ng-container *ngFor="let comment of post.comments; let i = index; count as total">
                                         <div class="your-msg">
                                             <div class="media">
@@ -75,7 +76,7 @@
                                     <ng-container>
                                         <div class="text-center text-secondary"><a>No hay comentarios de momento.</a></div>
                                     </ng-container>
-                                </ng-template>
+                                </ng-template> -->
                               
                                 <!-- <div class="other-msg">
                                     <div class="media">
@@ -117,7 +118,7 @@
                         <!-- INPUT RESPONDER COMENTARIO -->
                             <div class="comments-box">
                                 <div class="media">
-                                    <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ url + 'users/get-image-user/' + this.identity.profile.image_header }}" />
+                                    <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ post.ownerImageURL }}" />
                                     <div class="media-body">
                                         <div class="input-group text-box">
                                             <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Publica tu comentario" />
@@ -136,7 +137,7 @@
         <!-- End NG Container -->
     </div>
 
-    <div class="col-sm-12 text-center">
+    <!-- <div class="col-sm-12 text-center">
         <button class="btn btn-primary" (click)="viewMore()" *ngIf="!noMore" >Ver más publicaciones</button>
-    </div>
+    </div> -->
 </div>

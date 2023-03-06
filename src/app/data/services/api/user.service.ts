@@ -1,9 +1,11 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { ReqResUser } from "@data/models/user";
+import { Injectable, resolveForwardRef } from "@angular/core";
+import { User } from "@data/models/user";
 import { environment } from "environments/environment";
-import { of, BehaviorSubject } from "rxjs";
+import { of, BehaviorSubject, Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
+// FIREBASE
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
     providedIn: "root",
@@ -16,10 +18,28 @@ export class UserService {
     public stats: any;
 
     // TODO: Lifecycle
-    constructor(private _http: HttpClient) {}
+    constructor(private _http: HttpClient, private firebase: AngularFirestore) {}
 
     // TODO: Helpers
 
+    fetchUser( uid: string ): Observable<any> {
+        return this.firebase.collection("users").doc(uid).get();
+    }
+
+    fetchUserByUsername( username: string ): Observable<any>  {
+        return this.firebase.collection("users", 
+            ref => ref.where(
+                'username', '==', username))
+                .valueChanges();
+    }
+
+
+
+
+
+
+
+    /*
     // Get users.
     public getUsers( page: number ) {
       this.spinner.next(true);
@@ -66,5 +86,5 @@ export class UserService {
             errorMessage = `Error code: ${error.status}`;
         }
         return of({ error: true, msg: errorMessage, data: null });
-    }
+    }*/
 }

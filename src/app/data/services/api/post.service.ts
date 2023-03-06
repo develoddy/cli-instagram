@@ -3,7 +3,11 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "environments/environment";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
-import { ReqResPosts } from "@data/models/post";
+import { Post } from "@data/models/post";
+
+// FIREBASE
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,33 +16,26 @@ export class PostService {
 
   // TODO: Properties
   public url = environment.uri;
-
   public isProduction = environment.production;
-
   private loadingSubject = new BehaviorSubject<boolean>(false);
-
   loading$:Observable<boolean> = this.loadingSubject.asObservable();
-
 
   // TODO: Lifecycle
   constructor( 
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    // FIREBASE
+    private firebase: AngularFirestore
+  ) { 
+  }
 
   // TODO: Helpers
-  
-  /**
-   * TODO: Get publications
-   * @param: page
-   * @return
-   */
-  public getPosts( page = 0 ) {
-    const response = { error: false, message: "", data:null }
-    return this.http.get<ReqResPosts>(this.url + "api/posts/" + page).pipe(
-      map( ( r ) => {
-        var data = response.data == null ? r : null;
-        return data
-      })
-    );
+
+  fetchPosts(): Observable<any> {
+    return this.firebase.collection("posts").snapshotChanges();
   }
+
+  likePost(post: Post): Observable<any> {
+    return this.firebase.collection('posts').doc(post.postId).collection('post-likes').get();
+  }
+
 }

@@ -8,8 +8,6 @@ import { FeedComponent } from './components/feed/feed.component';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { UsersComponent } from './components/users/users.component';
 
-
-
 @NgModule({
   declarations: [
     MainComponent,
@@ -17,11 +15,11 @@ import { UsersComponent } from './components/users/users.component';
     ExploreComponent,
     FeedComponent,
     InboxComponent,
-    UsersComponent
+    UsersComponent,
   ],
   imports: [
     SharedModule,
-    SidebarRoutingModule
+    SidebarRoutingModule,
   ]
 })
 export class SidebarModule { }

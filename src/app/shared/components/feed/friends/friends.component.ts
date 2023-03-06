@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from '@core/http/authentication.service';
-import { ReqResUser } from '@data/models/user';
 import { UserService } from '@data/services/api/user.service';
 
 @Component({
@@ -10,7 +9,9 @@ import { UserService } from '@data/services/api/user.service';
 })
 export class FriendsComponent implements OnInit {
 
-  public url: string;
+  ngOnInit() {
+  }
+  /*public url: string;
   public friends = 2;
   public identity: any;
   @Input() data: any;
@@ -24,10 +25,7 @@ export class FriendsComponent implements OnInit {
     this.url = this.userService.url;
     this.identity = _auth.getIdentity();
   }
-  ngOnInit() {
-    console.log("DEBUG: Friend.componente cargado correctamente..");
-    this.followings = this.data.followings;
-  }
+  
 
   mouseEnter( userId: number ) {
     this.followUserOver = userId;
@@ -35,5 +33,5 @@ export class FriendsComponent implements OnInit {
 
   mouseleave(userId: number ) {
     this.followUserOver = 0;
-}
+  }*/
 }

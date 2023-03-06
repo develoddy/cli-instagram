@@ -78,7 +78,7 @@ export class LoginComponent  implements OnInit  {
   }*/
 
   getCounters() {
-    this.loginSubscription = this._userService.getCounters().subscribe(
+    /*this.loginSubscription = this._userService.getCounters().subscribe(
       response => {
         localStorage.setItem("stats", JSON.stringify(response));
         this.status = "success";
@@ -86,7 +86,7 @@ export class LoginComponent  implements OnInit  {
           this._router.navigate(["/feed"]);
         }, 1000);
       }
-    )
+    )*/
   }
 
   ngOnDestroy(): void {
