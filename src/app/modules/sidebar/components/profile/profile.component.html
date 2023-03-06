@@ -6,7 +6,7 @@
         <div class="row">
             <!-- PORTADA -->
                 <div class="col-sm-12 box-col-12">
-                    <app-portada [identity]="identity" ></app-portada>
+                    <app-portada *ngIf="user" [user]="user" ></app-portada>
                 </div>
             <!-- /END PORTADA -->
         </div>

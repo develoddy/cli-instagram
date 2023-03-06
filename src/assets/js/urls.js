@@ -7,7 +7,6 @@
     if ( token ) {
 
     } else {
-        console.log("No hay token");
         $('#hideHeader').hide();
         $('#sidebarWrapper').hide();
         $('#containerFluid').hide();

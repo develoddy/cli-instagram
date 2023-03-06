@@ -11,21 +11,37 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
     providedIn: "root",
 })
 export class UserService {
-    // TODO: Properties
+
+    // TODO: ----- Properties -----
     public url = environment.uri + "api/";
     public isProduction = environment.production;
     public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public stats: any;
 
-    // TODO: Lifecycle
-    constructor(private _http: HttpClient, private firebase: AngularFirestore) {}
+    // TODO: ----- Lifecycle -----
+    constructor(
+        private _http: HttpClient, 
+        private firebase: AngularFirestore
+    ) {}
 
-    // TODO: Helpers
+    // TODO: ----- Helpers -----
 
+     /**
+      * @description: Se recupera de Firebase los datos del usuario
+      * por la propiedas "uid".
+      * @param uid 
+      * @returns Observable<any> 
+      */
     fetchUser( uid: string ): Observable<any> {
         return this.firebase.collection("users").doc(uid).get();
     }
 
+    /**
+     * @description: Se recupera de firebase los datos del usuario
+     * por la propiedad "username".
+     * @param username 
+     * @returns Observable<any> 
+     */
     fetchUserByUsername( username: string ): Observable<any>  {
         return this.firebase.collection("users", 
             ref => ref.where(

@@ -6,10 +6,9 @@ import { Post } from "@data/models/post";
 import { UserService } from '@data/services/api/user.service';
 import { PostService } from '@data/services/api/post.service';
 import { Router } from "@angular/router";
+import { User } from '@data/models/user';
 import * as moment from "moment";
 import * as $ from "jquery";
-import { Observable } from 'rxjs';
-import { User } from '@data/models/user';
 
 
 @Component({
@@ -19,32 +18,45 @@ import { User } from '@data/models/user';
 })
 
 export class FeedComponent implements OnInit  {
-  // TODO: PROPERTIES
+
+  // TODO: ----- Properties -----
   public cssUrl: string = "";
   posts: Post[] = [];
   public user: any;
 
-  // TODO: LIFECYCLE
+  // TODO: ----- Lifecycle -----
   constructor( 
-    public loadScripts: ScriptsService, 
+    public scripts: ScriptsService, 
     public sanitizer: DomSanitizer, 
     private authService: AuthenticationService, 
     private postService: PostService,
     private userService: UserService,
     private router: Router
   ) {
-    this.loadScripts.loadFiles(["icons/feather-icon/feather.min"]);
-    this.loadScripts.loadFiles(["icons/feather-icon/feather-icon"]);
-    this.loadScripts.loadFiles(["jquery-3.5.1.min"]);
+    this.loadScripts();
   }
 
   ngOnInit() {
-    this.cssUrl = '/assets/css/responsive.css';
+    this.loadCSS();
     this.getPostsAll();
   }
 
-  // TODO: HELPERS
-  getPostsAll() {
+  // TODO: ----- Helpers -----
+  
+  /* Se carga los javascrupts */
+  private loadScripts() {
+      this.scripts.loadFiles(["icons/feather-icon/feather.min"]);
+      this.scripts.loadFiles(["icons/feather-icon/feather-icon"]);
+      this.scripts.loadFiles(["jquery-3.5.1.min"]);
+  }
+
+  /* Se carga los ficheros de estilos */
+  private loadCSS() {
+      this.cssUrl = '/assets/css/responsive.css';
+  }
+
+  /* Se recuperar todas las publicaciones */
+  public getPostsAll() {
       this.postService.fetchPosts().subscribe(res => {
           this.posts = [];
           res.forEach( ( element:any ) => {
@@ -57,36 +69,18 @@ export class FeedComponent implements OnInit  {
   }
 
   /* Se navega al perfil del usuario enviadole por 
-  parametros sus datos*/
-  goToProfile( user: User ) {
-    console.log("DEBUG: GotoProfile");
-    console.log(event);
-    
-    
-    this.router.navigate(['/', user.username ]);
-      /*this.user = event;
-      this.router.navigate(['/feed/profile'], {
-          state: {
-              key: 1,
-              data: this.user
-          }
-      });*/
+  parametros el username del usuario */
+  public goToProfile( user: User ) {
+      this.router.navigate([
+        '/', user.username 
+      ]);
   }
 
-  goPostToProfile( post: Post ) {
-    //[routerLink]="['/', post.ownerUsername]"
-    this.router.navigate(['/', post.ownerUsername]);
-
-    /*this.userService.fetchUser(post.ownerUid).subscribe( snapshot => {
-        this.user = snapshot.data();
-        this.router.navigate(['/profile'], {
-            state: {
-                key: 1,
-                data: this.user
-            }
-        });
-    })*/
-    
-    
+  /* Se navega al el feed (publicaciones) enviadole por 
+  parametro el username del usuario */
+  public goPostToProfile( post: Post ) {
+      this.router.navigate([
+        '/', post.ownerUsername
+      ]);
   }
 }

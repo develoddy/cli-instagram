@@ -3,13 +3,12 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { AuthenticationService } from "@core/http/authentication.service";
 import { ScriptsService } from "app/services/scripts/scripts.service";
 import { Post } from "@data/models/post";
-//import { ReqResUser, User } from "@data/models/user";
 import { UserService } from "@data/services/api/user.service";
 import { PostService } from "@data/services/api/post.service";
-import * as moment from "moment";
-import * as $ from "jquery";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { User } from "@data/models/user";
+import * as moment from "moment";
+import * as $ from "jquery";
 
 @Component({
     selector: "app-profile",
@@ -17,82 +16,77 @@ import { User } from "@data/models/user";
     styleUrls: ["./profile.component.css"],
 })
 export class ProfileComponent implements OnInit {
-    // TODO: PROPERTIES
+
+    // TODO: ===== Properties =====
     public cssUrl: string = "";
     public identity = null;
     public posts: Post[] = [];
     public user: User;
     public currentUser: any;
 
-    coche: {marca: string, modelo: string};
-
-    // TODO: LIFECYCLE
+    // TODO: ===== Lifecycle =====
     constructor(
         public _loadScripts: ScriptsService,
         public sanitizer: DomSanitizer,
         private authService: AuthenticationService,
         private userService: UserService,
-        private _postService: PostService,
+        private postService: PostService,
         private route: ActivatedRoute,
         private router: Router
     ) {
-
-        this.loadCSS();
-
-        var username = this.route.snapshot.paramMap.get("username"); //this.route.snapshot.params[0].username;
-        console.log("DEBUG: Param Profile");
-        console.log(username);
+        this.loadScripts();
+        this.fetchUser(this.route.snapshot.paramMap.get("username")!);
         
-        this.fetchUser(username!);
-
-
         /*const params = this.router.getCurrentNavigation()?.extras.state;
-        if ( params ) {
-            this.currentUser = params;
-            console.log("DEBUG: Params lleno..");
-            console.log(this.currentUser );
-            
-        } else {
-            console.log("DEBUG: Params vacio..");
-            this.getCurrentUser();
-        }*/
+        if ( params ) {}*/
     }
 
-    // TODO: HELPERS
+   
     ngOnInit() {
-        this.cssUrl = "/assets/css/responsive.css";
-        this.fetchData()
+        this.loadCSS();
     }
 
+    // TODO: ===== ViewModel =====
+    private fetchPostsByUid( uid: string ) {
+        this.postService.fetchPostsByUid(uid).subscribe((snapshot) => {
+            this.posts = snapshot;
+        });
+    }
+
+    /**
+     * @description: Se recupera los datos del usuario por la propiedad username
+     * @param username 
+     */
     public fetchUser( username: string ) {
         this.userService.fetchUserByUsername( username ).subscribe(( snapshot ) => {
             this.user = snapshot[0];
+            this.fetchPostsByUid(this.user.uid!);
         });
     }
     
+     // TODO: ===== Helpers =====
+    /**
+     * @description Se carga los ficheros de estilos.
+     */
+    private loadCSS() {
+        this.cssUrl = "/assets/css/responsive.css";
+    }
 
-    public getCurrentUser() {
-        this.authService.getCurrentUser().subscribe((snapshot) => {
-            this.currentUser = snapshot.data();           
-            console.log("DEBUG: getCurrentUser");
-            console.log(this.currentUser);
-        });
-      }
-
-    loadCSS() {
+    /**
+     * @description Se carga los scripts.
+     */
+    private loadScripts() {
         this._loadScripts.loadFiles(["icons/feather-icon/feather.min"]);
         this._loadScripts.loadFiles(["icons/feather-icon/feather-icon"]);
         this._loadScripts.loadFiles(["jquery-3.5.1.min"]);   
     }
 
-    /***
-     * fetchData
-     * @Param page
-     * @Param adding
-     * @Return
+    /**
+     * @description Se recupera todas las publicaciones 
+     * para mostrarlos en el feed.
      */
     private fetchData() {
-        this._postService.fetchPosts().subscribe(res => {
+        this.postService.fetchPosts().subscribe(res => {
             this.posts = [];
             res.forEach( (element:any) => {
                 this.posts.push({

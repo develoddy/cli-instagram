@@ -12,13 +12,14 @@ import { ScriptsService } from "app/services/scripts/scripts.service";
     styleUrls: ["./main.component.css"],
 })
 export class MainComponent implements OnInit {
-    // TODO: Properties
+    
+    // TODO: ----- Properties -----
     public cssUrl: string = "";
     public identity = null;
     public currentUser: User;
     public username: string;
 
-    // TODO: Lifecycle
+    // TODO: ----- Lifecycle -----
     constructor(
         public scripts: ScriptsService,
         public sanitizer: DomSanitizer,
@@ -32,11 +33,10 @@ export class MainComponent implements OnInit {
         }
     }
 
-    // TODO: Helpers
+    // TODO: ----- Helpers -----
     ngOnInit() {
         this.loadCSS();
         this.getCurrrentUser();
-        //this.goToProfile();
     }
 
     private loadScripts() {
@@ -54,17 +54,13 @@ export class MainComponent implements OnInit {
     }
 
     public getCurrrentUser() {
-        this.authService.getCurrentUser().subscribe((snapshot) => {
+        this.authService.getCurrentUser().subscribe(( snapshot ) => {
             this.currentUser = snapshot.data();
-            this.username = this.currentUser.username!;      
-            //console.log("DEBUG: main.componente");
-            //console.log(this.currentUser);
-            
-                 
-      });
+            this.username = this.currentUser.username!;  
+        });
     }
 
-    public goToProfile() {
+    /*public goToProfile() {
       this.authService.getCurrentUser().subscribe((snapshot) => {
             this.currentUser = snapshot.data();           
                 this.router.navigate(['/profile'], {
@@ -74,5 +70,5 @@ export class MainComponent implements OnInit {
                   }
             });
       });
-    }
+    }*/
 }

@@ -4,8 +4,6 @@ import { environment } from "environments/environment";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { Post } from "@data/models/post";
-
-// FIREBASE
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
@@ -14,28 +12,26 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class PostService {
 
-  // TODO: Properties
-  public url = environment.uri;
-  public isProduction = environment.production;
+  // TODO: ===== Properties =====
   private loadingSubject = new BehaviorSubject<boolean>(false);
   loading$:Observable<boolean> = this.loadingSubject.asObservable();
 
-  // TODO: Lifecycle
+  // TODO: ===== Lifecycle =====
   constructor( 
     private http: HttpClient,
-    // FIREBASE
     private firebase: AngularFirestore
-  ) { 
-  }
+  ) { }
 
-  // TODO: Helpers
-
-  fetchPosts(): Observable<any> {
+  // TODO: ===== Helpers =====
+  /**
+   * @description Se recupera de Firebase todas las publicaciones.
+   * @returns Observable<any>
+   */
+  public fetchPosts(): Observable<any> {
     return this.firebase.collection("posts").snapshotChanges();
   }
 
-  likePost(post: Post): Observable<any> {
-    return this.firebase.collection('posts').doc(post.postId).collection('post-likes').get();
+  public fetchPostsByUid(uid: string): Observable<any>  {
+    return this.firebase.collection("posts", ref => ref.where('ownerUid', '==', uid )).valueChanges();
   }
-
 }

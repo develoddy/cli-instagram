@@ -30,8 +30,6 @@ export class CarduserComponent implements OnInit {
       // TODO: Helpers
 
       gotToProfile(user: any) {
-            console.log(user);
-            
             this.eventUser.emit(user);
       }
 }
