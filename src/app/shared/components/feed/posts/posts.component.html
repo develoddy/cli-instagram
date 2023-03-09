@@ -1,19 +1,19 @@
-<div class="row">
+<!-- <div class="row"> -->
     <!-- <div class="col-sm-12"> -->
-    <div class="col-xl-10 col-md-10 col-sm-10">
+    <!-- <div class="col-xl-10 col-md-10 col-sm-10"> -->
         <!-- NG Container -->
-        <ng-container  *ngFor="let post of posts; let l = count">
-            <div class="card">
-                <div class="card-body">
-                    <div class="new-users-social">
-                        <div class="media">
-                            <img class="rounded-circle image-radius m-r-15"  src="{{ post.ownerImageURL }}" alt="" />
-                            <div class="media-body">
-                                <h6 class="mb-0 f-w-700" (click)="gotoProfile(post)" >{{ post.ownerUsername }}</h6>
-                                <p> {{ post.timestamp.toDate() | date: 'medium' }} </p>
-                            </div>
-                            <span class="pull-right mt-0">
-                                <svg
+        <!-- <ng-container  *ngFor="let post of posts; let l = count"> -->
+            <!-- <div class="card"> -->
+                <!-- <div class="card-body"> -->
+                    <!-- <div class="new-users-social"> -->
+                        <!-- <div class="media"> -->
+                            <!-- <img class="rounded-circle image-radius m-r-15"  src="{{ post.ownerImageURL }}" alt="" /> -->
+                            <!-- <div class="media-body"> -->
+                                <!-- <h6 class="mb-0 f-w-700" (click)="gotoProfile(post)" >{{ post.ownerUsername }}</h6> -->
+                                <!-- <p> {{ post.timestamp.toDate() | date: 'medium' }} </p> -->
+                            <!-- </div> -->
+                            <!-- <span class="pull-right mt-0"> -->
+                                <!-- <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
                                     height="24"
@@ -28,15 +28,16 @@
                                     <circle cx="12" cy="12" r="1"></circle>
                                     <circle cx="12" cy="5" r="1"></circle>
                                     <circle cx="12" cy="19" r="1"></circle>
-                                </svg>
-                            </span>
-                        </div>
-                    </div>
-                    <img class="img-fluid" alt="" width="100%" src="{{ post.imageURL }}" />
-                    <div class="timeline-content">
+                                </svg> -->
+                            <!-- </span> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
 
+                    <!-- <img class="img-fluid" alt="" width="100%" src="{{ post.imageURL }}" /> -->
+
+                    <!-- <div class="timeline-content"> -->
                         <!-- BOTONES DE LIKES -->
-                            <div class="like-content pt-2">
+                            <!-- <div class="like-content pt-2">
                                 <span><i class="fa fa-heart font-danger"></i></span>
                                 <span class="pull-right comment-number">
                                     <span><i class="fa fa-bookmark-o me-0"></i></span>
@@ -44,18 +45,18 @@
                                 <span class="comment-number px-2">
                                     <span><i class="fa fa-comment-o"></i></span>
                                 </span>
-                            </div>
+                            </div> -->
 
-                            <span> {{ post.likes }} Me gusta </span>
+                            <!-- <span> {{ post.likes }} Me gusta </span> -->
 
                         <!-- CONTENIDO DE PUBLICACIÓN -->
-                            <p><b> {{ post.ownerUsername }} </b> {{ post.caption }}</p>
+                            <!-- <p><b> {{ post.ownerUsername }} </b> {{ post.caption }}</p> -->
                             
                         <!-- LINK VER MÁS COMENTARIOS -->
-                            <p>Ver los 2 comentarios</p>
+                            <!-- <p>Ver los 2 comentarios</p> -->
 
                         <!-- COMENTARIOS -->
-                            <div class="social-chat">
+                            <!-- <div class="social-chat"> -->
                                 <!-- <ng-container *ngIf="post.comments.length > 0; else empty">
                                     <ng-container *ngFor="let comment of post.comments; let i = index; count as total">
                                         <div class="your-msg">
@@ -112,6 +113,95 @@
                                     </div>
                                 </div> -->
                                 <!-- <div class="text-center"><a>Más comentarios</a></div> -->
+                            <!-- </div> -->
+                        <!-- / END COMENTARIOS -->
+
+                        <!-- INPUT RESPONDER COMENTARIO -->
+                            <!-- <div class="comments-box">
+                                <div class="media">
+                                    <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ post.ownerImageURL }}" />
+                                    <div class="media-body">
+                                        <div class="input-group text-box">
+                                            <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Publica tu comentario" />
+                                            <div class="input-group-append">
+                                                <button class="btn btn-transparent" type="button"><i class="fa fa-smile-o"> </i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        <!-- / END INPUT  -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            <!-- </div> -->
+        <!-- </ng-container> -->
+        <!-- End NG Container -->
+    <!-- </div> -->
+<!-- </div> -->
+
+
+
+
+<!-- Loader Posts -->
+
+
+<div class="row">
+    <div class="col-xl-10 col-md-10 col-sm-10">
+        <!-- NG Container -->
+        <ng-container *ngFor="let post of posts; let l = count">
+            <div class="card card--skeleton" #ElementRefCard>
+                <div class="card-body" #ElementRefCardBody>
+                    <div class="new-users-social">
+                        <div class="media">
+                            <img class="rounded-circle image-radius m-r-15"  src="{{ post.ownerImageURL }}" alt="" />
+                            <div class="media-body">
+                                <h6 class="mb-0 f-w-700" (click)="gotoProfile(post)" >{{ post.ownerUsername }}</h6>
+                                <p> {{ post.timestamp.toDate() | date: 'medium' }} </p>
+                            </div>
+                            <span class="pull-right mt-0">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-more-vertical"
+                                >
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="12" cy="5" r="1"></circle>
+                                    <circle cx="12" cy="19" r="1"></circle>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <img class="img-fluid" alt="" width="100%" src="{{ post.imageURL }}" />
+                    <div class="timeline-content">
+
+                        <!-- BOTONES DE LIKES -->
+                            <div class="like-content pt-2">
+                                <span><i class="fa fa-heart font-danger"></i></span>
+                                <span class="pull-right comment-number">
+                                    <span><i class="fa fa-bookmark-o me-0"></i></span>
+                                </span>
+                                <span class="comment-number px-2">
+                                    <span><i class="fa fa-comment-o"></i></span>
+                                </span>
+                            </div>
+
+                            <span> {{ post.likes }} Me gusta </span>
+
+                        <!-- CONTENIDO DE PUBLICACIÓN -->
+                            <p><b> {{ post.ownerUsername }} </b> {{ post.caption }}</p>
+                            
+                        <!-- LINK VER MÁS COMENTARIOS -->
+                            <p>Ver los 2 comentarios</p>
+
+                        <!-- COMENTARIOS -->
+                            <div class="social-chat">
                             </div>
                         <!-- / END COMENTARIOS -->
 
@@ -136,8 +226,4 @@
         </ng-container>
         <!-- End NG Container -->
     </div>
-
-    <!-- <div class="col-sm-12 text-center">
-        <button class="btn btn-primary" (click)="viewMore()" *ngIf="!noMore" >Ver más publicaciones</button>
-    </div> -->
 </div>

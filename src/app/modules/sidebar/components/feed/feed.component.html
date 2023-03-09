@@ -7,10 +7,7 @@
                 <div class="tab-pane fade show active" id="timeline" role="tabpanel" aria-labelledby="timeline">
                     <div class="row">
                         <div class="col-xl-4 xl-60 col-lg-12 col-md-7 box-col-8e">
-                            <!-- <div *ngIf="spinner | async" style="display: grid; place-content: center;">
-                                <div class="spinner"></div>
-                            </div> -->
-                            <ng-container *ngIf="spinner | async">
+                            <!-- <ng-container *ngIf="spinner | async">
                                 <div class="wrapper">
                                     <app-posts-loaders></app-posts-loaders>
                                 </div>
@@ -22,8 +19,10 @@
                                 <ng-container *ngIf="!spinner">
                                     <app-emptyalert></app-emptyalert>
                                 </ng-container>
-                            </ng-template>
+                            </ng-template> -->
+                            <app-posts *ngIf="this.posts.length > 0" [posts]="posts" (eventGotoProfile)="goPostToProfile($event)" ></app-posts>
                         </div>
+
                         <div class="col-xl-3 xl-40 col-lg-12 col-md-5 box-col-4">
                             <div class="default-according style-1 faq-accordion">
                                 <div class="card">
