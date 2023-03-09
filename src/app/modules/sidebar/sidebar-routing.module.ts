@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { InboxComponent } from './components/inbox/inbox.component';
@@ -10,17 +11,15 @@ import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: MainComponent,
+    path: '', component: MainComponent,
     children: [
-      { path: '', redirectTo: "login", pathMatch: "full" },
+      { path: '', redirectTo: "feed", pathMatch: "full" },
       { path: 'feed', component: FeedComponent},
-      //{ path: 'profile', component: ProfileComponent},
-      { path: ':username', component: ProfileComponent},
-      { path: "profile/:id", component: ProfileComponent },
+      { path: 'profile/:username', component: ProfileComponent},
       { path: 'explore', component: ExploreComponent},
       { path: 'inbox', component: InboxComponent},
       { path: 'users', component: UsersComponent},
+      { path: 'bookmark', component: BookmarkComponent},
     ]
   }, 
 ];

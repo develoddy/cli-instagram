@@ -1,7 +1,8 @@
-<link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(cssUrl)" />
+<!-- <link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(cssUrl)" /> -->
 
 <!-- CONTAINER -->
 <div class="container-fluid">
+   
     <div class="user-profile social-app-profile">
         <div class="row">
             <!-- PORTADA -->
@@ -24,10 +25,36 @@
             <!-- PHOTOS -->
                 <div class="tab-pane fade show active" id="photos" role="tabpanel" aria-labelledby="photos">
                     <div class="row">
-                    <div class="col-sm-12">
-                        <app-photos *ngIf="posts.length > 0" [posts]="posts" ></app-photos>
+                    <div class="col-sm-12 col-xl-8">
+                        <!-- <div style="display: grid; place-content: center;">
+                                    <div class="spinner"></div>
+                        </div> -->
+
+                        <!-- <ng-container *ngIf="posts.length == 0; else showPosts">
+                            <app-empty-photos *ngIf="noDataPosts"></app-empty-photos>
+                        </ng-container>
+                        <ng-template #showPosts>
+                            <ng-container *ngIf="spinner | async">
+                                <app-loader-photos [posts]="posts"></app-loader-photos>
+                            </ng-container>
+                            <app-photos [posts]="posts"></app-photos>
+                        </ng-template> -->
+
+                        
+                        <app-loader-photos *ngIf="posts.length>0" [posts]="posts"></app-loader-photos>
+                        
+                        
+                        <!-- <ng-container *ngIf="posts.length > 0; else emptyPosts">
+                            <app-photos [posts]="posts"></app-photos>
+                        </ng-container>
+                        <ng-template #emptyPosts>
+                            <app-empty-photos *ngIf="noDataPosts"></app-empty-photos>
+                        </ng-template> -->
+
+
+
                     </div>
-                    </div>
+                </div>
                 </div>
             <!-- / END PHOTOS -->
 

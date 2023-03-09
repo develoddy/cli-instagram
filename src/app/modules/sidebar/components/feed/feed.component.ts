@@ -7,6 +7,7 @@ import { UserService } from '@data/services/api/user.service';
 import { PostService } from '@data/services/api/post.service';
 import { Router } from "@angular/router";
 import { User } from '@data/models/user';
+import { BehaviorSubject, Observable } from "rxjs";
 import * as moment from "moment";
 import * as $ from "jquery";
 
@@ -20,6 +21,7 @@ import * as $ from "jquery";
 export class FeedComponent implements OnInit  {
 
   // TODO: ----- Properties -----
+  public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public cssUrl: string = "";
   posts: Post[] = [];
   public user: any;
@@ -32,32 +34,42 @@ export class FeedComponent implements OnInit  {
     private postService: PostService,
     private userService: UserService,
     private router: Router
-  ) {
-    this.loadScripts();
-  }
+  ) {}
 
   ngOnInit() {
-    this.loadCSS();
+    this.getCurrentUser();
     this.getPostsAll();
   }
 
   // TODO: ----- Helpers -----
   
   /* Se carga los javascrupts */
-  private loadScripts() {
+  /*private loadScripts() {
       this.scripts.loadFiles(["icons/feather-icon/feather.min"]);
       this.scripts.loadFiles(["icons/feather-icon/feather-icon"]);
       this.scripts.loadFiles(["jquery-3.5.1.min"]);
+  }*/
+
+  private getCurrentUser() {
+    this.spinner.next(true);
+    this.authService.getCurrentUser().subscribe((snapshot) => {
+      this.spinner.next(false);
+      this.user = snapshot.payload.data();
+    });
   }
 
-  /* Se carga los ficheros de estilos */
-  private loadCSS() {
-      this.cssUrl = '/assets/css/responsive.css';
+  ngDoCheck() {
+    this.authService.getCurrentUser().subscribe((snapshot) => {
+      //this.currentUser = snapshot.data();
+      this.user = snapshot.payload.data();
+    });
   }
 
   /* Se recuperar todas las publicaciones */
   public getPostsAll() {
+      this.spinner.next(true);
       this.postService.fetchPosts().subscribe(res => {
+        this.spinner.next(false);
           this.posts = [];
           res.forEach( ( element:any ) => {
               this.posts.push({
@@ -72,7 +84,7 @@ export class FeedComponent implements OnInit  {
   parametros el username del usuario */
   public goToProfile( user: User ) {
       this.router.navigate([
-        '/', user.username 
+        'app/profile/', user.username 
       ]);
   }
 
@@ -80,7 +92,7 @@ export class FeedComponent implements OnInit  {
   parametro el username del usuario */
   public goPostToProfile( post: Post ) {
       this.router.navigate([
-        '/', post.ownerUsername
+        'app/profile/', post.ownerUsername
       ]);
   }
 }

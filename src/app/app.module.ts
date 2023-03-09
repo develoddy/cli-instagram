@@ -1,7 +1,6 @@
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -40,8 +39,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule,
-    RouterModule
+    AngularFireDatabaseModule
   ],
   exports: [RouterModule],
   providers: [
@@ -50,6 +48,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
       useClass: PathLocationStrategy
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

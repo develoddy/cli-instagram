@@ -1,4 +1,4 @@
-/*! -----------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------------
 
     Template Name: Cuba Admin
     Template URI: http://admin.pixelstrap.com/cuba/theme
@@ -109,6 +109,9 @@
         5.7 Sidebar CSS
         5.8 Rtl CSS
         5.9 Box-layout CSS
+    
+    6. Loader
+        6.1 Card Skeleton CSS
 
  */
  :root {
@@ -2857,7 +2860,8 @@ blockquote {
 }
 
 .row > div {
-  position: relative;
+  /* position: relative; */
+  position: unset;
 }
 
 :focus {
@@ -5358,10 +5362,10 @@ body.modal-open .select2-container--open .select2-dropdown {
   border-radius: 15px !important;
   /* box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07); */
 }
-.card:hover {
+/*.card:hover {
   box-shadow: 0 0 40px rgba(8, 21, 66, 0.05);
   transition: all 0.3s ease;
-}
+}*/
 .card .card-header {
   background-color: #fff;
   padding: 30px;
@@ -16626,8 +16630,8 @@ select.crypto-select.primary {
   padding-top: 3px;
 }
 .hovercard .cardheader {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .sticky-header-main .card .card-header h5 {
@@ -18815,7 +18819,7 @@ footer.blockquote-footer {
 /* ---- .grid-item ---- */
 .grid-item img {
   max-width: 100%;
-  padding: 0.25rem;
+  padding: 0;
   background-color: #fff;
   border: 1px solid #dee2e6;
 }
@@ -23253,10 +23257,10 @@ ul.dot-group li {
   margin-right: 5px;
 }
 
-.tab-content .row > div.col-xl-4:nth-child(1) {
+/* .tab-content .row > div.col-xl-4:nth-child(1) {
   animation-fill-mode: both;
   animation: fadeIncustom 0.5s linear 100000ms;
-}
+} 
 .tab-content .row > div.col-xl-4:nth-child(2) {
   animation-fill-mode: both;
   animation: fadeIncustom 0.5s linear 200000ms;
@@ -23312,7 +23316,7 @@ ul.dot-group li {
 .tab-content .row > div.col-xl-4:nth-child(15) {
   animation-fill-mode: both;
   animation: fadeIncustom 0.5s linear 1500000ms;
-}
+}*/
 
 .project-cards .tab-content {
   margin-bottom: -30px;
@@ -23881,11 +23885,11 @@ html {
 }
 
 .new-users-social {
-  /* margin-bottom: 30px; */
-  margin-bottom: 10px;
+  padding: 10px 0px 10px 10px;
+  /* margin-bottom: 10px;
   margin-left: 10px;
   margin-right: 10px;
-  margin-top: 10px;
+  margin-top: 10px; */
 }
 .new-users-social svg {
   cursor: pointer;
@@ -24858,7 +24862,7 @@ html {
   background:  url("./assets/images/other-images/bg-profile.png"); /*url(../images/other-images/bg-profile.png);*/
   background-size: cover;
   background-position: 10%;
-  height: 470px;
+  height: 250px;
 }
 .user-profile .hovercard .user-image {
   position: relative;
@@ -32040,7 +32044,8 @@ button[data-toggle=dropdown]:hover ~ .dropdown-menu {
   text-transform: uppercase;
 }
 .page-wrapper.compact-wrapper .page-body-wrapper .page-body {
-  min-height: calc(100vh - 80px);
+  /* min-height: calc(100vh - 80px); */
+  min-height: calc(100vh - 100px);
   margin-top: 100px;
   margin-left: 265px;
 }
@@ -36567,4 +36572,92 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
 
 /**=====================
   5.9 Box-layout CSS Ends
+==========================**/
+
+
+/**=====================
+  6.1 Card Skeleton CSS
+==========================**/
+.card--skeleton::before {
+  content: "";
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  animation: loading 1s infinite;
+}
+.card--skeleton .img-cont {
+  background: #eee;
+}
+.card--skeleton .user-avatar-cont {
+  background: #eee;
+}
+.card--skeleton .user-name span, .card--skeleton .user-profession span {
+  background: #eee;
+  color: #eee;
+  border-radius: 5px;
+}
+.card .img-cont {
+  height: 21rem;
+  margin-bottom: 2rem;
+  margin-right: 5px;
+  overflow: hidden;
+}
+
+.card .img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+}
+.user-info .user-avatar-cont {
+  height: 58px;
+  width: 58px;
+  margin-right: 2rem;
+  border-radius: 50rem;
+  overflow: hidden;
+}
+.user-info .user-avatar-cont .user-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.user-details .user-name {
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.user-details .user-profession {
+  font-size: 1.3rem;
+  color: #999;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+@keyframes loading {
+  0% {
+      transform: skewX(-10deg) translateX(-100%);
+ }
+  100% {
+      transform: skewX(-10deg) translateX(200%);
+ }
+} 
+
+/**=====================
+  6.1 Card Skeleton CSS Ends
 ==========================**/

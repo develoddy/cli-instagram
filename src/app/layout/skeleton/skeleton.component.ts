@@ -16,6 +16,5 @@ export class SkeletonComponent {
   }
 
   ngOnInit() {
-    this.cssUrl = '/assets/css/responsive.css';
   }
 }

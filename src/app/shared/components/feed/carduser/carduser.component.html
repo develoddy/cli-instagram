@@ -1,15 +1,11 @@
-<div class="card-header" id="headingOne">
-    <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Mi perfil</button>
-    </h2>
-</div>
+
 <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
     <div class="card-body socialprofile filter-cards-view">
         <div class="media">
             <img class="img-50 img-fluid m-r-20 rounded-circle" *ngIf="currentUser" src="{{ currentUser.profileImageURL }}" alt="" />
             <div class="media-body">
                 <!-- <h6 class="font-primary f-w-600" *ngIf="currentUser" >{{ currentUser.username }}</h6> -->
-                <a class="font-primary f-w-600 cursor-pointer" *ngIf="currentUser" (click)="gotToProfile( currentUser )">{{ currentUser.username }}</a>
+                <a class="font-primary f-w-600 cursor-pointer" *ngIf="currentUser" (click)="gotToProfile(currentUser)">{{ currentUser.username }}</a>
                 <!-- <a class="font-primary f-w-600 cursor-pointer" *ngIf="currentUser" [routerLink]="['/profile']" routerLinkActive="is-active" >{{ currentUser.username }}</a> -->
                 <span class="d-block">
                     <span>

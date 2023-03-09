@@ -15,6 +15,7 @@ export class PostService {
   // TODO: ===== Properties =====
   private loadingSubject = new BehaviorSubject<boolean>(false);
   loading$:Observable<boolean> = this.loadingSubject.asObservable();
+  //public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   // TODO: ===== Lifecycle =====
   constructor( 

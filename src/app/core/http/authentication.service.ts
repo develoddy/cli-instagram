@@ -37,7 +37,6 @@ export interface TokenResponse {
 export class AuthenticationService {
     // TODO: Properties
     userData: any; // Save logged in user data
-    public url = environment.uri + "api/";
     public isProduction = environment.production;
     public token: string = "";
     private email: string = "";
@@ -85,7 +84,7 @@ export class AuthenticationService {
                 this.setUserData(result.user);
                 this.afAuth.authState.subscribe((user) => {
                     if (user) {
-                        this.router.navigate(["feed"]);
+                        this.router.navigate(["app/feed"]);
                     }
                 });
             })
@@ -141,7 +140,7 @@ export class AuthenticationService {
     googleAuth() {
         return this.authLogin(new auth.GoogleAuthProvider()).then(
             (res: any) => {
-                this.router.navigate(["feed"]);
+                this.router.navigate(["app/feed"]);
             }
         );
     }
@@ -157,7 +156,7 @@ export class AuthenticationService {
     public getCurrentUser(): Observable<any> {
         this.identity = this.getIdentity();
         var uid = this.identity.uid;
-        return this.firebase.collection("users").doc(uid).get();
+        return this.firebase.collection("users").doc(uid).snapshotChanges();
     }
 
     // Auth logic to run auth providers
@@ -165,7 +164,7 @@ export class AuthenticationService {
         return this.afAuth
             .signInWithPopup(provider)
             .then((result) => {
-                this.router.navigate(["feed"]);
+                this.router.navigate(["app/feed"]);
                 this.setUserData(result.user);
             })
             .catch((error) => {

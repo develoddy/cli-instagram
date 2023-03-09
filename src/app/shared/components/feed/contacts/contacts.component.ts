@@ -14,9 +14,9 @@ export class ContactsComponent implements OnInit  {
   }
 
   ngOnInit() {
-    this.cssUrl = '/assets/css/responsive.css';
-    this.cssUrl = '/assets/css/vendors/themify.css';
-    this.cssUrl = '/assets/css/vendors/flag-icon.css';
+    // this.cssUrl = '/assets/css/responsive.css';
+    // this.cssUrl = '/assets/css/vendors/themify.css';
+    // this.cssUrl = '/assets/css/vendors/flag-icon.css';
   }
 
 }

@@ -3,6 +3,9 @@
 ==========================**/
 /* ========= min and max scss for 1200 to 1366 screen ========= */
 @media (max-width: 1800px) {
+  .img-cont {
+    height: 20.5rem !important;
+  }
   .caller-img {
     display: none;
   }
@@ -69,6 +72,9 @@
   }
 }
 @media screen and (max-width: 1600px) {
+  .img-cont {
+    height: 16rem !important;
+  }
   .page-wrapper.horizontal-wrapper.material-type .left-header .level-menu .nav-link svg,
 .page-wrapper.horizontal-wrapper.material-type .left-header .mega-menu .nav-link svg {
     margin-right: 0;
@@ -88,6 +94,9 @@
   }
 }
 @media screen and (max-width: 1660px) and (min-width: 1200px) {
+  .img-cont {
+    height: 18.5rem !important;
+  }
   .xl-none {
     display: none;
   }
@@ -121,6 +130,9 @@
   }
 }
 @media (max-width: 1280px) {
+  .img-cont {
+    height: 8rem !important;
+  }
   .img-gallery-set1,
 .img-gallery-set5 {
     display: none;
@@ -135,13 +147,18 @@
   }
 }
 @media screen and (max-width: 1580px) and (min-width: 1200px) {
-  .docs-buttons,
-.docs-toggles {
+  .img-cont {
+    height: 17.4rem !important;
+  }
+  .docs-buttons, .docs-toggles {
     flex: 0 0 100%;
     max-width: 100%;
   }
 }
 @media screen and (max-width: 1445px) and (min-width: 1410px) {
+  .img-cont {
+    height: 12rem !important;
+  }
   .page-wrapper.modern-type .page-header .left-header {
     flex: 0 0 23%;
     max-width: 23%;
@@ -152,6 +169,9 @@
   }
 }
 @media (max-width: 1470px) {
+  .img-cont {
+    height: 16rem !important;
+  }
   .edit-profile .profile-title .media {
     display: block;
     margin-bottom: 10px;
@@ -162,12 +182,19 @@
   }
 }
 @media screen and (max-width: 1410px) and (min-width: 1367px) {
+  .img-cont {
+    height: 2rem !important;
+  }
   .page-wrapper.modern-type .page-header .nav-right {
     flex: 0 0 63%;
     max-width: 63%;
   }
 }
 @media screen and (max-width: 1366px) and (min-width: 1200px) {
+  .img-cont {
+    height: 2rem !important;
+  }
+  
   .flot-chart-container-small {
     height: 227px;
   }
@@ -358,6 +385,9 @@
   }
 }
 @media only screen and (max-width: 1366px) {
+  .img-cont {
+    height: 14.5rem !important;
+  }
   .left-header {
     padding: 0;
   }
@@ -613,6 +643,9 @@
   }
 }
 @media only screen and (max-width: 1366px) and (min-width: 1200px) {
+  .img-cont {
+    height: 14.5rem !important;
+  }
   .page-wrapper.compact-wrapper .left-header {
     flex: 0 0 34%;
     max-width: 34%;
@@ -646,6 +679,9 @@
   }
 }
 @media only screen and (max-width: 1199.98px) {
+  .img-cont {
+    height: 18.3rem !important;
+  }
   .left-header .mega-menu-container .mega-box .svg-icon ~ div h6 {
     display: none;
   }
@@ -1046,6 +1082,10 @@
   }
 }
 @media only screen and (max-width: 1199px) and (min-width: 992px) {
+  
+  .img-cont {
+    height: 18.3rem !important;
+  }
   .page-wrapper.compact-wrapper .left-header {
     flex: 0 0 26%;
     max-width: 26%;
@@ -1076,6 +1116,9 @@
   }
 }
 @media only screen and (max-width: 991.98px) {
+  .img-cont {
+    height: 20rem !important;
+  }
   .simplebar-mask {
     top: 70px;
   }
@@ -1177,7 +1220,7 @@
     margin-bottom: -20px;
   }
   .my-gallery figure {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
   #aniimated-thumbnials figure:nth-child(12), #aniimated-thumbnials figure:nth-child(11), #aniimated-thumbnials figure:nth-child(10), #aniimated-thumbnials figure:nth-child(9) {
     margin-bottom: 20px;
@@ -1759,6 +1802,9 @@
   }
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
+  .img-cont {
+    height: 20rem !important;
+  }
   .page-wrapper .page-header .header-wrapper .nav-right {
     flex: 0 0 58%;
     max-width: 58%;
@@ -1781,11 +1827,17 @@
   }
 }
 @media only screen and (max-width: 810px) {
+  .img-cont {
+    height: 16.1rem !important;
+  }
   .page-wrapper .page-header .header-wrapper .nav-right > ul > li .profile-media .media-body {
     display: none;
   }
 }
 @media only screen and (max-width: 767.98px) {
+  .img-cont {
+    height: 16.2rem !important;
+  }
   .wizard-4 ul.anchor {
     width: 100%;
     height: auto;
@@ -1926,7 +1978,7 @@
     width: 100%;
   }
   .my-gallery figure:nth-child(9), .my-gallery figure:nth-child(10) {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
   .project-list .btn {
     float: left;
@@ -2460,6 +2512,15 @@
   }
 }
 @media only screen and (max-width: 767px) and (min-width: 576px) {
+  .img-cont {
+    height: 16.2rem !important;
+  }
+  .container-fluid {
+    padding: 0;
+  }
+  .page-body {
+    padding: 0 !important;
+  }
   .page-wrapper.compact-wrapper .left-header {
     flex: 0 0 13%;
     max-width: 13%;
@@ -2470,11 +2531,29 @@
   }
 }
 @media only screen and (max-width: 710px) {
+  .img-cont {
+    height: 15.2rem !important;
+  }
+  .container-fluid {
+    padding: 0;
+  }
+  .page-body {
+    padding: 0 !important;
+  }
   .page-wrapper.compact-wrapper .nav-right .nav-menus {
     margin-right: 47px;
   }
 }
 @media only screen and (max-width: 630px) {
+  .img-cont {
+    height: 14rem !important;
+  }
+  .container-fluid {
+    padding: 0;
+  }
+  .page-body {
+    padding: 0;
+  }
   .left-header .level-menu .nav-link svg {
     margin-right: 0;
   }
@@ -2483,6 +2562,15 @@
   }
 }
 @media only screen and (max-width: 575.98px) {
+  .img-cont {
+    height: 11rem !important;
+  }
+  .container-fluid {
+    padding: 0;
+  }
+  .page-body {
+    padding: 0;
+  }
   .page-wrapper.only-body .page-header .header-wrapper .nav-right {
     right: 30px;
   }
@@ -2802,7 +2890,7 @@
     margin-bottom: 15px;
   }
   .my-gallery figure:nth-child(9), .my-gallery figure:nth-child(10) {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
   }
   .my-gallery.gallery-with-description figure:last-child {
     margin-bottom: 20px;

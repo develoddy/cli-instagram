@@ -7,6 +7,7 @@ import { ExploreComponent } from './components/explore/explore.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { UsersComponent } from './components/users/users.component';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { UsersComponent } from './components/users/users.component';
     FeedComponent,
     InboxComponent,
     UsersComponent,
+    BookmarkComponent,
   ],
   imports: [
     SharedModule,

@@ -28,9 +28,9 @@ export class MainComponent implements OnInit {
         private postsService: PostService
     ) {
         this.loadScripts();
-        if (!this.authService.getIdentity()) {
+        /*if ( !this.authService.getIdentity() ) {
             this.router.navigate(["/"]);
-        }
+        }*/
     }
 
     // TODO: ----- Helpers -----
@@ -41,21 +41,21 @@ export class MainComponent implements OnInit {
 
     private loadScripts() {
         this.scripts.loadFiles(["sidebar-menu"]);
-        this.scripts.loadFiles(["icons/feather-icon/feather.min"]);
-        this.scripts.loadFiles(["icons/feather-icon/feather-icon"]);
-        this.scripts.loadFiles(["script"]);
+        // this.scripts.loadFiles(["icons/feather-icon/feather.min"]);
+        // this.scripts.loadFiles(["icons/feather-icon/feather-icon"]);
+        // this.scripts.loadFiles(["script"]);
         this.identity = this.authService.getIdentity();
     }
 
     private loadCSS() {
-        this.cssUrl = "/assets/css/responsive.css";
-        this.cssUrl = "/assets/css/vendors/themify.css";
-        this.cssUrl = "/assets/css/vendors/flag-icon.css";
+        // this.cssUrl = "/assets/css/responsive.css";
+        // this.cssUrl = "/assets/css/vendors/themify.css";
+        // this.cssUrl = "/assets/css/vendors/flag-icon.css";
     }
 
     public getCurrrentUser() {
         this.authService.getCurrentUser().subscribe(( snapshot ) => {
-            this.currentUser = snapshot.data();
+            this.currentUser = snapshot.payload.data();
             this.username = this.currentUser.username!;  
         });
     }

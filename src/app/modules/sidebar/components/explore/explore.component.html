@@ -1,8 +1,12 @@
 <link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(cssUrl)" />
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12 box-col-12">
-      <app-gallery></app-gallery>
+    <!-- <div class="col-sm-8 box-col-8"> -->
+    <div class="col-sm-12 col-xl-8">
+      <ng-container *ngIf="spinner | async">
+        <app-spinner></app-spinner>
+      </ng-container> 
+      <app-gallery *ngIf="posts.length > 0" [posts]="posts"></app-gallery>
     </div>
   </div>
 </div>

@@ -43,10 +43,7 @@ export class UserService {
      * @returns Observable<any> 
      */
     fetchUserByUsername( username: string ): Observable<any>  {
-        return this.firebase.collection("users", 
-            ref => ref.where(
-                'username', '==', username))
-                .valueChanges();
+        return this.firebase.collection("users", ref => ref.where('username', '==', username)).valueChanges();
     }
 
 

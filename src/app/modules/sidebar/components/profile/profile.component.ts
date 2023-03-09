@@ -6,6 +6,7 @@ import { Post } from "@data/models/post";
 import { UserService } from "@data/services/api/user.service";
 import { PostService } from "@data/services/api/post.service";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
 import { User } from "@data/models/user";
 import * as moment from "moment";
 import * as $ from "jquery";
@@ -18,11 +19,13 @@ import * as $ from "jquery";
 export class ProfileComponent implements OnInit {
 
     // TODO: ===== Properties =====
+    public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public cssUrl: string = "";
     public identity = null;
     public posts: Post[] = [];
     public user: User;
     public currentUser: any;
+    public noDataPosts: boolean = false;
 
     // TODO: ===== Lifecycle =====
     constructor(
@@ -34,7 +37,7 @@ export class ProfileComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router
     ) {
-        this.loadScripts();
+        //this.loadScripts();
         this.fetchUser(this.route.snapshot.paramMap.get("username")!);
         
         /*const params = this.router.getCurrentNavigation()?.extras.state;
@@ -43,13 +46,18 @@ export class ProfileComponent implements OnInit {
 
    
     ngOnInit() {
-        this.loadCSS();
+        //this.loadCSS();
     }
 
     // TODO: ===== ViewModel =====
     private fetchPostsByUid( uid: string ) {
+        this.spinner.next(true);
         this.postService.fetchPostsByUid(uid).subscribe((snapshot) => {
+            this.spinner.next(false);
             this.posts = snapshot;
+            if ( this.posts.length == 0 ) {
+                this.noDataPosts = true;
+            }
         });
     }
 
@@ -58,7 +66,9 @@ export class ProfileComponent implements OnInit {
      * @param username 
      */
     public fetchUser( username: string ) {
+        this.spinner.next(true);
         this.userService.fetchUserByUsername( username ).subscribe(( snapshot ) => {
+            this.spinner.next(false);
             this.user = snapshot[0];
             this.fetchPostsByUid(this.user.uid!);
         });
@@ -69,7 +79,7 @@ export class ProfileComponent implements OnInit {
      * @description Se carga los ficheros de estilos.
      */
     private loadCSS() {
-        this.cssUrl = "/assets/css/responsive.css";
+        // this.cssUrl = "/assets/css/responsive.css";
     }
 
     /**

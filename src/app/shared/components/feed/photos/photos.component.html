@@ -1,16 +1,16 @@
 <div class="card">
-  <div class="gallery my-gallery card-body row" itemscope="" data-pswp-uid="1">
-      <ng-container *ngFor="let post of posts">
-          <figure class="col-xl-4 col-md-4 col-6" itemprop="associatedMedia" itemscope="">
-              <a href="{{ post.imageURL }}" itemprop="contentUrl" data-size="1600x950">
-                  <img class="img-thumbnail" src="{{ post.imageURL }}" itemprop="thumbnail" alt="{{ post.imageURL }}" />
-              </a>
-              <figcaption itemprop="caption description">{{ post.caption }}</figcaption>
-          </figure>
-      </ng-container>
-  </div>
-  <!-- Root element of PhotoSwipe. Must have class pswp.-->
-  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="gallery my-gallery card-body row" itemscope="" data-pswp-uid="1" style="justify-content: left !important;">
+        <ng-container *ngFor="let post of posts">
+            <figure class="col-xl-4 col-md-4 col-4" itemprop="associatedMedia" itemscope="">
+                <a href="{{ post.imageURL }}" itemprop="contentUrl" data-size="1600x950">
+                    <img src="{{ post.imageURL }}" itemprop="thumbnail" alt="{{ post.imageURL }}" />
+                </a>
+            </figure>
+        </ng-container>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp.-->
+    <!-- <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="pswp__bg"></div>
       <div class="pswp__scroll-wrap">
           <div class="pswp__container" style="transform: translate3d(0px, 0px, 0px);">
@@ -52,5 +52,5 @@
               </div>
           </div>
       </div>
-  </div>
+  </div> -->
 </div>

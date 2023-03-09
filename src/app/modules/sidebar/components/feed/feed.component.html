@@ -1,4 +1,3 @@
-<link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(cssUrl)" />
 
 <!-- CONTAINER -->
 <div class="container-fluid">
@@ -8,21 +7,34 @@
                 <div class="tab-pane fade show active" id="timeline" role="tabpanel" aria-labelledby="timeline">
                     <div class="row">
                         <div class="col-xl-4 xl-60 col-lg-12 col-md-7 box-col-8e">
-                            <!-- <app-posts *ngIf="posts.length > 0; else postEmpty" [posts]="posts" [noMore]="noMore" (eventViewMore)="viewMore($event)"></app-posts> -->
-                            <!-- <app-posts *ngIf="posts.length > 0; else postEmpty" [posts]="posts" (eventGotoProfile)="goPostToProfile($event)" ></app-posts> -->
-                            <app-posts *ngIf="posts.length > 0; else postEmpty" [posts]="posts"   (eventGotoProfile)="goPostToProfile($event)" ></app-posts>
+                            <!-- <div *ngIf="spinner | async" style="display: grid; place-content: center;">
+                                <div class="spinner"></div>
+                            </div> -->
+                            <ng-container *ngIf="spinner | async">
+                                <div class="wrapper">
+                                    <app-posts-loaders></app-posts-loaders>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="posts.length > 0; else postEmpty">
+                                <app-posts [posts]="posts" (eventGotoProfile)="goPostToProfile($event)" ></app-posts>
+                            </ng-container>
                             <ng-template #postEmpty>
-                                <app-emptyalert></app-emptyalert>
+                                <ng-container *ngIf="!spinner">
+                                    <app-emptyalert></app-emptyalert>
+                                </ng-container>
                             </ng-template>
-                            
                         </div>
                         <div class="col-xl-3 xl-40 col-lg-12 col-md-5 box-col-4">
                             <div class="default-according style-1 faq-accordion">
                                 <div class="card">
-                                    <app-carduser [routerLinkActive]="['active']" (eventUser)="goToProfile($event)"></app-carduser>
+                                    <ng-container *ngIf="spinner | async">
+                                        <app-card-info-user></app-card-info-user>
+                                    </ng-container>
+                                    <app-carduser *ngIf="user" [currentUser]= 'user' [routerLinkActive]="['active']" (eventUser)="goToProfile($event)"></app-carduser>
                                 </div>
                                 <div class="card">
-                                    <app-contacts></app-contacts>
+                                    <app-loader-contacts></app-loader-contacts>
+                                    <!-- <app-contacts></app-contacts> -->
                                 </div>
                             </div>
                         </div>
