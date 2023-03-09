@@ -1,0 +1,25 @@
+.avatarLoader {
+    height:58px; 
+    width:58px;
+    background: #ccc;
+    margin-right: 15px;
+}
+
+.h6 {
+    width: 150px; 
+    height:15px; 
+    background: #ccc;
+}
+
+.p {
+    width: 100px; 
+    height:15px; 
+    background: #ccc;
+    margin-top: 5px;
+}
+
+.imagePostLoader {
+    height: 20rem;
+    width: 100%;
+    background-color: #ccc;
+}

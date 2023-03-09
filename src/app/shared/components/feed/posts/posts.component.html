@@ -148,15 +148,15 @@
 <div class="row">
     <div class="col-xl-10 col-md-10 col-sm-10">
         <!-- NG Container -->
-        <ng-container *ngFor="let post of posts; let l = count">
+        
             <div class="card card--skeleton" #ElementRefCard>
                 <div class="card-body" #ElementRefCardBody>
                     <div class="new-users-social">
-                        <div class="media">
-                            <img class="rounded-circle image-radius m-r-15"  src="{{ post.ownerImageURL }}" alt="" />
+                        <div class="media" #ElementRefMedia>
+                            <img class="rounded-circle image-radius m-r-15"  src="https://firebasestorage.googleapis.com:443/v0/b/instagram-e7380.appspot.com/o/profile_images%2F7E462795-6E26-4F4C-BBAB-2804EF6A8E0E?alt=media&token=930a9243-6230-4b07-ad88-9accefc163fc" #ElementRefAvatar />
                             <div class="media-body">
-                                <h6 class="mb-0 f-w-700" (click)="gotoProfile(post)" >{{ post.ownerUsername }}</h6>
-                                <p> {{ post.timestamp.toDate() | date: 'medium' }} </p>
+                                <h6 class="mb-0 f-w-700" #ElementRefUsername>xx</h6>
+                                <p> xx </p>
                             </div>
                             <span class="pull-right mt-0">
                                 <svg
@@ -178,7 +178,9 @@
                             </span>
                         </div>
                     </div>
-                    <img class="img-fluid" alt="" width="100%" src="{{ post.imageURL }}" />
+                    <!-- Imagen -->
+                    <img class="img-fluid" #ElementRefPostImage width="100%" src="https://firebasestorage.googleapis.com:443/v0/b/instagram-e7380.appspot.com/o/profile_images%2F7E462795-6E26-4F4C-BBAB-2804EF6A8E0E?alt=media&token=930a9243-6230-4b07-ad88-9accefc163fc" />
+
                     <div class="timeline-content">
 
                         <!-- BOTONES DE LIKES -->
@@ -192,10 +194,10 @@
                                 </span>
                             </div>
 
-                            <span> {{ post.likes }} Me gusta </span>
+                            <span> 11 Me gusta </span>
 
                         <!-- CONTENIDO DE PUBLICACIÓN -->
-                            <p><b> {{ post.ownerUsername }} </b> {{ post.caption }}</p>
+                            <p><b> username </b> caption</p>
                             
                         <!-- LINK VER MÁS COMENTARIOS -->
                             <p>Ver los 2 comentarios</p>
@@ -208,7 +210,7 @@
                         <!-- INPUT RESPONDER COMENTARIO -->
                             <div class="comments-box">
                                 <div class="media">
-                                    <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{{ post.ownerImageURL }}" />
+                                    <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="" />
                                     <div class="media-body">
                                         <div class="input-group text-box">
                                             <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Publica tu comentario" />
@@ -223,7 +225,7 @@
                     </div>
                 </div>
             </div>
-        </ng-container>
+        
         <!-- End NG Container -->
     </div>
 </div>
