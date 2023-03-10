@@ -2,6 +2,7 @@
     height:58px; 
     width:58px;
     background: #ccc;
+    /* background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0) !important; */
     margin-right: 15px;
 }
 
@@ -9,17 +10,21 @@
     width: 150px; 
     height:15px; 
     background: #ccc;
+    /* background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0) !important; */
 }
 
 .p {
     width: 100px; 
     height:15px; 
     background: #ccc;
+    /* background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0) !important; */
     margin-top: 5px;
 }
 
 .imagePostLoader {
-    height: 20rem;
+    height: 28.1rem;
     width: 100%;
-    background-color: #ccc;
+    border: 0;
+    background: #ccc;
+    /* background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0) !important; */
 }

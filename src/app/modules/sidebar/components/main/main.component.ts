@@ -5,6 +5,7 @@ import { AuthenticationService } from "@core/http/authentication.service";
 import { User } from "@data/models/user";
 import { PostService } from "@data/services/api/post.service";
 import { ScriptsService } from "app/services/scripts/scripts.service";
+import { Subscription } from "rxjs";
 
 @Component({
     selector: "app-main",
@@ -18,6 +19,7 @@ export class MainComponent implements OnInit {
     public identity = null;
     public currentUser: User;
     public username: string;
+    clientesSubscription: Subscription;
 
     // TODO: ----- Lifecycle -----
     constructor(
@@ -27,6 +29,7 @@ export class MainComponent implements OnInit {
         private router: Router,
         private postsService: PostService
     ) {
+        this.identity = this.authService.getIdentity();
         this.loadScripts();
         /*if ( !this.authService.getIdentity() ) {
             this.router.navigate(["/"]);
@@ -35,7 +38,6 @@ export class MainComponent implements OnInit {
 
     // TODO: ----- Helpers -----
     ngOnInit() {
-        this.loadCSS();
         this.getCurrrentUser();
     }
 
@@ -44,20 +46,25 @@ export class MainComponent implements OnInit {
         // this.scripts.loadFiles(["icons/feather-icon/feather.min"]);
         // this.scripts.loadFiles(["icons/feather-icon/feather-icon"]);
         // this.scripts.loadFiles(["script"]);
-        this.identity = this.authService.getIdentity();
-    }
-
-    private loadCSS() {
-        // this.cssUrl = "/assets/css/responsive.css";
-        // this.cssUrl = "/assets/css/vendors/themify.css";
-        // this.cssUrl = "/assets/css/vendors/flag-icon.css";
+        
     }
 
     public getCurrrentUser() {
-        this.authService.getCurrentUser().subscribe(( snapshot ) => {
+        this.clientesSubscription = this.authService.getCurrentUser().subscribe(( snapshot ) => {
             this.currentUser = snapshot.payload.data();
             this.username = this.currentUser.username!;  
         });
+    }
+
+    ngOnDestroy() {
+        // acciones de destrucción
+        if (this.clientesSubscription) {
+            this.clientesSubscription.unsubscribe();
+            console.log("DEBUG: ngDestroy main.component");
+            console.log(this.clientesSubscription.unsubscribe);
+            
+            
+        }
     }
 
     /*public goToProfile() {
