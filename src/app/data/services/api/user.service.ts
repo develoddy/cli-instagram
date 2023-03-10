@@ -13,7 +13,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class UserService {
 
     // TODO: ----- Properties -----
-    public url = environment.uri + "api/";
     public isProduction = environment.production;
     public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public stats: any;

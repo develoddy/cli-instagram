@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { environment } from "environments/environment";
 import { delay, map, tap, catchError } from "rxjs/operators";
-import { Observable, of as observableOf, BehaviorSubject, of } from "rxjs";
+import { Observable, of as observableOf, BehaviorSubject, of, Subscription } from "rxjs";
 import { User } from "@data/models/user";
 import {
     AngularFirestore,
@@ -47,6 +47,7 @@ export class AuthenticationService {
     private readonly REFRESH_TOKEN = "REFRESH_TOKEN";
     public authTokenNew: string = "new_auth_token";
     public currentToken: string = "";
+    clientesSubscription: Subscription;
 
     // TODO: Lifecycle
     constructor(
@@ -62,7 +63,7 @@ export class AuthenticationService {
         this.token = "";
         /* Saving user data in localstorage when 
             logged in and setting up null when logged out */
-        this.afAuth.authState.subscribe((user) => {
+        this.clientesSubscription = this.afAuth.authState.subscribe((user) => {
             if (user) {
                 this.userData = user;
                 localStorage.setItem("user", JSON.stringify(this.userData));
@@ -82,7 +83,7 @@ export class AuthenticationService {
             .signInWithEmailAndPassword(email, password)
             .then((result) => {
                 this.setUserData(result.user);
-                this.afAuth.authState.subscribe((user) => {
+                this.clientesSubscription = this.afAuth.authState.subscribe((user) => {
                     if (user) {
                         this.router.navigate(["app/feed"]);
                     }
@@ -137,13 +138,13 @@ export class AuthenticationService {
     }
 
     // Sign in with Google
-    googleAuth() {
+    /*googleAuth() {
         return this.authLogin(new auth.GoogleAuthProvider()).then(
             (res: any) => {
                 this.router.navigate(["app/feed"]);
             }
         );
-    }
+    }*/
 
     // Get info user
     public getIdentity() {
@@ -208,4 +209,13 @@ export class AuthenticationService {
         }
         return of({ error: true, msg: errorMessage, data: null });
     }
+
+    ngOnDestroy() {
+        // acciones de destrucción
+        if (this.clientesSubscription) {
+            this.clientesSubscription.unsubscribe();
+            console.log("DEBUG: ngDestroy auth.component");
+            console.log(this.clientesSubscription.unsubscribe);
+        }
+      }
 }

@@ -2,7 +2,7 @@ import { Component , OnInit } from '@angular/core';
 import { ScriptsService } from 'app/services/scripts/scripts.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PostService } from '@data/services/api/post.service';
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Subscription } from "rxjs";
 import { Post } from '@data/models/post';
 
 @Component({
@@ -15,28 +15,23 @@ export class ExploreComponent implements OnInit {
   public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public cssUrl: string = "";
   public posts: Post[] = [];
+  clientesSubscription: Subscription;
 
   constructor(
     private _loadScripts: ScriptsService,
     public sanitizer: DomSanitizer, 
     public postService: PostService
   ) {
-    // this._loadScripts.loadFiles(["animation/aos/aos-init"]);
-    // this._loadScripts.loadFiles(["animation/aos/aos"]);
-    // this._loadScripts.loadFiles(["isotope.pkgd"]);
-    // this._loadScripts.loadFiles(["script"]);
-    // this._loadScripts.loadFiles(["photoswipe/photoswipe"]);
   }
 
   ngOnInit() {
-    // this.cssUrl = '/assets/css/vendors/aos.css';
-    // this.cssUrl = '/assets/css/vendors/photoswipe.css';
     this.fetchPosts();
 
   }
+
   private fetchPosts() {
     this.spinner.next(true);
-    this.postService.fetchPosts().subscribe(res => {
+    this.clientesSubscription = this.postService.fetchPosts().subscribe(res => {
       this.spinner.next(false);
         this.posts = [];
         res.forEach( (element:any) => {
@@ -46,6 +41,15 @@ export class ExploreComponent implements OnInit {
             })
         });
     });
-}
+  }
+
+  ngOnDestroy() {
+    // acciones de destrucción
+    if (this.clientesSubscription) {
+        this.clientesSubscription.unsubscribe();
+        console.log("DEBUG: ngDestroy explore.component");
+        console.log(this.clientesSubscription.unsubscribe);
+    }
+  }
 
 }

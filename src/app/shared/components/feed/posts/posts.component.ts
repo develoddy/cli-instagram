@@ -10,12 +10,12 @@ import { UserService } from "@data/services/api/user.service";
 })
 export class PostsComponent implements OnInit {
       // TODO: Properties
-      public url: string;
       @Input() posts: Post[] = [];
       @Input() noMore: boolean = false;
       @Input() identity: any;
       @Output() eventViewMore = new EventEmitter();
       @Output() eventGotoProfile = new EventEmitter();
+      public username: string = "";
 
       // Loader properties
       @ViewChild('ElementRefCard') ElementViewCard: ElementRef;
@@ -24,30 +24,30 @@ export class PostsComponent implements OnInit {
       @ViewChild('ElementRefMedia') ElementViewMedia: ElementRef;
       @ViewChild('ElementRefUsername') ElementViewUsername: ElementRef;
       @ViewChild('ElementRefPostImage') ElementRefPostImage: ElementRef;
-      
-      
-      // this.renderer.removeAttribute(this.ElementRefPostImage.nativeElement, "src");
-      // this.renderer.setStyle(this.ElementRefPostImage.nativeElement, 'height', '23rem');
-      // this.renderer.setStyle(this.ElementRefPostImage.nativeElement, 'background', '#ccc');
-
-
+      @ViewChild('ElementRefRow') ElementRefPostRow: ElementRef;
+      @ViewChild('nativeElement') Element: ElementRef;
 
       // TODO: Lifecycle
       constructor(
             private _userService: UserService, 
             private _authService: AuthenticationService,
-            private renderer: Renderer2
+            private renderer: Renderer2,
+            private elementRef:ElementRef
       ) {
-            this.url = this._userService.url;
             this.identity = this._authService.getIdentity();
       }
-      
+
+
       // TODO: Helpers
       ngAfterViewInit() {
+            
+            
+
+
             this.setPlaceholder();
             setTimeout (() => {
                   this.unsetPlaceholder();
-                }, 1000);
+            }, 1000);
       }
 
       public setPlaceholder() {
@@ -92,76 +92,98 @@ export class PostsComponent implements OnInit {
       public unsetPlaceholder() {
             if ( this.ElementViewCard.nativeElement.classList.contains("card--skeleton") ) {
                   this.ElementViewCard.nativeElement.classList.remove("card--skeleton");
-                  this.ElementViewCardBody.nativeElement.innerHTML = "";
+                  this.ElementRefPostRow.nativeElement.innerHTML = "";
+                  if ( this.ElementRefPostRow.nativeElement.children.length == 0 ) {
+                        /*
+                        Eso no está destinado a funcionar. (click)="..."o cualquier marcado específico de Angular se procesa en el momento de la compilación. Si los agrega en tiempo de ejecución, no tienen ningún efecto (se agregan al DOM tal cual, pero Angular los ignora por completo)
 
-                  if ( this.ElementViewCardBody.nativeElement.children.length == 0 ) {
-                        // Mostrar los posts this.posts
-                        this.posts.forEach((element) => {
-                              this.ElementViewCardBody.nativeElement.innerHTML += `
-                              <div class="new-users-social">
-                                    <div class="media" #ElementRefMedia>
-                                          <img class="rounded-circle image-radius m-r-15"  src="${element.ownerImageURL} " #ElementRefAvatar />
-                                          <div class="media-body">
-                                                <h6 class="mb-0 f-w-700" #ElementRefUsername>${element.ownerUsername}</h6>
-                                                <p> hace 20h</p>
+                        Puede usar código imperativo para consultar el elemento después de agregarlo y agregar un detector de eventos como lo haría condart:html
+                        */
+                        this.posts.forEach((post) => {
+                              this.ElementRefPostRow.nativeElement.innerHTML += `
+                              <div class="col-xl-10 col-md-10 col-sm-10">
+                                    <div class="card">
+                                          <div class="new-users-social">
+                                                <div class="media" #ElementRefMedia>
+                                                      <img class="rounded-circle image-radius m-r-15"  src="${post.ownerImageURL} " #ElementRefAvatar />
+                                                      <div class="media-body">
+                                                            <h6 class="mb-0 f-w-700 code" id="ownerUsername" value="${post.ownerUid}" (click)="navigate(${post})">${post.ownerUsername}</h6>
+                                                            <p> hace 20h</p>
+                                                      </div>
+                                                      <span class="pull-right mt-0">
+                                                            <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="24"
+                                                            height="24"
+                                                            viewBox="0 0 24 24"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            class="feather feather-more-vertical"
+                                                            >
+                                                            <circle cx="12" cy="12" r="1"></circle>
+                                                            <circle cx="12" cy="5" r="1"></circle>
+                                                            <circle cx="12" cy="19" r="1"></circle>
+                                                            </svg>
+                                                      </span>
+                                                </div>
                                           </div>
-                                          <span class="pull-right mt-0">
-                                                <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="24"
-                                                height="24"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                class="feather feather-more-vertical"
-                                                >
-                                                <circle cx="12" cy="12" r="1"></circle>
-                                                <circle cx="12" cy="5" r="1"></circle>
-                                                <circle cx="12" cy="19" r="1"></circle>
-                                                </svg>
-                                          </span>
+                                          <img class="img-fluid" #ElementRefPostImage width="100%" src="${post.imageURL} "/>
+
+                                          <div class="timeline-content">
+                                                <div class="like-content pt-2">
+                                                      <span><i class="fa fa-heart font-danger"></i></span>
+                                                      <span class="pull-right comment-number">
+                                                            <span><i class="fa fa-bookmark-o me-0"></i></span>
+                                                      </span>
+                                                      <span class="comment-number px-2">
+                                                            <span><i class="fa fa-comment-o"></i></span>
+                                                      </span>
+                                                </div>
+
+                                                <span> 11 Me gusta </span>
+                                                <p>Ver los 2 comentarios</p>
+
+                                                <div class="comments-box">
+                                                      <div class="media">
+                                                            <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="${post.ownerImageURL} " />
+                                                            <div class="media-body">
+                                                                  <div class="input-group text-box">
+                                                                        <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Publica tu comentario" />
+                                                                        <div class="input-group-append">
+                                                                              <button class="btn btn-transparent" type="button"><i class="fa fa-smile-o"> </i></button>
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
                                     </div>
-                              </div>
-                              <img class="img-fluid" #ElementRefPostImage width="100%" src="${element.imageURL} "/>
-
-                              <div class="timeline-content">
-                                    <div class="like-content pt-2">
-                                          <span><i class="fa fa-heart font-danger"></i></span>
-                                          <span class="pull-right comment-number">
-                                                <span><i class="fa fa-bookmark-o me-0"></i></span>
-                                          </span>
-                                          <span class="comment-number px-2">
-                                                <span><i class="fa fa-comment-o"></i></span>
-                                          </span>
-                                    </div>
-                              </div>
-
-                              <span> 11 Me gusta </span>
-                              <p>Ver los 2 comentarios</p>
-
-                              <div class="comments-box">
-                                <div class="media">
-                                    <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="${element.ownerImageURL} " />
-                                    <div class="media-body">
-                                        <div class="input-group text-box">
-                                            <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Publica tu comentario" />
-                                            <div class="input-group-append">
-                                                <button class="btn btn-transparent" type="button"><i class="fa fa-smile-o"> </i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                              `;
+                              </div>`;
                         });
-                        
+                        /*let element = document.getElementById("code")!;
+                        element.onclick = function() {
+                        }*/
                   }
             }
+
+            // 
+            
+            document.getElementById('ownerUsername')!.onclick = (e) => {
+                  console.log("click xxxx");
+                  /*const username = document.getElementById("ownerUsername")?.textContent;
+                  this.username = username!;
+                  this.gotoProfile( this.username );*/
+            }
+            
+            /*document.getElementById('ownerUsername')!.addEventListener("click", function() {
+                  console.log("XXXX");
+                  
+                  
+            });*/
+            
       }
 
       ngOnInit() {}
@@ -170,7 +192,7 @@ export class PostsComponent implements OnInit {
             this.eventViewMore.emit(true);
       }
 
-      gotoProfile( post: Post ) {
-            this.eventGotoProfile.emit( post );
+      gotoProfile( username: string ) {
+            this.eventGotoProfile.emit( username );
       }
 }

@@ -6,7 +6,7 @@ import { Post } from "@data/models/post";
 import { UserService } from "@data/services/api/user.service";
 import { PostService } from "@data/services/api/post.service";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Subscription } from "rxjs";
 import { User } from "@data/models/user";
 import * as moment from "moment";
 import * as $ from "jquery";
@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
     public user: User;
     public currentUser: any;
     public noDataPosts: boolean = false;
+    clientesSubscription: Subscription;
 
     // TODO: ===== Lifecycle =====
     constructor(
@@ -52,7 +53,7 @@ export class ProfileComponent implements OnInit {
     // TODO: ===== ViewModel =====
     private fetchPostsByUid( uid: string ) {
         this.spinner.next(true);
-        this.postService.fetchPostsByUid(uid).subscribe((snapshot) => {
+        this.clientesSubscription = this.postService.fetchPostsByUid(uid).subscribe((snapshot) => {
             this.spinner.next(false);
             this.posts = snapshot;
             if ( this.posts.length == 0 ) {
@@ -67,7 +68,7 @@ export class ProfileComponent implements OnInit {
      */
     public fetchUser( username: string ) {
         this.spinner.next(true);
-        this.userService.fetchUserByUsername( username ).subscribe(( snapshot ) => {
+        this.clientesSubscription = this.userService.fetchUserByUsername( username ).subscribe(( snapshot ) => {
             this.spinner.next(false);
             this.user = snapshot[0];
             this.fetchPostsByUid(this.user.uid!);
@@ -96,7 +97,7 @@ export class ProfileComponent implements OnInit {
      * para mostrarlos en el feed.
      */
     private fetchData() {
-        this.postService.fetchPosts().subscribe(res => {
+        this.clientesSubscription = this.postService.fetchPosts().subscribe(res => {
             this.posts = [];
             res.forEach( (element:any) => {
                 this.posts.push({
@@ -105,5 +106,14 @@ export class ProfileComponent implements OnInit {
                 })
             });
         });
+    }
+
+    ngOnDestroy() {
+        // acciones de destrucción
+        if (this.clientesSubscription) {
+            this.clientesSubscription.unsubscribe();
+            console.log("DEBUG: ngDestroy profile.component");
+            console.log(this.clientesSubscription.unsubscribe);
+        }
     }
 }

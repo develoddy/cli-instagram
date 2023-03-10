@@ -6,7 +6,7 @@ import { AuthenticationService } from '@core/http/authentication.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, DoCheck  {
+export class HeaderComponent implements OnInit/*, DoCheck*/  {
 
   // TODO: Properties
   @Input() currentUser: any;
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, DoCheck  {
   ngOnInit() {}
 
   // TODO: Helper
-  ngDoCheck() {}
+  //ngDoCheck() {}
 
   logout() {
     this.auth.SignOut();

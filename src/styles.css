@@ -18819,6 +18819,7 @@ footer.blockquote-footer {
 /* ---- .grid-item ---- */
 .grid-item img {
   max-width: 100%;
+  width: 100%;
   padding: 0;
   background-color: #fff;
   border: 1px solid #dee2e6;
