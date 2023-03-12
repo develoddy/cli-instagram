@@ -29,7 +29,12 @@
                         <!-- <div style="display: grid; place-content: center;">
                                     <div class="spinner"></div>
                         </div> -->
-                        <app-loader-photos *ngIf="posts.length>0" [posts]="posts"></app-loader-photos>
+                        <app-loader-photos *ngIf="posts.length>0; else emptyPhotos" [posts]="posts"></app-loader-photos>
+                        <ng-template #emptyPhotos>
+                            <ng-container *ngIf="noDataPosts">
+                                <app-empty-photos></app-empty-photos>
+                            </ng-container>
+                        </ng-template>
                     </div>
                 </div>
                 </div>
