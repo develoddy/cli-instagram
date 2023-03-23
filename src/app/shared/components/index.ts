@@ -15,6 +15,7 @@ import { PostsLoadersComponent } from "./loaders/posts-loaders/posts-loaders.com
 import { SpinnerComponent } from "./loaders/spinner/spinner.component";
 import { HeaderComponent } from "./main/header/header.component";
 import { CardheaderComponent } from "./profile/cardheader/cardheader.component";
+import { UserprofileComponent } from "./profile/userprofile/userprofile.component";
 
 // IMPORT COMPONENTS
 export const components : any[] = [
@@ -33,7 +34,8 @@ export const components : any[] = [
     CardInfoUserComponent,
     LoaderContactsComponent,
     SpinnerComponent,
-    LoaderPhotosComponent
+    LoaderPhotosComponent,
+    UserprofileComponent
 ];
 
 // EXPORT ALL COMPONENTS
@@ -53,3 +55,4 @@ export * from './loaders/card-info-user/card-info-user.component';
 export * from './loaders/loader-contacts/loader-contacts.component';
 export * from './loaders/spinner/spinner.component';
 export * from './loaders/loader-photos/loader-photos.component';
+export * from './profile/userprofile/userprofile.component';

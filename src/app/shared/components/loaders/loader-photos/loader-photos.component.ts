@@ -60,7 +60,7 @@ export class LoaderPhotosComponent implements OnInit  {
         this.posts.forEach((element) => {
           this.ElementViewCardBody.nativeElement.innerHTML += `
             <figure class="col-xl-4 col-md-4 col-4">
-              <a> <img src='${element.imageURL}'></img> </a>
+              <a> <img src='${element.imageURL}' width="100%" ></img> </a>
             <figure>
           `;
         });

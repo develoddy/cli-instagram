@@ -53,6 +53,7 @@ export class User {
     displayName?: string;
     photoURL?: string;
     emailVerified?: boolean;
+    stats?: UserStats;
 
 
     constructor(
@@ -60,12 +61,20 @@ export class User {
         fullname: string,
         profileImageURL: string,
         username: string,
-        uid: string
+        uid: string,
+        stats: UserStats
      ) {
         this.email = email;
         this.fullname = fullname;
         this.profileImageURL = profileImageURL;
         this.username = username;
         this.uid = uid;
+        this.stats = stats
     }
+}
+
+export class UserStats {
+    followers: number;
+    following: number;
+    posts: number;
 }
