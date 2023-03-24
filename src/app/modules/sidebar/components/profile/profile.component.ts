@@ -126,6 +126,9 @@ export class ProfileComponent implements OnInit {
 
  
     // TODO: - HELPERS
+    
+
+    // TODO: - ACTIONS
     public didTapActionbuttonfor(user: User) {
         if ( this.checkIfItsYourProfile() ) {
             console.log("DEBUG: Show edit profile here..");
