@@ -10,6 +10,7 @@ import { BehaviorSubject, Subscription } from "rxjs";
 import { User } from "@data/models/user";
 import * as moment from "moment";
 import * as $ from "jquery";
+import { ProfileService } from "@data/services/api/profile.service";
 
 @Component({
     selector: "app-profile",
@@ -18,7 +19,8 @@ import * as $ from "jquery";
 })
 export class ProfileComponent implements OnInit {
 
-    // TODO: ===== Properties =====
+    // TODO: _______________________________________________________________________
+    // TODO: - Properties
     public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public cssUrl: string = "";
     public identity = null;
@@ -26,9 +28,13 @@ export class ProfileComponent implements OnInit {
     public user: User;
     public currentUser: any;
     public noDataPosts: boolean = false;
+    public followersTotal = 0;
+    public followingsTotal = 0;
+    public postsTotal = 0;
     clientesSubscription: Subscription;
 
-    // TODO: ===== Lifecycle =====
+    // TODO: _______________________________________________________________________
+    // TODO: - Lifecycle
     constructor(
         public _loadScripts: ScriptsService,
         public sanitizer: DomSanitizer,
@@ -36,10 +42,12 @@ export class ProfileComponent implements OnInit {
         private userService: UserService,
         private postService: PostService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private profileService: ProfileService
     ) {
         //this.loadScripts();
         this.fetchUser(this.route.snapshot.paramMap.get("username")!);
+        this.fetchPostsStat();
         
         /*const params = this.router.getCurrentNavigation()?.extras.state;
         if ( params ) {}*/
@@ -50,7 +58,8 @@ export class ProfileComponent implements OnInit {
         //this.loadCSS();
     }
 
-    // TODO: ===== ViewModel =====
+    // TODO: _______________________________________________________________________
+    // TODO: - ViewModel 
     private fetchPostsByUid( uid: string ) {
         this.spinner.next(true);
         this.clientesSubscription = this.postService.fetchPostsByUid(uid).subscribe((snapshot) => {
@@ -74,23 +83,51 @@ export class ProfileComponent implements OnInit {
             this.fetchPostsByUid(this.user.uid!);
         });
     }
-    
-     // TODO: ===== Helpers =====
+
     /**
-     * @description Se carga los ficheros de estilos.
+     * @description: Se recupera el total de followers.
      */
-    private loadCSS() {
-        // this.cssUrl = "/assets/css/responsive.css";
+    public fetchFollowersStat() {
+        var uid = this.authService.getIdentity().uid;
+        this.clientesSubscription = this.profileService.fetchFollowersStat(uid).subscribe( ( snapshot) => { 
+            this.followersTotal = snapshot.length;
+            console.log("DEBUG: Count fetchFollowersStat: " + this.followersTotal );
+            snapshot.forEach( (element:any) => {
+                console.log(element.payload.doc.data());
+            });
+        });
     }
 
     /**
-     * @description Se carga los scripts.
+     * @description: Se recupera el total de followings.
      */
-    private loadScripts() {
-        this._loadScripts.loadFiles(["icons/feather-icon/feather.min"]);
-        this._loadScripts.loadFiles(["icons/feather-icon/feather-icon"]);
-        this._loadScripts.loadFiles(["jquery-3.5.1.min"]);   
+    public fetchFollowingsStat() {
+        var uid = this.authService.getIdentity().uid;
+        this.clientesSubscription = this.profileService.fetchFollowingsStat(uid).subscribe( ( snapshot) => { 
+            this.followingsTotal = snapshot.length;
+            console.log("DEBUG: Count fetchFollowingsStat: " + this.followingsTotal );
+            snapshot.forEach( (element:any) => {
+                console.log(element.payload.doc.data());
+            });
+        });
     }
+
+    /**
+     * @description: Se recupera el total de las publicaciones.
+     */
+    public fetchPostsStat() {
+        var uid = this.authService.getIdentity().uid;
+        this.clientesSubscription = this.profileService.fetchPostsStat(uid).subscribe( ( snapshot) => { 
+            this.postsTotal = snapshot.length;
+            console.log("DEBUG: Count fetchPostsStat: " + this.postsTotal );
+            snapshot.forEach( (element:any) => {
+                console.log(element.payload.doc.data());
+            });
+        });
+    }
+
+    // TODO: _______________________________________________________________________
+    // TODO: - Helpers
 
     /**
      * @description Se recupera todas las publicaciones 
