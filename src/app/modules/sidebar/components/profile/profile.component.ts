@@ -1,16 +1,15 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { AuthenticationService } from "@core/http/authentication.service";
-import { ScriptsService } from "app/services/scripts/scripts.service";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { BehaviorSubject, Subscription } from "rxjs";
+import { User, UserStats } from "@data/models/user";
 import { Post } from "@data/models/post";
 import { UserService } from "@data/services/api/user.service";
 import { PostService } from "@data/services/api/post.service";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { BehaviorSubject, Subscription } from "rxjs";
-import { User } from "@data/models/user";
+import { ProfileService } from "@data/services/api/profile.service";
 import * as moment from "moment";
 import * as $ from "jquery";
-import { ProfileService } from "@data/services/api/profile.service";
 
 @Component({
     selector: "app-profile",
@@ -19,24 +18,24 @@ import { ProfileService } from "@data/services/api/profile.service";
 })
 export class ProfileComponent implements OnInit {
 
-    // TODO: _______________________________________________________________________
-    // TODO: - Properties
+    // TODO: - PROPERTIES
     public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public cssUrl: string = "";
     public identity = null;
-    public posts: Post[] = [];
-    public user: User;
     public currentUser: any;
     public noDataPosts: boolean = false;
     public followersTotal = 0;
     public followingsTotal = 0;
     public postsTotal = 0;
-    clientesSubscription: Subscription;
+    private clientesSubscription: Subscription;
+    public posts: Post[] = [];
+    public user: User;
+    public stats: UserStats = { followers: 0, followings: 0, posts: 0 };
+    public followButtonText: string = "";
+    public username: string = "";
 
-    // TODO: _______________________________________________________________________
-    // TODO: - Lifecycle
+    // TODO: - LIFECYCLE
     constructor(
-        public _loadScripts: ScriptsService,
         public sanitizer: DomSanitizer,
         private authService: AuthenticationService,
         private userService: UserService,
@@ -45,21 +44,27 @@ export class ProfileComponent implements OnInit {
         private router: Router,
         private profileService: ProfileService
     ) {
-        //this.loadScripts();
-        this.fetchUser(this.route.snapshot.paramMap.get("username")!);
-        this.fetchPostsStat();
-        
-        /*const params = this.router.getCurrentNavigation()?.extras.state;
-        if ( params ) {}*/
+        this.username = this.route.snapshot.paramMap.get("username")!; 
     }
 
-   
     ngOnInit() {
-        //this.loadCSS();
+        this.fetchUser();
     }
 
-    // TODO: _______________________________________________________________________
-    // TODO: - ViewModel 
+    // TODO: - VIEWMODEL 
+    // SE RECUPERA LOS DATOS DEL USUARIO POR LA PROPIEDAD USERNAME.
+    public fetchUser() {
+        this.spinner.next(true);
+        this.clientesSubscription = this.userService.fetchUserByUsername( this.username ).subscribe(( snapshot ) => {
+            this.spinner.next(false);
+            this.user = snapshot[0];
+            this.fetchPostsByUid(this.user.uid!);
+            this.fetchUserStats();
+            this.checkIfUserIsFollowed();
+        });
+    }
+
+    // SE RECUPERA LAS PUBLICACIONES DEL USUARIO QUE SE VISITA EN EL PERFIL.
     private fetchPostsByUid( uid: string ) {
         this.spinner.next(true);
         this.clientesSubscription = this.postService.fetchPostsByUid(uid).subscribe((snapshot) => {
@@ -71,85 +76,79 @@ export class ProfileComponent implements OnInit {
         });
     }
 
-    /**
-     * @description: Se recupera los datos del usuario por la propiedad username
-     * @param username 
-     */
-    public fetchUser( username: string ) {
-        this.spinner.next(true);
-        this.clientesSubscription = this.userService.fetchUserByUsername( username ).subscribe(( snapshot ) => {
-            this.spinner.next(false);
-            this.user = snapshot[0];
-            this.fetchPostsByUid(this.user.uid!);
-        });
+    // SE RECUPERA EL TOTAL DE STATS.
+    public fetchUserStats() {
+        if ( this.user ) {
+            var uid = this.user.uid!;
+            this.clientesSubscription = this.profileService.fetchFollowersStat(uid).subscribe( ( snapshot ) => {
+                this.followersTotal = snapshot.length;
+
+                this.clientesSubscription = this.profileService.fetchFollowingsStat(uid).subscribe( ( snapshot ) => { 
+                    this.followingsTotal = snapshot.length;
+                    
+                    this.clientesSubscription = this.profileService.fetchPostsStat(uid).subscribe( ( snapshot ) => { 
+                        this.postsTotal = snapshot.length;
+
+                        // SE RECUPERA TODOS LOS STATS.
+                        this.stats.followers = this.followersTotal;
+                        this.stats.followings = this.followingsTotal;
+                        this.stats.posts = this.postsTotal;
+                        this.user.stats = this.stats;
+                    });
+                });
+            });
+        }
     }
 
-    /**
-     * @description: Se recupera el total de followers.
-     */
-    public fetchFollowersStat() {
-        var uid = this.authService.getIdentity().uid;
-        this.clientesSubscription = this.profileService.fetchFollowersStat(uid).subscribe( ( snapshot) => { 
-            this.followersTotal = snapshot.length;
-            console.log("DEBUG: Count fetchFollowersStat: " + this.followersTotal );
-            snapshot.forEach( (element:any) => {
-                console.log(element.payload.doc.data());
+    // VERIFICAR SI EL USUARIO ACTUAL SE ENCUENTRA EN SU PERFIL O SI HA ENTRADO EN OTRO 
+    // Y COMPROBAR SI SIGUE O LO SIGUEN.
+    private checkIfUserIsFollowed() {
+        if ( this.checkIfItsYourProfile() ) {
+            this.followButtonText = "Edit Profile";
+        } else  {
+            let currentUserUID =  this.authService.getIdentity().uid;
+            let userUID = this.user.uid!;
+            this.profileService.checkIfUserIsFollowed( currentUserUID, userUID ).subscribe ( ( snapshot ) => {
+                let user = new User();
+                user.isFollwed = snapshot.payload.exists;
+                this.user.isFollwed = user.isFollwed;
+                this.followButtonText = user.isFollwed ? "Following" : "Follow";
             });
-        });
+        }
     }
 
-    /**
-     * @description: Se recupera el total de followings.
-     */
-    public fetchFollowingsStat() {
-        var uid = this.authService.getIdentity().uid;
-        this.clientesSubscription = this.profileService.fetchFollowingsStat(uid).subscribe( ( snapshot) => { 
-            this.followingsTotal = snapshot.length;
-            console.log("DEBUG: Count fetchFollowingsStat: " + this.followingsTotal );
-            snapshot.forEach( (element:any) => {
-                console.log(element.payload.doc.data());
-            });
-        });
+
+    // SE VERIFICA SI EL USUARIO ACTUAL HA ENTRADO EN SU PERFIL O 
+    // HA ENTRADO EN OTRO PERFIL.
+    public checkIfItsYourProfile(): boolean {
+        return this.authService.getIdentity().uid == this.user.uid;
     }
 
-    /**
-     * @description: Se recupera el total de las publicaciones.
-     */
-    public fetchPostsStat() {
-        var uid = this.authService.getIdentity().uid;
-        this.clientesSubscription = this.profileService.fetchPostsStat(uid).subscribe( ( snapshot) => { 
-            this.postsTotal = snapshot.length;
-            console.log("DEBUG: Count fetchPostsStat: " + this.postsTotal );
-            snapshot.forEach( (element:any) => {
-                console.log(element.payload.doc.data());
-            });
-        });
-    }
+ 
+    // TODO: - HELPERS
+    
 
-    // TODO: _______________________________________________________________________
-    // TODO: - Helpers
-
-    /**
-     * @description Se recupera todas las publicaciones 
-     * para mostrarlos en el feed.
-     */
-    private fetchData() {
-        this.clientesSubscription = this.postService.fetchPosts().subscribe(res => {
-            this.posts = [];
-            res.forEach( (element:any) => {
-                this.posts.push({
-                  id: element.payload.doc.id,
-                  ...element.payload.doc.data()
-                })
-            });
-        });
+    // TODO: - ACTIONS
+    public didTapActionbuttonfor(user: User) {
+        if ( this.checkIfItsYourProfile() ) {
+            console.log("DEBUG: Show edit profile here..");
+            // NAVEGAR AL COMPONENTE EDITAR PERFIL..
+        } else {
+            if ( user.isFollwed ) {
+                // FOLLOWING -> FOLLOW
+                // SI EL PERFIL QUE SE VISITA, EL USUARIO ACTUAL LE SIGUE ENTONCES AL DAR CLICK EN EL BOTON "FOLLOWINGS" PASARÁ DE TRUE A FALSE Y SE DEJARÁ DE SEGUIR AL USUARIO.
+                // SE LLAMARÁ AL SERVICIO DE DEJAR DE SEGUIR AL USUARIO.
+            } else {
+                // FOLLOW -> FOLLOWINGS
+                // SI EL PERFIL QUE SE VISITA, EL USUARIO ACTUAL NO LE SIGUE ENTONCES AL DAR CLICK EN EL BOTON "FOLLOW" PASARÁ DE FALSE A TRUE Y SE DEJARÁ DE SEGUIR AL USUARIO.
+                // SE LLAMARÁ AL SERVICIO DE SEGUIR AL USUARIO.
+            }
+        }
     }
 
     ngOnDestroy() {
-        // acciones de destrucción
         if (this.clientesSubscription) {
             this.clientesSubscription.unsubscribe();
-            console.log("DEBUG: ngDestroy profile.component");
             console.log(this.clientesSubscription.unsubscribe);
         }
     }

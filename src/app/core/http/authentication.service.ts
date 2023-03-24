@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { environment } from "environments/environment";
 import { delay, map, tap, catchError } from "rxjs/operators";
 import { Observable, of as observableOf, BehaviorSubject, of, Subscription } from "rxjs";
-import { User } from "@data/models/user";
+import { User, UserStats } from "@data/models/user";
 import {
     AngularFirestore,
     AngularFirestoreDocument,
@@ -12,6 +12,7 @@ import {
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import * as auth from "firebase/auth";
 import { UserService } from "@data/services/api/user.service";
+import { ProfileService } from "@data/services/api/profile.service";
 
 // FIREBASE
 
@@ -42,17 +43,23 @@ export class AuthenticationService {
     private email: string = "";
     private username: string = "";
     public identity: any;
-    public user: User;
+    public localStorageStats: any;
     private readonly JWT_TOKEN = "JWT_TOKEN";
     private readonly REFRESH_TOKEN = "REFRESH_TOKEN";
     public authTokenNew: string = "new_auth_token";
     public currentToken: string = "";
     clientesSubscription: Subscription;
+    public followersTotal = 0;
+    public followingsTotal = 0;
+    public postsTotal = 0;
+    public user: User;
+    public stats: UserStats = { followers: 0, followings: 0, posts: 0 };
 
     // TODO: Lifecycle
     constructor(
         private http: HttpClient,
         private userService: UserService,
+        private profileService: ProfileService,
         // FIREBASE
         private firebase: AngularFirestore,
         public afs: AngularFirestore, // Inject Firestore service
@@ -68,6 +75,8 @@ export class AuthenticationService {
                 this.userData = user;
                 localStorage.setItem("user", JSON.stringify(this.userData));
                 JSON.parse(localStorage.getItem("user")!);
+
+                this.fetchUserStats();
             } else {
                 localStorage.setItem("user", "null");
                 JSON.parse(localStorage.getItem("user")!);
@@ -82,6 +91,7 @@ export class AuthenticationService {
         return this.afAuth
             .signInWithEmailAndPassword(email, password)
             .then((result) => {
+                
                 this.setUserData(result.user);
                 this.clientesSubscription = this.afAuth.authState.subscribe((user) => {
                     if (user) {
@@ -154,11 +164,22 @@ export class AuthenticationService {
         return this.identity;
     }
 
+    public getStats() {
+        if (!this.localStorageStats) {
+            this.localStorageStats = JSON.parse(localStorage.getItem("stats")!);
+        }
+        return this.localStorageStats;
+    }
+
     public getCurrentUser(): Observable<any> {
         this.identity = this.getIdentity();
         var uid = this.identity.uid;
         return this.firebase.collection("users").doc(uid).snapshotChanges();
     }
+
+    /*public isCurrentUser(): boolean {
+        return this.identity.uid ==
+    }*/
 
     // Auth logic to run auth providers
     authLogin(provider: any) {
@@ -173,6 +194,35 @@ export class AuthenticationService {
             });
     }
 
+    public fetchUserStats() {
+        var uid = this.getIdentity().uid;
+        this.clientesSubscription = this.profileService.fetchFollowersStat(uid).subscribe( ( snapshot) => {
+            this.followersTotal = snapshot.length;
+            
+            this.clientesSubscription = this.profileService.fetchFollowingsStat(uid).subscribe( ( snapshot) => { 
+                this.followingsTotal = snapshot.length;
+                
+                this.clientesSubscription = this.profileService.fetchPostsStat(uid).subscribe( ( snapshot) => { 
+                    this.postsTotal = snapshot.length;
+
+                    /**
+                     * Se obtiene todos los stats
+                     */
+                    this.stats.followers = this.followersTotal;
+                    this.stats.followings = this.followingsTotal;
+                    this.stats.posts = this.postsTotal;
+
+                    /**
+                     * Se asigna los datos del stats a la propiedad stats del User.stats
+                     */
+                    //this.user.stats = this.stats;
+
+                    localStorage.setItem("stats", JSON.stringify(this.stats));
+                });
+            });
+        });
+    }
+
     /* Setting up user data when sign in with username/password, 
       sign up with username/password and sign in with social auth  
       provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
@@ -185,7 +235,7 @@ export class AuthenticationService {
             email: user.email,
             displayName: user.displayName,
             photoURL: user.photoURL,
-            emailVerified: user.emailVerified,
+            emailVerified: user.emailVerified
         };
         return userRef.set(userData, {
             merge: true,

@@ -43,7 +43,6 @@ export interface Profile {
     bio: string;
 }*/
 
-
 export class User {
     email?: string;
     fullname?: string;
@@ -54,9 +53,9 @@ export class User {
     photoURL?: string;
     emailVerified?: boolean;
     stats?: UserStats;
+    isFollwed?: boolean = false;
 
-
-    constructor(
+    /*constructor(
         email: string,
         fullname: string,
         profileImageURL: string,
@@ -69,12 +68,12 @@ export class User {
         this.profileImageURL = profileImageURL;
         this.username = username;
         this.uid = uid;
-        this.stats = stats
-    }
+        this.stats = stats;
+    }*/
 }
 
-export class UserStats {
+export interface UserStats {
     followers: number;
-    following: number;
+    followings: number;
     posts: number;
 }
