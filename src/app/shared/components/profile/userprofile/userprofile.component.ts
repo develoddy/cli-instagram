@@ -15,6 +15,8 @@ export class UserprofileComponent implements OnInit {
   @Input() posts: Post[] = [];
   @Input() identity: any;
   @Input() user: User;
+  @Input() followButtonText: string;
+  
 
   // -- Lifecycle
   constructor(
@@ -25,12 +27,7 @@ export class UserprofileComponent implements OnInit {
     this.identity = this.authService.getIdentity();
   }
 
-  ngOnInit() { 
-    //console.log(this.posts);
-    //console.log(this.user);
-    
-    
-    
+  ngOnInit() {
   }
 
   // -- Helpers

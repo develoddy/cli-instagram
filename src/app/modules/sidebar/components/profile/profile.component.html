@@ -41,7 +41,7 @@
                 <!-- </div> -->
             <!-- / END FRIENDS -->
 
-            <app-userprofile *ngIf="posts.length>0" [posts]="posts" [user]="user" ></app-userprofile>
+            <app-userprofile *ngIf="posts.length>0" [posts]="posts" [user]="user" [followButtonText] = "followButtonText" ></app-userprofile>
         </div>
     </div>
 </div>

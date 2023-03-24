@@ -73,9 +73,8 @@
             <div class="profile__profile__details">
                 <div class="profile__profile__details__userName">
                     <h4>{{ this.user.username }}</h4>
-                    <button>
-                        Editar Perfil
-                    </button>
+                    <button>{{ followButtonText }}</button>
+                    <!-- <button>Editar Perfil</button> -->
                     <button>
                         <svg aria-label="Options" class="_ab6-" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24">
                             <circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
@@ -90,9 +89,9 @@
                     </button>
                 </div>
                 <div class="profile__profile__details__follower my-3">
-                    <span><b>135</b> posts</span>
-                    <button><b>123</b> followers</button>
-                    <button><b>123</b> following</button>
+                    <span><b>{{ this.user.stats?.posts }}</b> posts</span>
+                    <button><b>{{ this.user.stats?.followers }}</b> followers</button>
+                    <button><b>{{ this.user.stats?.followings }}</b> followings</button>
                 </div>
                 <div class="profile__profile__details__displayName">
                     <h6>Descripción del perfil</h6>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from "rxjs";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { HttpClient } from "@angular/common/http";
+import { AuthenticationService } from '@core/http/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ProfileService {
 
   constructor(
     private http: HttpClient,
-    private firebase: AngularFirestore
+    private firebase: AngularFirestore,
   ) { }
 
   // public fetchUserStats(uid: string): Observable<any> {
@@ -29,21 +30,16 @@ export class ProfileService {
     return this.firebase.collection("posts", ref => ref.where('ownerUid', '==', uid )).snapshotChanges();
   }
 
-  /*
-  func fetchUserStats(uid: String, completion: @escaping(UserStats) -> Void) {
+  public checkIfUserIsFollowed(currentId: string, uid: string): Observable<any> {
+    return this.firebase.collection("followings").doc(currentId).collection("user-followings").doc(uid).snapshotChanges();
+  }
 
-        Constants.Collections.COLLECTION_FOLLOWERS.document(uid).collection("user-followers").getDocuments { (snapshot, _) in
-            let followers = snapshot?.documents.count ?? 0
-            
-            Constants.Collections.COLLECTION_FOLLOWINGS.document(uid).collection("user-followings").getDocuments { (snapshot, _) in
-                let followings = snapshot?.documents.count ?? 0
-                
-                Constants.Collections.COLLECTION_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { (snapshot, _) in
-                    let posts = snapshot?.documents.count ?? 0
-                    completion(UserStats(followers: followers, following: followings, posts: posts))
-                }
-            }
-        }
+
+  /*func checkIfUserIsFollowed(uid: String, completion: @escaping(Bool) -> Void)  {
+    guard let currentUid = Auth.auth().currentUser?.uid else { return }
+    Constants.Collections.COLLECTION_FOLLOWINGS.document(currentUid).collection("user-followings").document(uid).getDocument { (snapshot, error) in
+        guard let isFollowed = snapshot?.exists else { return }
+        completion(isFollowed)
     }
-  */
+  }*/
 }
