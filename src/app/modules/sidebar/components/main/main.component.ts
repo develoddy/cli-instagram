@@ -31,9 +31,9 @@ export class MainComponent implements OnInit {
     ) {
         this.identity = this.authService.getIdentity();
         this.loadScripts();
-        /*if ( !this.authService.getIdentity() ) {
+        if ( !this.authService.getIdentity() ) {
             this.router.navigate(["/"]);
-        }*/
+        }
     }
 
     // TODO: ----- Helpers -----

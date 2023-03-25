@@ -16,16 +16,20 @@ export class LoginComponent implements OnInit {
 
   // TODO: Lifecycle
   constructor(
-    public authService: AuthenticationService
-  ) {}
+    public authService: AuthenticationService,
+    private router: Router,
+  ) {
+    if ( this.authService.getIdentity() ) {
+      this.router.navigate(['app/feed']);
+      //console.log("NUL... is reload..");
+      //window.location.reload();
+    //} else {
+      //console.log("hay datos..");
+    }
+  }
 
   ngOnInit() {
-    if ( this.authService.getIdentity() == null ) {
-      console.log("NUL...");
-    } else {
-      console.log("hay datos..");
-      window.location.reload();
-    }
+   
   }
 
   // TODO: Helpers
