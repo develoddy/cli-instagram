@@ -49,6 +49,7 @@
                                       <input type="password" name="password" id="password" placeholder="Password" aria-describedby="" maxlength="30" aria-required="true" autocapitalize="off" autocorrect="off" #userPassword required />
                                   </div>
 
+<<<<<<< Updated upstream
                                   <span class="button-box">
                                       <button
                                           class="btn"
@@ -77,6 +78,23 @@
                                           </ng-container>
                                       </button>
                                   </span>
+=======
+                  <span class="button-box">
+                    <button
+                      class="btn"
+                      type="submit"
+                      name="submit"
+                      (click)="
+                        authService.signIn(userName.value, userPassword.value)
+                      "
+                    >
+                      <!--<div class="spinner"></div>-->
+                      <ng-container *ngIf="this.authService.spinner">
+                        <span class="spinner"></span>
+                      </ng-container>
+                    </button>
+                  </span>
+>>>>>>> Stashed changes
 
                                   <a class="forgot" href="">¿Has olvidado la contraseña?</a>
                               </form>
