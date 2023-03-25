@@ -12,11 +12,21 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   // TODO: Properties
+  
 
   // TODO: Lifecycle
-  constructor(public authService: AuthenticationService) {}
+  constructor(
+    public authService: AuthenticationService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if ( this.authService.getIdentity() == null ) {
+      console.log("NUL...");
+    } else {
+      console.log("hay datos..");
+      window.location.reload();
+    }
+  }
 
   // TODO: Helpers
 }

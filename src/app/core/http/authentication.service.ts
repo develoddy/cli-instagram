@@ -61,6 +61,7 @@ export class AuthenticationService {
   public user: User;
   public stats: UserStats = { followers: 0, followings: 0, posts: 0 };
   public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public showTextLogin: boolean = false;
 
   // TODO: Lifecycle
   constructor(
@@ -95,6 +96,7 @@ export class AuthenticationService {
 
   // Sign in with email/password
   signIn(email: string, password: string) {
+    this.showTextLogin = !this.showTextLogin;
     this.spinner.next(true);
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
@@ -156,13 +158,13 @@ export class AuthenticationService {
   }
 
   // Sign in with Google
-  /*googleAuth() {
-        return this.authLogin(new auth.GoogleAuthProvider()).then(
-            (res: any) => {
-                this.router.navigate(["app/feed"]);
-            }
-        );
-    }*/
+  googleAuth() {
+    return this.authLogin(new auth.GoogleAuthProvider()).then(
+        (res: any) => {
+            this.router.navigate(["app/feed"]);
+        }
+    );
+  }
 
   // Get info user
   public getIdentity() {
@@ -184,10 +186,6 @@ export class AuthenticationService {
     var uid = this.identity.uid;
     return this.firebase.collection('users').doc(uid).snapshotChanges();
   }
-
-  /*public isCurrentUser(): boolean {
-        return this.identity.uid ==
-    }*/
 
   // Auth logic to run auth providers
   authLogin(provider: any) {
@@ -261,6 +259,7 @@ export class AuthenticationService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
+      
     });
   }
 
