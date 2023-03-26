@@ -42,6 +42,7 @@ export interface TokenResponse {
     providedIn: "root",
 })
 export class AuthenticationService {
+<<<<<<< Updated upstream
     // TODO: Properties
     userData: any; // Save logged in user data
     public isProduction = environment.production;
@@ -75,6 +76,49 @@ export class AuthenticationService {
         public ngZone: NgZone // NgZone service to remove outside scope warning
     ) {
         this.token = "";
+=======
+  // TODO: Properties
+  userData: any; // Save logged in user data
+  public isProduction = environment.production;
+  public token: string = '';
+  private email: string = '';
+  private username: string = '';
+  public identity: any = null;
+  public localStorageStats: any;
+  private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
+  public authTokenNew: string = 'new_auth_token';
+  public currentToken: string = '';
+  clientesSubscription: Subscription;
+  public followersTotal = 0;
+  public followingsTotal = 0;
+  public postsTotal = 0;
+  public user: User;
+  public stats: UserStats = { followers: 0, followings: 0, posts: 0 };
+  public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public showTextLogin: boolean = false;
+  public uid = '';
+  // TODO: Lifecycle
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private profileService: ProfileService,
+    // FIREBASE
+    private firebase: AngularFirestore,
+    public afs: AngularFirestore, // Inject Firestore service
+    public afAuth: AngularFireAuth, // Inject Firebase auth service
+    private router: Router,
+    public ngZone: NgZone // NgZone service to remove outside scope warning
+  ) {
+    this.token = '';
+    /* Saving user data in localstorage when 
+            logged in and setting up null when logged out */
+    this.clientesSubscription = this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
+>>>>>>> Stashed changes
 
         // GUARDA LOS DATOS DEL USUARIO EN EL ALMACENAMIENTO
         // LOCAL CUANDO INICIA SESIÓN Y CONFIGURA A NULL CUANDO CIERRA SESIÓN.
@@ -140,6 +184,7 @@ export class AuthenticationService {
             });
     }
 
+<<<<<<< Updated upstream
     // RESTABLECER OLVIDÉ MI CONTRASEÑA.
     forgotPassword(passwordResetEmail: string) {
         return this.afAuth
@@ -158,6 +203,27 @@ export class AuthenticationService {
       const user = JSON.parse(localStorage.getItem('user')!);
       return (user !== null) ? true : false;//return (user !== null || user.emailVerified !== false) ? true : false;
     }
+=======
+  // Sign in with Google
+  googleAuth() {
+    return this.authLogin(new auth.GoogleAuthProvider()).then((res: any) => {
+      this.router.navigate(['app/feed']);
+    });
+  }
+
+  // Get info user
+  public getIdentity() {
+    //console.log('DEBUF: getIdenity() -> ' + this.identity);
+
+    if (!this.identity) {
+      //console.log('DEBUG: getIdentity() -> Entra por el IF y hay data..');
+      this.identity = JSON.parse(localStorage.getItem('user')!);
+    }
+
+    //console.log('DEBUG: getIdentity() -> Entra por fuera..');
+    return this.identity;
+  }
+>>>>>>> Stashed changes
 
     // INICIA SESIÓN CON GOOGLE.
     googleAuth() {
@@ -168,6 +234,7 @@ export class AuthenticationService {
         );
     }
 
+<<<<<<< Updated upstream
     // OBTENER INFORMACIÓN DE USUARIO.
     public getIdentity() {
         if (!this.identity) {
@@ -175,6 +242,13 @@ export class AuthenticationService {
         }
         return this.identity;
     }
+=======
+  public getCurrentUser(): Observable<any> {
+    this.identity = this.getIdentity();
+    this.uid = this.identity.uid;
+    return this.firebase.collection('users').doc(this.uid).snapshotChanges();
+  }
+>>>>>>> Stashed changes
 
     public getStats() {
         if (!this.localStorageStats) {
@@ -251,6 +325,7 @@ export class AuthenticationService {
         });
     }
 
+<<<<<<< Updated upstream
     // DESCONECTAR
     SignOut() {
         return this.afAuth.signOut().then(() => {
@@ -259,6 +334,17 @@ export class AuthenticationService {
             this.router.navigate(["login"]);
         });
     }
+=======
+  // Sign out
+  SignOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      localStorage.clear();
+      this.identity = null;
+      this.router.navigate(['login']);
+    });
+  }
+>>>>>>> Stashed changes
 
     error(error: HttpErrorResponse) {
         let errorMessage = "";

@@ -11,23 +11,33 @@ import { BehaviorSubject, Subscription } from 'rxjs';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  // TODO: Properties
-  
+  // TODO: PROPERTIES
 
-  // TODO: Lifecycle
+  // TODO: LIFECYCLE
   constructor(
     public authService: AuthenticationService,
-    private router: Router,
+    private router: Router
   ) {
+<<<<<<< Updated upstream
     if ( this.authService.isLoggedIn ) {
       this.router.navigate([ 'app/feed' ])
+=======
+    //window.location.reload();
+    /*if (this.authService.identity) {
+      console.log('DEBUG: LoginComponent -> Hay data en identity');
+      this.router.navigate(['app/feed']);
+    } else {
+      console.log('DEBUG: LoginComponent -> No hay data en identity');
+    }*/
+    if (!this.authService.identity) {
+      //this.router.navigate(['app/feed']);
+      console.log('DEBUG: LoginComponent -> Hay data en identity');
+>>>>>>> Stashed changes
     }
     //return true;
   }
 
-  ngOnInit() {
-   
-  }
+  ngOnInit() {}
 
-  // TODO: Helpers
+  // TODO: HELPERS
 }
