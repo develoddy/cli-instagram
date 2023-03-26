@@ -21,49 +21,42 @@ export class MainComponent implements OnInit {
     public username: string;
     clientesSubscription: Subscription;
 
-    // TODO: ----- Lifecycle -----
+    // TODO: - LIFECYCLE
     constructor(
         public scripts: ScriptsService,
         public sanitizer: DomSanitizer,
-        private authService: AuthenticationService,
+        private authenticationService: AuthenticationService,
         private router: Router,
         private postsService: PostService
     ) {
-        this.identity = this.authService.getIdentity();
-        this.loadScripts();
-        if ( !this.authService.getIdentity() ) {
-            this.router.navigate(["/"]);
+        
+        if ( !this.authenticationService.isLoggedIn ) {
+            this.router.navigate([ 'login' ])
         }
+
+        this.identity = this.authenticationService.getIdentity();
+        this.loadScripts();
     }
 
-    // TODO: ----- Helpers -----
+    // TODO: - HELPER
     ngOnInit() {
         this.getCurrrentUser();
     }
 
     private loadScripts() {
         this.scripts.loadFiles(["sidebar-menu"]);
-        // this.scripts.loadFiles(["icons/feather-icon/feather.min"]);
-        // this.scripts.loadFiles(["icons/feather-icon/feather-icon"]);
-        // this.scripts.loadFiles(["script"]);
-        
     }
 
     public getCurrrentUser() {
-        this.clientesSubscription = this.authService.getCurrentUser().subscribe(( snapshot ) => {
+        this.clientesSubscription = this.authenticationService.getCurrentUser().subscribe(( snapshot ) => {
             this.currentUser = snapshot.payload.data();
             this.username = this.currentUser.username!;  
         });
     }
 
     ngOnDestroy() {
-        // acciones de destrucción
         if (this.clientesSubscription) {
             this.clientesSubscription.unsubscribe();
-            console.log("DEBUG: ngDestroy main.component");
-            console.log(this.clientesSubscription.unsubscribe);
-            
-            
         }
     }
 
