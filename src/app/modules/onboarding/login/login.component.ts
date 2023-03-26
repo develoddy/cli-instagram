@@ -19,13 +19,10 @@ export class LoginComponent implements OnInit {
     public authService: AuthenticationService,
     private router: Router,
   ) {
-    if ( this.authService.getIdentity() ) {
-      this.router.navigate(['app/feed']);
-      //console.log("NUL... is reload..");
-      //window.location.reload();
-    //} else {
-      //console.log("hay datos..");
+    if ( this.authService.isLoggedIn ) {
+      this.router.navigate([ 'app/feed' ])
     }
+    //return true;
   }
 
   ngOnInit() {
