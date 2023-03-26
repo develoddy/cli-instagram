@@ -1,32 +1,45 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { AuthGuard } from "@core/guards/auth.guard";
-import { SkeletonComponent } from "@layout/skeleton/skeleton.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@core/guards/auth.guard';
+import { SkeletonComponent } from '@layout/skeleton/skeleton.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
-    path: "login",
+    path: 'login',
     component: SkeletonComponent,
     children: [
       {
-        path: "",
+        path: '',
         loadChildren: () =>
-          import("./modules/onboarding/onboarding.module").then(
+          import('./modules/onboarding/onboarding.module').then(
             (m) => m.OnboardingModule
           ),
       },
-    ]
+    ],
   },
   {
-    path: "",
+    path: 'account',
+    component: SkeletonComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./modules/onboarding/onboarding.module').then(
+            (m) => m.OnboardingModule
+          ),
+      },
+    ],
+  },
+  {
+    path: '',
     component: SkeletonComponent,
     children: [
       {
         //path: 'feed',
-        path: "app",
+        path: 'app',
         loadChildren: () =>
-          import("./modules/sidebar/sidebar.module").then(
+          import('./modules/sidebar/sidebar.module').then(
             (m) => m.SidebarModule
           ),
       },

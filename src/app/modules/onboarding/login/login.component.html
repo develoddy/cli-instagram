@@ -78,8 +78,6 @@
                         >Entrar</span
                       >
                       <ng-container *ngIf="this.authService.spinner | async">
-                        <!-- <span class="spinner"></span> -->
-                        <!-- <div class='global-spinner-container'> -->
                         <div class="spinner">
                           <div class="bar1"></div>
                           <div class="bar2"></div>
@@ -93,7 +91,6 @@
                           <div class="bar10"></div>
                           <div class="bar11"></div>
                           <div class="bar12"></div>
-                          <!-- </div> -->
                         </div>
                       </ng-container>
                     </button>
@@ -109,7 +106,7 @@
 
             <div class="login-box">
               <p class="text">
-                ¿No tienes una cuenta?<a href="#">Regístrate</a>
+                ¿No tienes una cuenta?<a (click)="account()">Regístrate</a>
               </p>
             </div>
             <!-- Signup-box end -->
