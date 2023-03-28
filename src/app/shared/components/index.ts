@@ -68,4 +68,3 @@ export * from './onboarding/account/account.component';
 export * from './onboarding/birthday/birthday.component';
 export * from './onboarding/footerlogin/footerlogin.component';
 export * from './onboarding/codephone/codephone.component';
-
