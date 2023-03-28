@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-birthday',
@@ -7,11 +7,13 @@ import { Component } from '@angular/core';
 })
 export class BirthdayComponent {
 
-  public sigIn() {
+  @Output() showCodePhoneEvent = new EventEmitter();
 
+  public continueViewCodePhone() {
+    this.showCodePhoneEvent.emit("showCodePhoneEvent");
   }
 
-  public showBirthday() {
+  public sigIn() {
     
   }
 
