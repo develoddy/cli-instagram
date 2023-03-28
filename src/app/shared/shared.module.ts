@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
   ],
-  declarations: [...fromComponents.components ],
+  declarations: [...fromComponents.components],
   exports: [
     FormsModule,
     ReactiveFormsModule,

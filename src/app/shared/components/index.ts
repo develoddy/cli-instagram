@@ -16,6 +16,10 @@ import { SpinnerComponent } from "./loaders/spinner/spinner.component";
 import { HeaderComponent } from "./main/header/header.component";
 import { CardheaderComponent } from "./profile/cardheader/cardheader.component";
 import { UserprofileComponent } from "./profile/userprofile/userprofile.component";
+import { AccountComponent } from "./onboarding/account/account.component";
+import { BirthdayComponent } from "./onboarding/birthday/birthday.component";
+import { FooterloginComponent } from "./onboarding/footerlogin/footerlogin.component";
+import { CodephoneComponent } from "./onboarding/codephone/codephone.component";
 
 // IMPORT COMPONENTS
 export const components : any[] = [
@@ -35,7 +39,11 @@ export const components : any[] = [
     LoaderContactsComponent,
     SpinnerComponent,
     LoaderPhotosComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    AccountComponent,
+    BirthdayComponent,
+    FooterloginComponent,
+    CodephoneComponent
 ];
 
 // EXPORT ALL COMPONENTS
@@ -56,3 +64,7 @@ export * from './loaders/loader-contacts/loader-contacts.component';
 export * from './loaders/spinner/spinner.component';
 export * from './loaders/loader-photos/loader-photos.component';
 export * from './profile/userprofile/userprofile.component';
+export * from './onboarding/account/account.component';
+export * from './onboarding/birthday/birthday.component';
+export * from './onboarding/footerlogin/footerlogin.component';
+export * from './onboarding/codephone/codephone.component';
