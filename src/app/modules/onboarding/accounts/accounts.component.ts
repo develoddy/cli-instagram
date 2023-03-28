@@ -26,7 +26,12 @@ export class AccountsComponent implements OnInit {
 
   public showBirthday(data: any) {
     this.showBirthDay = !this.showBirthDay;
-    this.showCodePhone = !this.showCodePhone;
     this.showDataUsername = !this.showDataUsername;
+  }
+
+  public showViewCodePhone(data: any) {
+    this.showCodePhone = !this.showCodePhone;
+    // this.showDataUsername = !this.showDataUsername;
+    this.showBirthDay = !this.showBirthDay;
   }
 }

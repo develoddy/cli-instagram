@@ -10,7 +10,7 @@
                 </ng-container>
 
                 <ng-container *ngIf="this.showBirthDay">
-                    <app-birthday></app-birthday>
+                    <app-birthday (showCodePhoneEvent)="showViewCodePhone($event)" ></app-birthday>
                 </ng-container>
 
                 <ng-container *ngIf="this.showCodePhone">

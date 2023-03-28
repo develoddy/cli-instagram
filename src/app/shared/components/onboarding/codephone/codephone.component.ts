@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-codephone',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./codephone.component.css']
 })
 export class CodephoneComponent {
+
+  
+  
 
   public signIn() {
 
