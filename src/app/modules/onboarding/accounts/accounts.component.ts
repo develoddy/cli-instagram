@@ -8,6 +8,11 @@ import { AuthenticationService } from '@core/http/authentication.service';
   styleUrls: ['./accounts.component.css'],
 })
 export class AccountsComponent implements OnInit {
+
+  public showBirthDay = false;
+  public showDataUsername = true;
+  public showCodePhone = false;
+
   constructor(
     public authService: AuthenticationService,
     private router: Router
@@ -15,7 +20,13 @@ export class AccountsComponent implements OnInit {
 
   ngOnInit() {}
 
-  public sigIn() {
+  public sigIn(data: any) {
     this.router.navigate(['login']);
+  }
+
+  public showBirthday(data: any) {
+    this.showBirthDay = !this.showBirthDay;
+    this.showCodePhone = !this.showCodePhone;
+    this.showDataUsername = !this.showDataUsername;
   }
 }
