@@ -286,7 +286,7 @@ input#password:focus {
   background: #3897f0;
   border: 1px solid #3897f0;
   color: #fff;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 14px;
   height: 28px;
