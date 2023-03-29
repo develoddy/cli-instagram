@@ -6,11 +6,15 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./codephone.component.css'],
 })
 export class CodephoneComponent {
-  @Output() loginEvent = new EventEmitter();
 
-  public signIn() {}
+  @Output() codePhoneEvent = new EventEmitter();
+  @Output() backEvent = new EventEmitter();
 
-  public login() {
-    this.loginEvent.emit('loginEvent');
+  public showToFeed(codePhone: string) {
+    this.codePhoneEvent.emit(codePhone)
+  }
+
+  public back() {
+    this.backEvent.emit("codePhoneToBirthday");
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@core/http/authentication.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-accounts',
@@ -10,13 +11,13 @@ import { AuthenticationService } from '@core/http/authentication.service';
 export class AccountsComponent implements OnInit {
 
   public showBirthDay = false;
-  public showDataUsername = true;
+  public showAccount = true;
   public showCodePhone = false;
+  public user: any; // OBTENER LOS DATOS DEL VIEW ACCOUNT
+  public birthDay: any; // OBTENER LOS DATOS DEL CUMPLEAÑOS DEL USUARIO
+  public codePone: string;
 
-  constructor(
-    public authService: AuthenticationService,
-    private router: Router
-  ) {}
+  constructor(public authService: AuthenticationService, private router: Router) {}
 
   ngOnInit() {}
 
@@ -25,13 +26,30 @@ export class AccountsComponent implements OnInit {
   }
 
   public showBirthday(data: any) {
+    
     this.showBirthDay = !this.showBirthDay;
-    this.showDataUsername = !this.showDataUsername;
+    this.showAccount = !this.showAccount;
+    this.user = data; // Objc
   }
 
   public showViewCodePhone(data: any) {
     this.showCodePhone = !this.showCodePhone;
-    // this.showDataUsername = !this.showDataUsername;
-    this.showBirthDay = !this.showBirthDay;
+    this.showBirthDay = !this.showBirthDay;  
+    this.birthDay = data; // Objc - 20 ene 2023
+  }
+
+  public showToFeed( data: string ) {
+    this.codePone = data; // String
+  }
+
+  public backAccount(data:any) {
+    this.showAccount = true;
+    this.showBirthDay = false; 
+  }
+
+  public backBirthday(data: any) {
+    this.showBirthDay = false;
+      this.showAccount = true;
+      this.showCodePhone = !this.showCodePhone;
   }
 }

@@ -15,8 +15,8 @@ export class AccountComponent {
     this.sigInEvent.emit("sigIn");
   }
 
-  public showBirthday() {
-    this.showBirthdayEvent.emit("showBirthday");
+  public showBirthday(username: string, password: string) {
+    this.showBirthdayEvent.emit({"username": username, "password": password});
   }
 
 }

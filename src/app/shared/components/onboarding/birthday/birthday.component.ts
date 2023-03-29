@@ -9,12 +9,22 @@ export class BirthdayComponent {
 
   @Output() showCodePhoneEvent = new EventEmitter();
 
-  public continueViewCodePhone() {
-    this.showCodePhoneEvent.emit("showCodePhoneEvent");
+  @Output() backEvent = new EventEmitter();
+
+  public continueViewCodePhone(day: any, month: any, year: any) {
+    this.showCodePhoneEvent.emit(
+      {
+        "day": day,
+        "month": month,
+        "year": year
+      }
+    );
   }
 
-  public sigIn() {
-    
+  public sigIn() {}
+
+  public back() {
+    this.backEvent.emit("birthdayToAccount");
   }
 
 }
