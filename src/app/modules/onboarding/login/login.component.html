@@ -54,9 +54,7 @@
                                           class="btn"
                                           type="submit"
                                           name="submit"
-                                          (click)="
-                      authService.signIn(userName.value, userPassword.value)
-                    "
+                                          (click)="authService.signIn(userName.value, userPassword.value)"
                                       >
                                           <span *ngIf="!this.authService.showTextLogin">Entrar</span>
                                           <ng-container *ngIf="this.authService.spinner | async">

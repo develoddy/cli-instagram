@@ -154,7 +154,7 @@
     color: rgb(142, 142, 142);
     font-size: 12px;
     line-height: 16px;
-    margin: 10px 40px;
+    margin: 10px 20px;
     text-align: center;
   }
   .input-box {
@@ -201,7 +201,7 @@
     font-size: 12px;
     margin-top: 12px;
     text-align: center;
-    color: #003569;
+    color: #3897f0;
     line-height: 14px !important;
   }
   .text {
