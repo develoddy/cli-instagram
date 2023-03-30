@@ -28,14 +28,14 @@
                                                     BIRTTHDAY
                                                 -->
                                                 <ng-container *ngIf="this.showBirthDay">
-                                                    <app-birthday (showCodePhoneEvent)="showViewCodePhone($event)" (backEvent)="backAccount($event)"></app-birthday>
+                                                    <app-birthday (showCodePhoneEvent)="showViewCodePhone($event)" (backEvent)="backAccount($event)" [user]="user" ></app-birthday>
                                                 </ng-container>
 
                                                 <!-- 
                                                     CODEPHONE
                                                 -->
                                                 <ng-container *ngIf="this.showCodePhone">
-                                                    <app-codephone (codePhoneEvent)="showToFeed($event)" (backEvent)="backBirthday($event)"  ></app-codephone>
+                                                    <app-codephone (codePhoneEvent)="showToFeed($event)" (backEvent)="backBirthday($event)" [user]="user" [birthDay]="birthDay" ></app-codephone>
                                                 </ng-container>
                                             </form>
                                         </div>

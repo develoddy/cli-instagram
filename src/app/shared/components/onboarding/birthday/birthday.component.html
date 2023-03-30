@@ -11,50 +11,26 @@
     <button class="_acan _acap _acas _aj1-" type="button"><span class="_9zlu _aah_"></span>Iniciar sesión con Facebook</button>
 </div>
 
-<!-- <div class="input-box">
-    <input type="password" name="password" id="password" placeholder="Contraseña" aria-describedby="" maxlength="30" aria-required="true" autocapitalize="off" autocorrect="off" #userPassword required />
-</div> -->
-
 <div class="formulario">
     <div class="div_nacimiento">
-
         <select class="input_textual dia_nacimiento" name="dia_nacimiento" #day>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+            <ng-container *ngFor="let item of arr_day; let i = index">
+                <option value="{{i}}" selected> {{ item }} </option>
+            </ng-container>
         </select>
 
         <select class="input_textual mes_nacimiento" name="mes_nacimiento" #month>
-            <option value="1">Enero</option>
-            <option value="2">Febrero</option>
-            <option value="3">Marzo</option>
-            <option value="4">Abril</option>
-            <option value="5">Mayo</option>
-            <option value="6">Junio</option>
-            <option value="7">Julio</option>
-            <option value="8">Agosto</option>
-            <option value="9">Septiembre</option>
-            <option value="10">Octubre</option>
-            <option value="11">Noviembre</option>
-            <option value="12">Diciembre</option>
+            <ng-container *ngFor="let item of arr_month; let i = index">
+                <option value="{{i}}" selected> {{ item }} </option>
+            </ng-container>
         </select>
 
-        <select class="input_textual anio_nacimiento" name="anio_nacimiento" #year>
-            <option value="1994">1994</option>
-            <option value="1995">1995</option>
-            <option value="1996">1996</option>
-            <option value="1997">1997</option>
-            <option value="1998">1998</option>
-            <option value="1999" selected>1999</option>
-            <option value="1999">2000</option>
-            <option value="1999">2001</option>
+        <select class="input_textual anio_nacimiento" name="anio_nacimiento" #year (change)="onSelected(year.value)">
+            <ng-container *ngFor="let item of arr_year">
+                <option value="{{item}}" selected> {{ item }} </option>
+            </ng-container>
         </select>
 
-        <!-- <span class="span_nacimiento">Es necesario que indice su fecha de nacimiento</span> -->
-        <!-- <span class="span_nacimiento">Indica tu fecha de nacimiento, aunque esta cuenta sea para un negocio, una mascota, etc.</span> -->
         <p class="_aai1">
             Es necesario que indice su fecha de nacimiento
         </p>
@@ -62,12 +38,10 @@
             Indica tu fecha de nacimiento, aunque esta cuenta sea para un negocio, una mascota, etc.
         </p>
     </div>
-
-    
 </div>
 
 <span class="button-box">
-    <button class="btn" type="submit" name="submit" (click)="continueViewCodePhone(day.value, month.value, year.value)">
+    <button class="btn" type="submit" [disabled]="btnState" name="submit" (click)="continueViewCodePhone(day.value, month.value, year.value)">
         <span>Continuar</span>
     </button>
 </span>

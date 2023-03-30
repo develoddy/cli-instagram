@@ -1,10 +1,20 @@
 <div class="input-box">
   <h2 class="_aahw">Solo falta un paso</h2>
-  <!-- <span class="text">Introduce el código de seis dígitos que hemos enviado al 605974436</span> -->
-  <p class="_aai1">
-    Introduce el código de seis dígitos que hemos enviado al <strong>605974436</strong> 
-  </p>
+  
+  <ng-container *ngIf="checkNumberOrletter; else isPhone">
+    <p class="_aai1">
+      Introduce el código de seis dígitos que hemos enviado al e-mail: <strong style="font-weight: 600;">{{ this.user.emailOrPhone }}</strong> 
+    </p>    
+  </ng-container>
+  <ng-template #isPhone>
+      <p class="_aai1">
+        Introduce el código de seis dígitos que hemos enviado al movil: <strong style="font-weight: 600;">{{ this.user.emailOrPhone }}</strong> 
+      </p>
+  </ng-template>
+
+ 
   <input type="text" id="codePhone" aria-describedby="" placeholder="Código de confirmación" aria-required="true" maxlength="30" autocapitalize="off" autocorrect="off" name="codePhone" value="" #codePhone required />
+  
 </div>
 
 <span class="button-box">

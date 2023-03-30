@@ -30,8 +30,7 @@ export class AccountsComponent implements OnInit {
 
   // ESTA FUNCION TE MOSTRARÁ LAS VISTA DE BIRTHDAY.
   public showBirthday(data: any) {
-    // HAY QUE VALIDAD QUE LOS CAMPOS CONTIENEN DATOS
-
+    // HAY QUE VALIDAR QUE LOS CAMPOS CONTIENEN DATOS
     this.showBirthDay = !this.showBirthDay;
     this.showAccount = !this.showAccount;
     this.user = data; // Objc
