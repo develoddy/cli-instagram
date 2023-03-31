@@ -111,6 +111,20 @@
      -moz-box-direction: normal;
      -webkit-box-direction: normal;
 }
+
+    ._aah_ {
+        border: 0;
+        display: inline-block;
+        font: inherit;
+        font-size: 15px;
+        margin: 0;
+        margin-right: 8px;
+        padding: 0;
+        position: relative;
+        top: 1px;
+        vertical-align: baseline;
+    }
+
  ._aahw {
      color: rgb(142, 142, 142);
      font-size: 17px;
@@ -160,9 +174,113 @@
  .input-box {
      margin: auto 40px 6px;
 }
+/* --- Separator ---*/
+ ._aai0 {
+     margin: 10px 40px 18px;
+}
+ .x78zum5 {
+     display: flex;
+}
+ .x1q0g3np {
+     flex-direction: row;
+}
+ .xwtuau4 {
+     top: 0.45em;
+}
+ .xs83m0k {
+     flex-shrink: 1;
+}
+ .xjm9jq1 {
+     height: 1px;
+}
+ .x1n2onr6 {
+     position: relative;
+}
+ .x1iyjqo2 {
+     flex-grow: 1;
+}
+ .x11mr3az {
+     background-color: rgb(219, 219, 219);
+}
+ .xtvhhri {
+     text-transform: uppercase;
+}
+ .xpdqn1h {
+     margin-right: 18px;
+}
+ .xkhd6sd {
+     padding-left: 0;
+}
+ .xexx8yu {
+     padding-top: 0;
+}
+ .xdt5ytf {
+     flex-direction: column;
+}
+ .xdj266r {
+     margin-top: 0;
+}
+ .xav7gou {
+     border-left: 0;
+}
+ .xat24cr {
+     margin-bottom: 0;
+}
+ .xaqea5y {
+     border-bottom: 0;
+}
+ .x9f619 {
+     box-sizing: border-box;
+}
+ .x78zum5 {
+     display: flex;
+}
+ .x6umtig {
+     border-top: 0;
+}
+ .x4uap5 {
+     padding-right: 0;
+}
+ .x2lah0s {
+     flex-shrink: 0;
+}
+ .x1sliqq {
+     margin-left: 18px;
+}
+ .x1s688f {
+     font-weight: 600;
+}
+ .x1roi4f4 {
+     color: rgb(142, 142, 142);
+}
+ .x1qjc9v5 {
+     align-items: stretch;
+}
+ .x1nxh6w3 {
+     font-size: 0.8125rem;
+}
+ .x1n2onr6 {
+     position: relative;
+}
+ .x1ly1vsg {
+     line-height: 1.1538;
+}
+ .x1c4vz4f {
+     flex-grow: 0;
+}
+ .x1b1mbwd {
+     border-right: 0;
+}
+ .x18d9i69 {
+     padding-bottom: 0;
+}
+ .x11njtxf {
+     vertical-align: baseline;
+}
+/* --- Separator end ---*/
  input {
      height: 36px;
-     border: 1px solid #efefef;
+     border: 1px solid #e6e6e6;
      border-radius: 3px;
      background-color: #fafafa;
      width: 100%;
@@ -175,7 +293,8 @@
      box-sizing: border-box;
 }
  input::placeholder {
-     font-size: 11px;
+     font-size: 12px;
+     font-weight: 600;
 }
  input#name:focus, input#password:focus {
      border-color: #bbb;

@@ -102,6 +102,14 @@ export class BirthdayComponent implements OnInit {
         console.log(this.user);
     }
 
+    public continueViewNumberPhone(day: any, month: any, year: any) {
+        this.showCodePhoneEvent.emit({
+            day: day,
+            month: month,
+            year: year,
+        });
+    }
+
     public continueViewCodePhone(day: any, month: any, year: any) {
         this.showCodePhoneEvent.emit({
             day: day,
@@ -125,6 +133,7 @@ export class BirthdayComponent implements OnInit {
             this.btnState = false;
         } else {
             // - ES MENOR DE EDAD.
+            this.btnState = true;
         }
     }
 }

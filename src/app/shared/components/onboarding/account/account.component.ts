@@ -25,12 +25,17 @@ export class AccountComponent implements OnInit {
         this.sigInEvent.emit("sigIn");
     }
 
-    public showBirthday(emailOrPhone: string, fullname: string, username: string, password: string) {
-        this.showBirthdayEvent.emit({ 
-          emailOrPhone: emailOrPhone,
-          fullname: fullname,
-          username: username, 
-          password: password 
+    public showBirthday(
+        emailOrPhone: string,
+        fullname: string,
+        username: string,
+        password: string
+    ) {
+        this.showBirthdayEvent.emit({
+            emailOrPhone: emailOrPhone,
+            fullname: fullname,
+            username: username,
+            password: password,
         });
     }
 
@@ -39,8 +44,7 @@ export class AccountComponent implements OnInit {
     public showError = false;
     public checkEmailOrPhone(event: any) {
         var numeric = /^[0-9]+$/;
-        var email =
-            /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var email = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
         var data = event.target.value;
 
@@ -77,7 +81,7 @@ export class AccountComponent implements OnInit {
     public isValidFullname = false;
     public showErrorValidFullname = false;
     public checkFullname(event: any) {
-        var text = /^[a-zA-Z0-9-]+$/;  ///^[a-z]+$/;
+        var text = /^[a-zA-Z0-9-]+$/; ///^[a-z]+$/;
         var data = event.target.value;
 
         if (data.match(text)) {
@@ -141,7 +145,7 @@ export class AccountComponent implements OnInit {
                 this.showErrorValidPassword = false;
                 this.btnState = true;
             } else {
-                 // SE COMPRUEBA QUE NO ES TEXTO.
+                // SE COMPRUEBA QUE NO ES TEXTO.
                 this.isValidPassword = false;
                 this.showErrorValidPassword = true;
             }

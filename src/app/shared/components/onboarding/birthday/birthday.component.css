@@ -504,13 +504,6 @@ span.language {
   font-size: 1.1em;
 }
 
-/* .formulario .input_textual:focus {
-    outline: none;
-    border: none;
-    border-right: 13px solid #DB4437;
-    box-shadow: 1px 5px 10px #CCC;
-  } */
-
 .formulario .input_textual:focus {
   opacity: 1;
   left: 30px;
@@ -531,7 +524,6 @@ span.language {
   text-align: center;
   color: #777;
   margin: 10px 0;
-  /* font-size: 1.1em; */
 }
 
 .formulario .div_nacimiento select {
@@ -539,7 +531,7 @@ span.language {
 }
 
 .formulario .div_nacimiento .dia_nacimiento {
-  width: 20%;
+  width: 21%;
 }
 
 .formulario .div_nacimiento .mes_nacimiento {
