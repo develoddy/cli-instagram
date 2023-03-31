@@ -301,7 +301,7 @@ input#password:focus {
   font-size: 12px;
   margin-top: 12px;
   text-align: center;
-  color: #003569;
+  color: #aaa;
   line-height: 14px !important;
 }
 .text {
@@ -345,7 +345,7 @@ input#password:focus {
   background: #fafafa;
 }
 .footer-container {
-  flex-direction: row;
+/*  flex-direction: row;*/
   flex-wrap: wrap;
   background-color: #fafafa;
   justify-content: space-between;
@@ -354,14 +354,15 @@ input#password:focus {
   font-size: 12px;
   font-weight: 600;
   margin: 0 auto;
-  text-transform: uppercase;
+/*  text-transform: lowercase;*/
   width: 100%;
+  text-align: center;
 }
 .footer-nav {
   max-width: 100%;
 }
 .footer-nav ul {
-  margin-right: 16px;
+  margin-right: 0px;
   margin-bottom: 3px;
   flex-grow: 1;
 }
@@ -371,20 +372,24 @@ input#password:focus {
   margin-bottom: 7px;
 }
 .footer-nav ul li a {
-  color: #003569;
+  color: #aaa;
   text-decoration: none;
 }
 .footer span {
   color: #999;
 }
+.footer-logo {
+  color: #aaa;
+  text-align: center;
+}
 span.language {
-  color: #003569;
+  color: #aaa;
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
   position: relative;
-  text-transform: uppercase;
   vertical-align: top;
+  margin: 0 22px;
 }
 .select {
   cursor: pointer;

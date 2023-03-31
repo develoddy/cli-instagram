@@ -28,14 +28,36 @@
                                                     BIRTTHDAY
                                                 -->
                                                 <ng-container *ngIf="this.showBirthDay">
-                                                    <app-birthday (showCodePhoneEvent)="showViewCodePhone($event)" (backEvent)="backAccount($event)"></app-birthday>
+                                                    <app-birthday (showCodePhoneEvent)="showViewNumberPhone($event)" (backEvent)="backAccount($event)" [user]="user" ></app-birthday>
+                                                </ng-container>
+
+                                                <!-- 
+                                                    NUMBERPHONE
+                                                -->
+                                                <ng-container *ngIf="this.showPhoneNumber">
+                                                    <app-phonenumber 
+                                                        (phoneEvent)="showViewCodePhone($event)"
+                                                        (backEvent)="backBirthday($event)" 
+                                                        [user]="user"
+                                                        [spinner] = "this.authService.spinner"
+                                                        [showTextContinue] = "this.authService.showTextLogin"
+                                                    >
+                                                    </app-phonenumber>
                                                 </ng-container>
 
                                                 <!-- 
                                                     CODEPHONE
                                                 -->
                                                 <ng-container *ngIf="this.showCodePhone">
-                                                    <app-codephone (codePhoneEvent)="showToFeed($event)" (backEvent)="backBirthday($event)"  ></app-codephone>
+                                                    <app-codephone 
+                                                        (codePhoneEvent)="showToFeed($event)" 
+                                                        (backEvent)="backNumberPhone($event)" 
+                                                        [user]="user"
+                                                        [phone]="phone"
+                                                        [spinner] = "this.authService.spinner"
+                                                        [showTextContinue] = "this.authService.showTextLogin"
+                                                    >
+                                                    </app-codephone>
                                                 </ng-container>
                                             </form>
                                         </div>

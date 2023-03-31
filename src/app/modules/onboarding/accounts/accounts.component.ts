@@ -12,9 +12,12 @@ export class AccountsComponent implements OnInit {
   public showBirthDay = false;
   public showAccount = true;
   public showCodePhone = false;
+  public showPhoneNumber = false;
   public user: any; // OBTENER LOS DATOS DEL VIEW ACCOUNT
   public birthDay: any; // OBTENER LOS DATOS DEL CUMPLEAÑOS DEL USUARIO
   public codePone: string;
+  public phone: string;
+  
 
   constructor(
     public authService: AuthenticationService,
@@ -30,17 +33,24 @@ export class AccountsComponent implements OnInit {
 
   // ESTA FUNCION TE MOSTRARÁ LAS VISTA DE BIRTHDAY.
   public showBirthday(data: any) {
-    // HAY QUE VALIDAD QUE LOS CAMPOS CONTIENEN DATOS
-
-    this.showBirthDay = !this.showBirthDay;
+    // HAY QUE VALIDAR QUE LOS CAMPOS CONTIENEN DATOS
     this.showAccount = !this.showAccount;
+    this.showBirthDay = !this.showBirthDay;
+    
     this.user = data; // Objc
+  }
+
+  public showViewNumberPhone(data: any) {
+    this.showPhoneNumber = !this.showPhoneNumber;
+    this.showBirthDay = !this.showBirthDay;
+    this.birthDay = data; // Objc: 20 ene 2023
   }
 
   // ESTA FUNCION TE MOSTRARÁ LA VISTA DE CODEPHONE.
   public showViewCodePhone(data: any) {
+    this.phone = data.phone;
     this.showCodePhone = !this.showCodePhone;
-    this.showBirthDay = !this.showBirthDay;
+    this.showPhoneNumber = !this.showPhoneNumber;
     this.birthDay = data; // Objc - 20 ene 2023
   }
 
@@ -52,13 +62,30 @@ export class AccountsComponent implements OnInit {
 
   // ESTA FUNCIÓN TE REGRESARÁ A LA VISTA BIRTHDAY.
   public backBirthday(data: any) {
+    this.showBirthDay = true;
+    this.showAccount = false;
+    this.showPhoneNumber = !this.showPhoneNumber;
+  }
+  
+  // ESTA FUNCIÓN TE REGRESARÁ A LA VISTA DE NUMBER PHONE.
+  public backNumberPhone(data: any) {
     this.showBirthDay = false;
-    this.showAccount = true;
+    this.showAccount = false;
+    this.showPhoneNumber = true;
     this.showCodePhone = !this.showCodePhone;
   }
 
   // ESTA FUNCION TE REDIRGE A LA VISTA DEL FEED.
   public showToFeed(data: string) {
     this.codePone = data; // String
+    console.log("DEBUG: AccountsComponent -> shoeToFeed");
+    console.log(this.user);
+    console.log(this.birthDay);
+    console.log(this.codePone);
+    console.log(this.phone);
+    
+    //var dd = this.authService.spinner;
+    //this.authService.SignUp(this.user.emailOrPhone , this.user.password);
+
   }
 }
