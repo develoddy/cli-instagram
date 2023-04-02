@@ -17,7 +17,7 @@ export class AccountsComponent implements OnInit {
   public birthDay: any; // OBTENER LOS DATOS DEL CUMPLEAÑOS DEL USUARIO
   public codePone: string;
   public phone: string;
-  
+  //public spinner: any;
 
   constructor(
     public authService: AuthenticationService,
@@ -36,7 +36,7 @@ export class AccountsComponent implements OnInit {
     // HAY QUE VALIDAR QUE LOS CAMPOS CONTIENEN DATOS
     this.showAccount = !this.showAccount;
     this.showBirthDay = !this.showBirthDay;
-    
+
     this.user = data; // Objc
   }
 
@@ -66,7 +66,7 @@ export class AccountsComponent implements OnInit {
     this.showAccount = false;
     this.showPhoneNumber = !this.showPhoneNumber;
   }
-  
+
   // ESTA FUNCIÓN TE REGRESARÁ A LA VISTA DE NUMBER PHONE.
   public backNumberPhone(data: any) {
     this.showBirthDay = false;
@@ -78,14 +78,11 @@ export class AccountsComponent implements OnInit {
   // ESTA FUNCION TE REDIRGE A LA VISTA DEL FEED.
   public showToFeed(data: string) {
     this.codePone = data; // String
-    console.log("DEBUG: AccountsComponent -> shoeToFeed");
+    console.log('DEBUG: AccountsComponent -> shoeToFeed');
     console.log(this.user);
     console.log(this.birthDay);
     console.log(this.codePone);
     console.log(this.phone);
-    
-    //var dd = this.authService.spinner;
-    //this.authService.SignUp(this.user.emailOrPhone , this.user.password);
-
+    this.authService.SignUp(this.user.emailOrPhone, this.user.password);
   }
 }

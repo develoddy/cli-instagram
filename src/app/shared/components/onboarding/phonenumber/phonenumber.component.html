@@ -1,48 +1,68 @@
-
 <h2 class="_aahw">Numero de movil</h2>
 
 <p class="_aai1">
-  Es posible que te enviemos notificaciones por <strong strong style="font-weight: 400;">SMS</strong> con fines de seguridad e inicio de sessión.
+  Es posible que te enviemos notificaciones por
+  <strong strong style="font-weight: 400">SMS</strong> con fines de seguridad e
+  inicio de sessión.
 </p>
 
-
 <div class="input-box inputWithIcon">
-  <input type="text" id="phone" aria-describedby="" value="123456789" (input)="checkCodePhone($event)" placeholder="Número de móvil" aria-required="true" maxlength="30" autocapitalize="off" autocorrect="off" name="phone" #phone required />
+  <input
+    type="text"
+    id="phone"
+    aria-describedby=""
+    value="123456789"
+    (input)="checkCodePhone($event)"
+    placeholder="Número de móvil"
+    aria-required="true"
+    maxlength="30"
+    autocapitalize="off"
+    autocorrect="off"
+    name="phone"
+    #phone
+    required
+  />
   <select class="_acan _acao _acat _aj1-" name="mes_nacimiento" #month>
     <!-- <ng-container *ngFor="let item of arr_month; let i = index"> -->
-        <option value="1" selected> ES + 34 </option>
-        <option value="2" selected> PE + 91 </option>
-        <option value="3" selected> EU + 53</option>
+    <option value="1" selected>ES + 34</option>
+    <option value="2">PE + 91</option>
+    <option value="3">EU + 53</option>
     <!-- </ng-container> -->
   </select>
 </div>
 
 <span class="button-box">
-  <button class="btn" type="submit" [disabled]="btnState" name="submit" (click)="showViewCodePhone(phone.value)">
-      <span *ngIf="!this.showTextContinue">Continuar</span>
-      <ng-container *ngIf="this.spinner | async">
+  <button
+    class="btn"
+    type="submit"
+    [disabled]="btnState"
+    name="submit"
+    (click)="showViewCodePhone(phone.value)"
+  >
+    <span *ngIf="!this.showTextContinue">Continuar</span>
+    <ng-container *ngIf="this.spinner | async">
       <!-- <ng-container> -->
-        <div class="spinner">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-            <div class="bar4"></div>
-            <div class="bar5"></div>
-            <div class="bar6"></div>
-            <div class="bar7"></div>
-            <div class="bar8"></div>
-            <div class="bar9"></div>
-            <div class="bar10"></div>
-            <div class="bar11"></div>
-            <div class="bar12"></div>
-        </div>
+      <div class="spinner">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+        <div class="bar4"></div>
+        <div class="bar5"></div>
+        <div class="bar6"></div>
+        <div class="bar7"></div>
+        <div class="bar8"></div>
+        <div class="bar9"></div>
+        <div class="bar10"></div>
+        <div class="bar11"></div>
+        <div class="bar12"></div>
+      </div>
     </ng-container>
   </button>
 </span>
 
 <ng-container *ngIf="this.isValidCodePhone">
-  <p class="_aai1" [ngStyle]="{'color':'red'}" >
-    El código de confirmación debe tener 9 dígitos. Revisadlo, por favor.
+  <p class="_aai1" [ngStyle]="{ color: 'red' }">
+    El número de movil debe tener 9 dígitos. Revisadlo, por favor.
   </p>
 </ng-container>
 
