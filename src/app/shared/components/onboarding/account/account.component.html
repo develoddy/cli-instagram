@@ -3,7 +3,19 @@
 </div>
 
 <div class="input-box" style="margin: 10px 40px 18px;">
-    <button class="_acan _acap _acas _aj1-" type="button"><span class="_9zlu _aah_"></span>Iniciar sesión con Facebook</button>
+    <button class="_acan _acap _acas _aj1-" type="button">
+        <!-- <span class="_9zlu _aah_"></span> -->
+        <i class="_aah_ icofont icofont-social-facebook"></i>
+        Iniciar sesión con Facebook
+    </button>
+</div>
+
+<div class="_aai0">
+    <div class="x78zum5 x1q0g3np">
+        <div class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"></div>
+        <div class="x1qjc9v5 x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1roi4f4 x78zum5 xdt5ytf x1c4vz4f x2lah0s x1nxh6w3 x1s688f x1ly1vsg xdj266r xpdqn1h xat24cr x1sliqq xexx8yu x4uap5 x18d9i69 xkhd6sd x1n2onr6 xtvhhri x11njtxf">o</div>
+        <div class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"></div>
+    </div>
 </div>
 
 <div class="input-box inputWithIcon">
@@ -12,13 +24,13 @@
         type="text"
         id="emailOrPhone"
         aria-describedby=""
-        placeholder="Número de movil o correo electrónico"
+        placeholder="Correo electrónico"
         aria-required="true"
         maxlength="30"
         autocapitalize="off"
         autocorrect="off"
         name="emailOrPhone"
-        value="ee@gmail.com"
+        value=""
         #emailOrPhone
         required
     />
@@ -32,20 +44,7 @@
 </div>
 
 <div class="input-box inputWithIcon">
-    <input 
-      (input)="checkFullname($event)" 
-      type="text" 
-      id="fullname" 
-      aria-describedby="" 
-      placeholder="Nombre completo" 
-      aria-required="true" 
-      maxlength="30" 
-      autocapitalize="off" 
-      autocorrect="off" 
-      value="xxx" 
-      name="fullname" 
-      #fullname required 
-    />
+    <input (input)="checkFullname($event)" type="text" id="fullname" aria-describedby="" placeholder="Nombre completo" aria-required="true" maxlength="30" autocapitalize="off" autocorrect="off" value="" name="fullname" #fullname required />
     <ng-container *ngIf="this.isValidFullname">
         <i class="icofont icofont-check-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{'color':'#aaa'}"></i>
     </ng-container>
@@ -67,7 +66,7 @@
         autocapitalize="off"
         autocorrect="off"
         name="username"
-        value="xxx"
+        value=""
         #userName
         required
     />
@@ -92,7 +91,7 @@
         aria-required="true"
         autocapitalize="off"
         autocorrect="off"
-        value="xxx"
+        value=""
         #password
         required
     />
@@ -123,13 +122,7 @@
 </p>
 
 <span class="button-box">
-    <button 
-      class="btn" 
-      type="submit" 
-      [disabled]="btnState" 
-      name="submit" 
-      (click)="showBirthday(emailOrPhone.value, fullname.value, userName.value, password.value)"
-    >
+    <button class="btn" type="submit" [disabled]="btnState" name="submit" (click)="showBirthday(emailOrPhone.value, fullname.value, userName.value, password.value)">
         <span>Continuar</span>
     </button>
 </span>

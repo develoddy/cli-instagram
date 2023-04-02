@@ -20,6 +20,7 @@ import { AccountComponent } from "./onboarding/account/account.component";
 import { BirthdayComponent } from "./onboarding/birthday/birthday.component";
 import { FooterloginComponent } from "./onboarding/footerlogin/footerlogin.component";
 import { CodephoneComponent } from "./onboarding/codephone/codephone.component";
+import { PhonenumberComponent } from "./onboarding/phonenumber/phonenumber.component";
 
 // IMPORT COMPONENTS
 export const components : any[] = [
@@ -43,7 +44,8 @@ export const components : any[] = [
     AccountComponent,
     BirthdayComponent,
     FooterloginComponent,
-    CodephoneComponent
+    CodephoneComponent,
+    PhonenumberComponent
 ];
 
 // EXPORT ALL COMPONENTS
@@ -68,3 +70,4 @@ export * from './onboarding/account/account.component';
 export * from './onboarding/birthday/birthday.component';
 export * from './onboarding/footerlogin/footerlogin.component';
 export * from './onboarding/codephone/codephone.component';
+export * from './onboarding/phonenumber/phonenumber.component';

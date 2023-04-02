@@ -2791,11 +2791,11 @@ ul {
   margin-bottom: 0;
 }
 
-* a {
+/** a {
   color: var(--theme-deafult);
   text-decoration: none;
   letter-spacing: 1px;
-}
+}*/
 
 .f-m-light {
   margin: 0;
@@ -29854,7 +29854,7 @@ button[data-toggle=dropdown]:hover ~ .dropdown-menu {
 ==========================**/
 .footer {
   background-color: #fff;
-  box-shadow: 0 0 20px rgba(89, 102, 122, 0.1);
+  /*  box-shadow: 0 0 20px rgba(89, 102, 122, 0.1);*/
   padding: 15px;
   bottom: 0;
   left: 0;
