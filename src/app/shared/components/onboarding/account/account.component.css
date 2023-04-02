@@ -174,6 +174,20 @@
  .input-box {
      margin: auto 40px 6px;
 }
+
+.input-box {
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    height: 36px;
+    background: #fafafa;
+    position: relative;
+}
+
+.input-box:hover, .input-box:focus {
+    border-color: blue;
+}
+
+
 /* --- Separator ---*/
  ._aai0 {
      margin: 10px 40px 18px;
@@ -292,6 +306,10 @@
      text-overflow: ellipsis;
      box-sizing: border-box;
 }
+input:focus {
+    border-color: red;
+}
+
  input::placeholder {
      font-size: 12px;
      font-weight: 600;
@@ -467,7 +485,7 @@
          text-overflow: ellipsis;
          box-sizing: border-box;
     }
-     .input-box:hover, .input-box:focus {
+    .input-box:hover, .input-box:focus {
          border-color: #bbb;
     }
 }
