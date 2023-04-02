@@ -12,6 +12,8 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   // TODO: PROPERTIES
+  public hide = true;
+  public btnState = true;
 
   // TODO: LIFECYCLE
   constructor(
@@ -28,5 +30,29 @@ export class LoginComponent implements OnInit {
   // TODO: HELPERS
   public account() {
     this.router.navigate(['account/emailsignup']);
+  }
+
+  public isValidPassword = false;
+  public showErrorValidPassword = false;
+  public checkPassword(event: any) {
+    var text = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+$/;
+    var data = event.target.value;
+
+    if (data.match(text)) {
+      // SE COMPRUEBA QUE ES TEXTO.
+      this.isValidPassword = true;
+      this.showErrorValidPassword = false;
+    } else {
+      if (data == '') {
+        // SE COMPRUEBA QUE NO HAY DATO.
+        this.isValidPassword = false;
+        this.showErrorValidPassword = false;
+        this.btnState = true;
+      } else {
+        // SE COMPRUEBA QUE NO ES TEXTO.
+        this.isValidPassword = false;
+        this.showErrorValidPassword = true;
+      }
+    }
   }
 }

@@ -1,7 +1,8 @@
-#root html {
+/*#root html {
   height: 100%;
-}
+}*/
 
+/*
 a,
 abbr,
 acronym,
@@ -88,8 +89,9 @@ video {
   border: 0;
   font: inherit;
   vertical-align: baseline;
-}
+}*/
 
+/*
 a,
 a:visited {
   text-decoration: none;
@@ -112,8 +114,9 @@ input {
     Arial, sans-serif;
   font-size: 14px;
   line-height: 18px;
-}
+}*/
 
+/*
 #root,
 article,
 main,
@@ -240,7 +243,6 @@ input {
   width: 100%;
   font-size: 12px;
   margin: 0;
-  /* padding: 9px 0 7px 8px; */
   padding: 13px 0px 0px 10px;
   outline: none;
   overflow: hidden;
@@ -549,10 +551,10 @@ a._acas:not(._acao):visited {
   line-height: 16px;
   margin: 10px 20px;
   text-align: center;
-}
+}*/
 
 /* --- Separator ---*/
-._aai0 {
+/*._aai0 {
   margin: 10px 40px 18px;
 }
 
@@ -689,12 +691,9 @@ a._acas:not(._acao):visited {
 }
 /* --- Separator end ---*/
 
-/* ----- */
-/* .inputWithIcon input[type="text"] {
-     padding-left: 0px;
-}
- */
-.inputWithIcon input[type="text"] {
+/* --- Button mostrar ---- */
+
+/*.inputWithIcon input[type="text"] {
   padding-right: 30px;
 }
 
@@ -705,17 +704,11 @@ a._acas:not(._acao):visited {
 .inputWithIcon i {
   position: absolute;
   right: 0;
-  /* left: 0;
-     */
   top: 3px;
-  /* padding: 2px 8px;
-     */
   padding: 0 2px 0 0;
   color: #aaa;
   transition: 0.3s;
   font-size: 24px;
-  /* color: red;
-     */
 }
 
 .inputWithIcon button {
@@ -750,10 +743,10 @@ a._acas:not(._acao):visited {
 .inputWithIcon.inputIconBg input[type="text"]:focus + i {
   color: #fff;
   background-color: dodgerBlue;
-}
+}*/
 
 /* --- PLACEHOLDER FLOAR UP --- */
-.form-label {
+/*.form-label {
   position: absolute;
   font-family: inherit;
   font-size: 0.8rem;
@@ -785,3 +778,4 @@ a._acas:not(._acao):visited {
   left: 0.35rem;
   z-index: 5;
 }
+*/

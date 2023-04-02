@@ -206,54 +206,7 @@ footer {
   -moz-box-direction: normal;
   -webkit-box-direction: normal;
 }
-._aahw {
-  color: rgb(142, 142, 142);
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 20px;
-  text-align: center;
-  margin: 0px 0px 10px;
-}
-._acas:not(._acao),
-a._acas:not(._acao),
-a._acas:not(._acao):visited {
-  background-color: rgb(0, 149, 246);
-  border: none;
-}
-._acap {
-  border: none;
-  border-radius: 8px;
-  color: rgb(255, 255, 255);
-  position: relative;
-}
-._aj1- {
-  text-align: center;
-}
-._acan {
-  -webkit-appearance: none;
-  background: none;
-  border: none;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: block;
-  font-family: var(--font-family-system);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 7px 16px !important;
-  pointer-events: auto;
-  text-align: center;
-  text-overflow: ellipsis;
-  text-transform: inherit;
-  -webkit-user-select: none;
-  width: auto;
-}
-._aai1 {
-  color: rgb(142, 142, 142);
-  font-size: 12px;
-  line-height: 16px;
-  margin: 10px 40px;
-  text-align: center;
-}
+
 .input-box {
   margin: auto 40px 6px;
 }
@@ -468,4 +421,53 @@ span.language {
     -webkit-box-pack: center;
     -moz-box-pack: center;
   }
+}
+
+._aahw {
+  color: rgb(142, 142, 142);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  margin: 0px 0px 10px;
+}
+._acas:not(._acao),
+a._acas:not(._acao),
+a._acas:not(._acao):visited {
+  background-color: rgb(0, 149, 246);
+  border: none;
+}
+._acap {
+  border: none;
+  border-radius: 8px;
+  color: rgb(255, 255, 255);
+  position: relative;
+}
+._aj1- {
+  text-align: center;
+}
+._acan {
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  font-family: var(--font-family-system);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 7px 16px !important;
+  pointer-events: auto;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: inherit;
+  -webkit-user-select: none;
+  width: auto;
+}
+._aai1 {
+  color: rgb(142, 142, 142);
+  font-size: 12px;
+  line-height: 16px;
+  margin: 10px 40px;
+  text-align: center;
 }

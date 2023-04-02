@@ -217,13 +217,13 @@ footer {
 ._acas:not(._acao),
 a._acas:not(._acao),
 a._acas:not(._acao):visited {
-  background-color: rgb(0, 149, 246);
+  background-color: #fff;
   border: none;
 }
 ._acap {
   border: none;
   border-radius: 8px;
-  color: rgb(255, 255, 255);
+  color: #385185;
   position: relative;
 }
 ._aj1- {
@@ -628,14 +628,206 @@ span.language {
   font-weight: bold;
 }
 
+/* --- Separator ---*/
+._aai0 {
+  margin: 10px 40px 18px;
+}
+
+.x78zum5 {
+  display: flex;
+}
+
+.x1q0g3np {
+  flex-direction: row;
+}
+
+.xwtuau4 {
+  top: 0.45em;
+}
+
+.xs83m0k {
+  flex-shrink: 1;
+}
+
+.xjm9jq1 {
+  height: 1px;
+}
+
+.x1n2onr6 {
+  position: relative;
+}
+
+.x1iyjqo2 {
+  flex-grow: 1;
+}
+
+.x11mr3az {
+  background-color: rgb(219, 219, 219);
+}
+
+.xtvhhri {
+  text-transform: uppercase;
+}
+
+.xpdqn1h {
+  margin-right: 18px;
+}
+
+.xkhd6sd {
+  padding-left: 0;
+}
+
+.xexx8yu {
+  padding-top: 0;
+}
+
+.xdt5ytf {
+  flex-direction: column;
+}
+
+.xdj266r {
+  margin-top: 0;
+}
+
+.xav7gou {
+  border-left: 0;
+}
+
+.xat24cr {
+  margin-bottom: 0;
+}
+
+.xaqea5y {
+  border-bottom: 0;
+}
+
+.x9f619 {
+  box-sizing: border-box;
+}
+
+.x78zum5 {
+  display: flex;
+}
+
+.x6umtig {
+  border-top: 0;
+}
+
+.x4uap5 {
+  padding-right: 0;
+}
+
+.x2lah0s {
+  flex-shrink: 0;
+}
+
+.x1sliqq {
+  margin-left: 18px;
+}
+
+.x1s688f {
+  font-weight: 600;
+}
+
+.x1roi4f4 {
+  color: rgb(142, 142, 142);
+}
+
+.x1qjc9v5 {
+  align-items: stretch;
+}
+
+.x1nxh6w3 {
+  font-size: 0.8125rem;
+}
+
+.x1n2onr6 {
+  position: relative;
+}
+
+.x1ly1vsg {
+  line-height: 1.1538;
+}
+
+.x1c4vz4f {
+  flex-grow: 0;
+}
+
+.x1b1mbwd {
+  border-right: 0;
+}
+
+.x18d9i69 {
+  padding-bottom: 0;
+}
+
+.x11njtxf {
+  vertical-align: baseline;
+}
+/* --- Separator end ---*/
+
+/* --- Button mostrar ---- */
+
+.inputWithIcon input[type="text"] {
+  padding-right: 30px;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon i {
+  position: absolute;
+  right: 0;
+  top: 3px;
+  padding: 0 2px 0 0;
+  color: #aaa;
+  transition: 0.3s;
+  font-size: 24px;
+}
+
+.inputWithIcon button {
+  position: absolute;
+  right: 0;
+  top: 3px;
+  padding: 0 2px 0 0;
+  color: #000;
+  transition: 0.3s;
+}
+
+.inputWithIcon button:hover {
+  position: absolute;
+  right: 0;
+  top: 3px;
+  padding: 0 2px 0 0;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.inputWithIcon input[type="text"]:focus + i {
+  color: dodgerBlue;
+}
+
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.inputWithIcon.inputIconBg input[type="text"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+
 /* --- PLACEHOLDER FLOAR UP --- */
 .form-label {
   position: absolute;
   font-family: inherit;
   font-size: 0.8rem;
   font-weight: 400;
-  line-height: 2;
-  left: 0.35rem;
+  line-height: 1.5;
+  left: 0.47rem;
   top: 0.47rem;
   padding: 0 0.35rem;
   color: #6e6f6f;
