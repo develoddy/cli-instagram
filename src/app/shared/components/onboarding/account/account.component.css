@@ -227,13 +227,6 @@ footer {
   margin: auto 40px 6px;
 }
 
-/*.input-box {
-  border: 1px solid #efefef;
-  border-radius: 3px;
-  height: 36px;
-  background: #fafafa;
-  position: relative;
-}*/
 .input-box:hover,
 .input-box:focus {
   border-color: #bbb;
@@ -247,7 +240,8 @@ input {
   width: 100%;
   font-size: 12px;
   margin: 0;
-  padding: 9px 0 7px 8px;
+  /* padding: 9px 0 7px 8px; */
+  padding: 13px 0px 0px 10px;
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -758,58 +752,37 @@ a._acas:not(._acao):visited {
   background-color: dodgerBlue;
 }
 
-/*----- holder ---*/
 
-/*form {
-  width: 30rem;
-  display: block;
-  margin: 3rem auto;
-  padding: 3rem;
-  border: 10px solid #999;
-}*/
-
-label {
-  display: block;
-  transform: translate(0, -2.75rem);
+/* --- PLACEHOLDER FLOAR UP --- */
+.form-label {
+    position: absolute;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.5;
+    left: 0.47rem;
+    top: 0.47rem;
+    padding: 0 0.35rem;
+    color: #6e6f6f;
+    background: var(--color-white);
+    transition: all 0.35s ease;
 }
-
-/*input {
-  width: 100%;
-  margin-top: 1.5rem;
-  padding: 0.25rem;
-  border: none;
-  border-bottom: 2px solid #111;
-  transition: border-color 0.2s ease;
+.form-input::placeholder {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
 }
-
-input:focus {
-  outline: none;
-  border-color: green;
+.form-input:focus + .form-label {
+    font-size: 0.675rem;
+    font-weight: 400;
+    top: -0rem;
+    left: 0.35rem;
+    z-index: 5;
 }
-
-button {
-  padding: 0.75rem 1.5rem;
-  border: 2px solid #111;
-  background-color: #111;
-  color: #fff;
-  font-weight: bold;
-}*/
-
-@supports (not (-ms-ime-align: auto)) {
-  label {
-    color: #999;
-    /*transform: translate(0.25rem, -1.5rem);*/
-    transform: translate(0.25rem, -1.8rem);
-    transition: all 0.2s ease-out;
-    padding: 0 8px;
-  }
-
-  input:focus + label,
-  input:not(:placeholder-shown) + label {
-    color: #111;
-    /*transform: translate(0, -2.75rem);*/
-    transform: translate(0, -2.15rem);
-    background-color: red;
-    font-size: 10px;
-  }
+.form-input:not(:placeholder-shown).form-input:not(:focus) + .form-label {
+    font-size: 0.675rem;
+    font-weight: 400;
+    top: -0rem;
+    left: 0.35rem;
+    z-index: 5;
 }

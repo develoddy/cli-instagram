@@ -21,12 +21,7 @@
   </div>
 </div>
 
-<form action="">
-  <input type="text" id="fullName" name="fullName" placeholder=" " />
-  <label for="fullName">Full Name</label>
-</form>
-
-<div class="input-box inputWithIcon">
+<!-- <div class="input-box inputWithIcon">
   <input
     type="text"
     id="emailOrPhone"
@@ -42,15 +37,17 @@
     required
   />
   <label for="emailOrPhone">Correo electrónico</label>
-</div>
+</div> -->
+
 
 <div class="input-box inputWithIcon">
   <input
+    class="form-input"
     (input)="checkEmailOrPhone($event)"
     type="text"
     id="emailOrPhone"
+    placeholder=" "
     aria-describedby=""
-    placeholder="Correo electrónico"
     aria-required="true"
     maxlength="30"
     autocapitalize="off"
@@ -60,6 +57,8 @@
     #emailOrPhone
     required
   />
+  <label for="emailOrPhone" class="form-label">Correo electrónico</label>
+  <!-- <label for="emailOrPhone">Correo electrónico</label> -->
   <ng-container *ngIf="this.isValidEmaiOrPhone">
     <i
       class="icofont icofont-check-circled fa-lg fa-fw"
@@ -80,10 +79,11 @@
 <div class="input-box inputWithIcon">
   <input
     (input)="checkFullname($event)"
+    class="form-input"
     type="text"
     id="fullname"
     aria-describedby=""
-    placeholder="Nombre completo"
+    placeholder=" "
     aria-required="true"
     maxlength="30"
     autocapitalize="off"
@@ -93,6 +93,7 @@
     #fullname
     required
   />
+  <label for="fullname" class="form-label">Nombre completo</label>
   <ng-container *ngIf="this.isValidFullname">
     <i
       class="icofont icofont-check-circled fa-lg fa-fw"
@@ -113,10 +114,11 @@
 <div class="input-box inputWithIcon">
   <input
     (input)="checkUsername($event)"
+    class="form-input"
     type="text"
     id="username"
     aria-describedby=""
-    placeholder="Nombre de usuario"
+    placeholder=" "
     aria-required="true"
     maxlength="30"
     autocapitalize="off"
@@ -126,6 +128,7 @@
     #userName
     required
   />
+  <label for="username" class="form-label">Nombre de usuario</label>
   <ng-container *ngIf="this.isValidUsername">
     <i
       class="icofont icofont-check-circled fa-lg fa-fw"
@@ -146,10 +149,11 @@
 <div class="input-box inputWithIcon">
   <input
     (input)="checkPassword($event)"
+    class="form-input"
     [type]="hide ? 'password' : 'text'"
     name="password"
     id="password"
-    placeholder="Contraseña"
+    placeholder=" "
     aria-describedby=""
     maxlength="30"
     aria-required="true"
@@ -159,6 +163,7 @@
     #password
     required
   />
+  <label for="password" class="form-label">Contraseña</label>
   <ng-container *ngIf="this.isValidPassword">
     <button
       class="_acan _acao _acat _aj1-"

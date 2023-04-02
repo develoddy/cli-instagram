@@ -16,8 +16,9 @@
                                       <input
                                           type="text"
                                           id="name"
+                                          class="form-input"
                                           aria-describedby=""
-                                          placeholder="Phone number, username, or email"
+                                          placeholder=" "
                                           aria-required="true"
                                           maxlength="30"
                                           autocapitalize="off"
@@ -27,10 +28,24 @@
                                           #userName
                                           required
                                       />
+                                      <label for="email" class="form-label">Correo electrónico</label>
                                   </div>
 
                                   <div class="input-box">
-                                      <input type="password" name="password" id="password" placeholder="Password" aria-describedby="" maxlength="30" aria-required="true" autocapitalize="off" autocorrect="off" #userPassword required />
+                                      <input 
+                                            type="password" 
+                                            name="password" 
+                                            id="password" 
+                                            placeholder=" " 
+                                            aria-describedby="" 
+                                            maxlength="30" 
+                                            aria-required="true" 
+                                            autocapitalize="off" 
+                                            autocorrect="off" 
+                                            #userPassword 
+                                            required 
+                                        />
+                                        <label for="password" class="form-label">Contraseña</label>
                                   </div>
 
                                   <span class="button-box">
