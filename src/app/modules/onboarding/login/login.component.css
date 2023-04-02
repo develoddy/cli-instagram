@@ -634,8 +634,8 @@ span.language {
   font-family: inherit;
   font-size: 0.8rem;
   font-weight: 400;
-  line-height: 1.5;
-  left: 0.47rem;
+  line-height: 2;
+  left: 0.35rem;
   top: 0.47rem;
   padding: 0 0.35rem;
   color: #6e6f6f;
@@ -661,4 +661,3 @@ span.language {
   left: 0.35rem;
   z-index: 5;
 }
-

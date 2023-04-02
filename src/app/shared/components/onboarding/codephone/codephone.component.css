@@ -264,7 +264,7 @@ input {
   width: 100%;
   font-size: 12px;
   margin: 0;
-  padding: 9px 0 7px 8px;
+  padding: 13px 0px 0px 10px;
   outline: none;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -568,7 +568,6 @@ span.language {
   font-size: 1.4em;
 }
 
-
 /*** ------------------ SPINNER ----------------------- ***/
 .spinner {
   position: relative;
@@ -725,11 +724,10 @@ span.language {
   font-weight: bold;
 }
 
-
 /* ------ */
 
 .inputWithIcon input[type="text"] {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 .inputWithIcon {
   position: relative;
@@ -737,16 +735,16 @@ span.language {
 .inputWithIcon i {
   position: absolute;
   right: 0;
- /* left: 0;
+  /* left: 0;
   */
   top: 3px;
- /* padding: 2px 8px;
+  /* padding: 2px 8px;
   */
   padding: 0 2px 0 0;
   color: #aaa;
   transition: 0.3s;
   font-size: 24px;
- /* color: red;
+  /* color: red;
   */
 }
 .inputWithIcon select {
@@ -779,4 +777,38 @@ span.language {
 .inputWithIcon.inputIconBg input[type="text"]:focus + i {
   color: #fff;
   background-color: dodgerBlue;
+}
+
+/* --- PLACEHOLDER FLOAR UP --- */
+.form-label {
+  position: absolute;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 2;
+  left: 0.35rem;
+  top: 0.47rem;
+  padding: 0 0.35rem;
+  color: #6e6f6f;
+  background: var(--color-white);
+  transition: all 0.35s ease;
+}
+.form-input::placeholder {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.form-input:focus + .form-label {
+  font-size: 0.675rem;
+  font-weight: 400;
+  top: -0rem;
+  left: 0.35rem;
+  z-index: 5;
+}
+.form-input:not(:placeholder-shown).form-input:not(:focus) + .form-label {
+  font-size: 0.675rem;
+  font-weight: 400;
+  top: -0rem;
+  left: 0.35rem;
+  z-index: 5;
 }

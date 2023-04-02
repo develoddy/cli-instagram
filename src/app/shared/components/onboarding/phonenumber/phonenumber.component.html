@@ -10,10 +10,11 @@
   <input
     type="text"
     id="phone"
+    class="form-input"
     aria-describedby=""
     value="123456789"
     (input)="checkCodePhone($event)"
-    placeholder="Número de móvil"
+    placeholder=" "
     aria-required="true"
     maxlength="30"
     autocapitalize="off"
@@ -22,6 +23,8 @@
     #phone
     required
   />
+  <label for="phone" class="form-label">Número de móvil</label>
+
   <select class="_acan _acao _acat _aj1-" name="mes_nacimiento" #month>
     <!-- <ng-container *ngFor="let item of arr_month; let i = index"> -->
     <option value="1" selected>ES + 34</option>

@@ -1,42 +1,61 @@
-
 <h2 class="_aahw">Solo falta un paso</h2>
 
-
-
-  <p class="_aai1">
-    Introduce el código de seis dígitos que hemos enviado al movil: <strong style="font-weight: 600;">{{ this.phone }}</strong> 
-  </p>
-
+<p class="_aai1">
+  Introduce el código de seis dígitos que hemos enviado al movil:
+  <strong style="font-weight: 600">{{ this.phone }}</strong>
+</p>
 
 <div class="input-box inputWithIcon">
-  <input type="text" id="codePhone" aria-describedby="" value="123456" (input)="checkCodePhone($event)" placeholder="Código de confirmación" aria-required="true" maxlength="30" autocapitalize="off" autocorrect="off" name="codePhone" #codePhone required />  
+  <input
+    type="text"
+    id="codePhone"
+    class="form-input"
+    aria-describedby=""
+    value="123456"
+    (input)="checkCodePhone($event)"
+    placeholder=" "
+    aria-required="true"
+    maxlength="30"
+    autocapitalize="off"
+    autocorrect="off"
+    name="codePhone"
+    #codePhone
+    required
+  />
+  <label for="codePhone" class="form-label">Código de confirmación</label>
 </div>
 
 <span class="button-box">
-  <button class="btn" type="submit" [disabled]="btnState" name="submit" (click)="showToFeed(codePhone.value)">
-      <span *ngIf="!this.showTextContinue">Continuar</span>
-      <ng-container *ngIf="this.spinner | async">
+  <button
+    class="btn"
+    type="submit"
+    [disabled]="btnState"
+    name="submit"
+    (click)="showToFeed(codePhone.value)"
+  >
+    <span *ngIf="!this.showTextContinue">Continuar</span>
+    <ng-container *ngIf="this.spinner | async">
       <!-- <ng-container> -->
-        <div class="spinner">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-            <div class="bar4"></div>
-            <div class="bar5"></div>
-            <div class="bar6"></div>
-            <div class="bar7"></div>
-            <div class="bar8"></div>
-            <div class="bar9"></div>
-            <div class="bar10"></div>
-            <div class="bar11"></div>
-            <div class="bar12"></div>
-        </div>
+      <div class="spinner">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+        <div class="bar4"></div>
+        <div class="bar5"></div>
+        <div class="bar6"></div>
+        <div class="bar7"></div>
+        <div class="bar8"></div>
+        <div class="bar9"></div>
+        <div class="bar10"></div>
+        <div class="bar11"></div>
+        <div class="bar12"></div>
+      </div>
     </ng-container>
   </button>
 </span>
 
 <ng-container *ngIf="this.isValidCodePhone">
-  <p class="_aai1" [ngStyle]="{'color':'red'}" >
+  <p class="_aai1" [ngStyle]="{ color: 'red' }">
     El código de confirmación debe tener 6 dígitos. Revisadlo, por favor.
   </p>
 </ng-container>
