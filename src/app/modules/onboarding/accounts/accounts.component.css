@@ -1,4 +1,4 @@
-#root html {
+/* #root html {
   height: 100%;
 }
 a,
@@ -137,7 +137,6 @@ footer {
 }
 .section-all {
   min-height: 100%;
-  /*height: 100vh;*/
   overflow: hidden;
 }
 .main {
@@ -470,4 +469,4 @@ a._acas:not(._acao):visited {
   line-height: 16px;
   margin: 10px 40px;
   text-align: center;
-}
+} */

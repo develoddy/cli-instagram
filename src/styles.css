@@ -22434,7 +22434,23 @@ ul.dot-group li {
     height: 100%;
   }
 
-  #root {
+  /*
+    section,
+    main,
+    div,
+    article,
+    header,
+    nav,
+    footer
+  */
+
+  #root, 
+  .section-all,
+  .main,
+  /* div, */
+  .article,
+  .header,
+  footer  {
     border: 0 solid #000000;
     box-sizing: border-box;
     align-items: stretch;
@@ -22514,6 +22530,7 @@ ul.dot-group li {
 
                 .header {
                   margin: 14.45px auto 12px;
+                  align-items: center;
                 }
 
                   .logo {
@@ -22563,7 +22580,6 @@ ul.dot-group li {
                             top: 0.47rem;
                             padding: 0 0.35rem;
                             color: #6e6f6f;
-                            background: #fff;
                             transition: all 0.35s ease;
                           }
                           .form-input::placeholder {
@@ -22655,14 +22671,15 @@ ul.dot-group li {
                           }
 
                           .forgot, .forgot:active, .forgot:hover, .forgot:visited {
-                            font-size: 12px;
+                            font-size: 10px;
                             margin-top: 12px;
                             text-align: center;
                             color: #3897f0;
                             line-height: 14px !important;
                           }
 
-                          ._acan {
+                          /* ssss */
+                          /*._acan {
                             -webkit-appearance: none;
                             background: none;
                             border: none;
@@ -22681,6 +22698,13 @@ ul.dot-group li {
                             width: auto;
                           }
 
+                          ._acap {
+                            border: none;
+                            border-radius: 8px;
+                            color: rgb(255, 255, 255);
+                            position: relative;
+                          }
+
                           ._acas:not(._acao), a._acas:not(._acao), a._acas:not(._acao):visited {
                             background-color: rgb(0, 149, 246);
                             border: none;
@@ -22688,7 +22712,7 @@ ul.dot-group li {
 
                           ._aj1- {
                             text-align: center;
-                          }
+                          }*/
 
                           ._aah_ {
                             border: 0;
@@ -22712,18 +22736,13 @@ ul.dot-group li {
                             margin: 0px 0px 10px;
                           }
 
-                          ._acap {
-                            border: none;
-                            border-radius: 8px;
-                            color: rgb(255, 255, 255);
-                            position: relative;
-                          }
+                          
 
                           ._aai1 {
                             color: rgb(142, 142, 142);
-                            font-size: 12px;
+                            font-size: 10px;
                             line-height: 16px;
-                            margin: 10px 20px;
+                            margin: 30px 30px;
                             text-align: center;
                           }
 
@@ -22747,6 +22766,11 @@ ul.dot-group li {
                             line-height: 26px;
                             outline: none;
                             white-space: nowrap;
+                          }
+
+                          .btn:hover {
+                            color: #fff;
+                            background-color: #007bff;
                           }
 
                         /* SEPARADOR */
@@ -22794,10 +22818,15 @@ ul.dot-group li {
 
                           .text a,
                           .text a:visited,
-                          .text a:hover,
                           .text a:active {
-                            color: #3897f0;
-                            margin-left: 3px;
+                            color: #3897f0 !important;
+                            margin-left: 3px !important;
+                            font-weight: 600 !important;
+                            cursor: pointer !important;
+                          }
+
+                          .text a:hover {
+                            color: #007bff !important;
                           }
 
                   /* / END FORMULARIO */
