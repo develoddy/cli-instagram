@@ -1,4 +1,4 @@
-#root html {
+/*#root html {
   height: 100%;
 }
 a,
@@ -469,7 +469,8 @@ span.language {
   }
 }
 
-/* HAPPY FORM DATE */
+
+
 
 .formulario {
   margin: auto;
@@ -566,3 +567,4 @@ span.language {
 .formulario .input_boton .fa {
   font-size: 1.4em;
 }
+*/

@@ -1,4 +1,4 @@
-#root html {
+/*#root html {
   height: 100%;
 }
 a,
@@ -345,7 +345,6 @@ input#password:focus {
   background: #fafafa;
 }
 .footer-container {
-/*  flex-direction: row;*/
   flex-wrap: wrap;
   background-color: #fafafa;
   justify-content: space-between;
@@ -354,7 +353,6 @@ input#password:focus {
   font-size: 12px;
   font-weight: 600;
   margin: 0 auto;
-/*  text-transform: lowercase;*/
   width: 100%;
   text-align: center;
 }
@@ -473,3 +471,4 @@ span.language {
     -moz-box-pack: center;
   }
 }
+*/

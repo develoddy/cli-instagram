@@ -1,4 +1,4 @@
-#root html {
+/*#root html {
   height: 100%;
 }
 a,
@@ -228,24 +228,7 @@ a._acas:not(._acao):visited {
 ._aj1- {
   text-align: center;
 }
-._acan {
-  -webkit-appearance: none;
-  background: none;
-  border: none;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: block;
-  font-family: var(--font-family-system);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 3px 15px !important;
-  pointer-events: auto;
-  text-align: center;
-  text-overflow: ellipsis;
-  text-transform: inherit;
-  -webkit-user-select: none;
-  width: auto;
-}
+
 ._aai1 {
   color: rgb(142, 142, 142);
   font-size: 12px;
@@ -468,9 +451,9 @@ span.language {
     -moz-box-pack: center;
   }
 }
+*/
 
-/* HAPPY FORM DATE */
-
+/*
 .formulario {
   margin: auto;
   text-align: center;
@@ -524,7 +507,6 @@ span.language {
   text-align: center;
   color: #777;
   margin: 10px 0;
-  /* font-size: 1.1em; */
 }
 
 .formulario .div_nacimiento select {
@@ -568,7 +550,9 @@ span.language {
   font-size: 1.4em;
 }
 
-/*** ------------------ SPINNER ----------------------- ***/
+
+
+
 .spinner {
   position: relative;
   width: 14px;
@@ -723,8 +707,33 @@ span.language {
   font-size: 16px;
   font-weight: bold;
 }
+*/
 
-/* ------ */
+
+
+
+
+
+
+/*
+._acan {
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  font-family: var(--font-family-system);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 15px !important;
+  pointer-events: auto;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: inherit;
+  -webkit-user-select: none;
+  width: auto;
+}
 
 .inputWithIcon input[type="text"] {
   padding-left: 90px;
@@ -735,17 +744,11 @@ span.language {
 .inputWithIcon i {
   position: absolute;
   right: 0;
-  /* left: 0;
-    */
   top: 3px;
-  /* padding: 2px 8px;
-    */
   padding: 0 2px 0 0;
   color: #aaa;
   transition: 0.3s;
   font-size: 24px;
-  /* color: red;
-    */
 }
 .inputWithIcon select {
   position: absolute;
@@ -778,8 +781,11 @@ span.language {
   color: #fff;
   background-color: dodgerBlue;
 }
+*/
 
-/* --- PLACEHOLDER FLOAR UP --- */
+
+
+/*
 .form-label {
   position: absolute;
   font-family: inherit;
@@ -812,3 +818,4 @@ span.language {
   left: 5.35rem;
   z-index: 5;
 }
+*/

@@ -9,10 +9,11 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./accounts.component.css'],
 })
 export class AccountsComponent implements OnInit {
-  public showBirthDay = false;
   public showAccount = true;
+  public showBirthDay = false;
   public showCodePhone = false;
   public showPhoneNumber = false;
+  
   public user: any; // OBTENER LOS DATOS DEL VIEW ACCOUNT
   public birthDay: any; // OBTENER LOS DATOS DEL CUMPLEAÑOS DEL USUARIO
   public codePone: string;

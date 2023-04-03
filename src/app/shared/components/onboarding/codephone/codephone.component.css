@@ -1,4 +1,4 @@
-#root html {
+/*#root html {
   height: 100%;
 }
 a,
@@ -469,7 +469,7 @@ span.language {
   }
 }
 
-/* HAPPY FORM DATE */
+
 
 .formulario {
   margin: auto;
@@ -524,7 +524,6 @@ span.language {
   text-align: center;
   color: #777;
   margin: 10px 0;
-  /* font-size: 1.1em; */
 }
 
 .formulario .div_nacimiento select {
@@ -568,7 +567,15 @@ span.language {
   font-size: 1.4em;
 }
 
-/*** ------------------ SPINNER ----------------------- ***/
+
+
+
+
+
+
+
+
+
 .spinner {
   position: relative;
   width: 14px;
@@ -724,7 +731,9 @@ span.language {
   font-weight: bold;
 }
 
-/* ------ */
+
+
+
 
 .inputWithIcon input[type="text"] {
   padding-left: 10px;
@@ -735,17 +744,11 @@ span.language {
 .inputWithIcon i {
   position: absolute;
   right: 0;
-  /* left: 0;
-  */
   top: 3px;
-  /* padding: 2px 8px;
-  */
   padding: 0 2px 0 0;
   color: #aaa;
   transition: 0.3s;
   font-size: 24px;
-  /* color: red;
-  */
 }
 .inputWithIcon select {
   position: absolute;
@@ -779,7 +782,13 @@ span.language {
   background-color: dodgerBlue;
 }
 
-/* --- PLACEHOLDER FLOAR UP --- */
+
+
+
+
+
+
+
 .form-label {
   position: absolute;
   font-family: inherit;
@@ -812,3 +821,4 @@ span.language {
   left: 0.35rem;
   z-index: 5;
 }
+*/
