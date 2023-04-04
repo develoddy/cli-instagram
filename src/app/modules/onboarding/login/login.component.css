@@ -1,4 +1,4 @@
-/*** ------------------ LOGIN ----------------------- ***/
+/*
 #root html {
   height: 100%;
 }
@@ -265,7 +265,6 @@ input {
   width: 100%;
   font-size: 12px;
   margin: 0;
-  /* padding: 9px 0 7px 8px; */
   padding: 13px 0px 0px 10px;
   outline: none;
   overflow: hidden;
@@ -472,7 +471,6 @@ span.language {
   }
 }
 
-/*** ------------------ SPINNER ----------------------- ***/
 .spinner {
   position: relative;
   width: 14px;
@@ -628,7 +626,7 @@ span.language {
   font-weight: bold;
 }
 
-/* --- Separator ---*/
+
 ._aai0 {
   margin: 10px 40px 18px;
 }
@@ -764,9 +762,6 @@ span.language {
 .x11njtxf {
   vertical-align: baseline;
 }
-/* --- Separator end ---*/
-
-/* --- Button mostrar ---- */
 
 .inputWithIcon input[type="text"] {
   padding-right: 30px;
@@ -820,7 +815,7 @@ span.language {
   background-color: dodgerBlue;
 }
 
-/* --- PLACEHOLDER FLOAR UP --- */
+
 .form-label {
   position: absolute;
   font-family: inherit;
@@ -853,3 +848,4 @@ span.language {
   left: 0.35rem;
   z-index: 5;
 }
+*/

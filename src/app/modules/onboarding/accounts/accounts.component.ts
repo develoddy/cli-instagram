@@ -9,38 +9,40 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./accounts.component.css'],
 })
 export class AccountsComponent implements OnInit {
-  public showAccount = true;
-  public showBirthDay = false;
-  public showCodePhone = false;
-  public showPhoneNumber = false;
+  public showAccount: boolean = false;
+  public showBirthDay: boolean = false;
+  public showPhoneNumber: boolean = true;
+  public showCodePhone: boolean = false;
   
   public user: any; // OBTENER LOS DATOS DEL VIEW ACCOUNT
   public birthDay: any; // OBTENER LOS DATOS DEL CUMPLEAÑOS DEL USUARIO
-  public codePone: string;
-  public phone: string;
-  //public spinner: any;
+  public codePone: string; // GET DATA CODEPHONE
+  public phone: string; // GET DATA NUMBERPHONE
 
   constructor(
     public authService: AuthenticationService,
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    //console.log("DEBUG: Account.component");
+    console.log("DEBUG: this.showAccount : " + this.showAccount);
+  }
 
   // ESTA FUNCION TE REGRESARÁ A LA VISTA DE LOGUIN.
   public sigIn(data: any) {
     this.router.navigate(['login']);
   }
 
-  // ESTA FUNCION TE MOSTRARÁ LAS VISTA DE BIRTHDAY.
+  // ESTA FUNCION TE MOSTRARÁ LA VISTA DE BIRTHDAY.
   public showBirthday(data: any) {
     // HAY QUE VALIDAR QUE LOS CAMPOS CONTIENEN DATOS
     this.showAccount = !this.showAccount;
     this.showBirthDay = !this.showBirthDay;
-
     this.user = data; // Objc
   }
 
+  // ESTA FUNCIÓN TE MOSTRARÁ LA VISTA DE PHONE NUMBER.
   public showViewNumberPhone(data: any) {
     this.showPhoneNumber = !this.showPhoneNumber;
     this.showBirthDay = !this.showBirthDay;
