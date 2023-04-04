@@ -1,8 +1,8 @@
 
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable, resolveForwardRef } from "@angular/core";
-import { User } from "@data/models/user";
 import { environment } from "environments/environment";
+//import { }
 import { of, BehaviorSubject, Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
 // FIREBASE
@@ -13,38 +13,49 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class UserService {
 
-    // TODO: ----- Properties -----
+    // Properties
     public isProduction = environment.production;
     public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public stats: any;
+    private filePath: any;
+    private dowloadURL: Observable<string>;
 
-    // TODO: ----- Lifecycle -----
+    // Lifecycle
     constructor(
         private _http: HttpClient, 
         private firebase: AngularFirestore
     ) {}
 
-    // TODO: ----- Helpers -----
+    // Helpers 
 
-     /**
+     /** ---------------------------
       * @description: Se recupera de Firebase los datos del usuario
       * por la propiedas "uid".
       * @param uid 
       * @returns Observable<any> 
-      */
+      --------------------------- */
     fetchUser( uid: string ): Observable<any> {
         return this.firebase.collection("users").doc(uid).get();
     }
 
-    /**
+    /** ---------------------------
      * @description: Se recupera de firebase los datos del usuario
      * por la propiedad "username".
      * @param username 
      * @returns Observable<any> 
-     */
+    --------------------------- */
     fetchUserByUsername( username: string ): Observable<any>  {
         return this.firebase.collection("users", ref => ref.where('username', '==', username)).valueChanges();
     }
+
+    /** ---------------------------
+     * @description: Se recupera de firebase los datos del usuario
+     * por la propiedad "username".
+     * @param username 
+     * @returns Observable<any> 
+    --------------------------- */
+
+    
 
 
 

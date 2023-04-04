@@ -1,0 +1,59 @@
+<h2 class="_happyh2">Añade una foto de perfil</h2>
+
+<div class="box-title-happy">
+    <span class="_span">Muestra tu foto perfil al público.</span>
+</div>
+
+<div class="input-box">
+  <button class="btn-title-date" type="button">
+      ¿Por qué tengo que facilitar mi fecha de nacimiento?
+  </button>
+</div>
+
+<!-- <div class="input-box">
+    <label for="" class="image-upload-container btn btn-bwm">
+        <input 
+            #photoURL
+            class="form-input"
+            type="file"
+            id="photoURL"
+            name="photoURL"
+            accept="image/*"
+            (change)="proccessFile(photoURL)"
+        />
+    </label>
+</div> -->
+<div class="input-box">
+    <div class="avatar-upload">
+        <div class="avatar-edit">
+            <form action="" method="post" id="form-image">
+                <input 
+                #photoURL
+                type='file'
+                id="photoURL"
+                name="photoURL"
+                accept="image/*"
+                (change)="proccessFile(photoURL)"
+                />
+                
+                <label for="photoURL"><i class="_aah_ icofont icofont-camera" style="font-size: 22px; color: #666;"></i></label>
+            </form>
+        </div>
+        <div class="avatar-preview">
+            <!-- https://adminlte.io/themes/AdminLTE/dist/img/user3-128x128.jpg -->
+            <!-- https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg -->
+            <!-- https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-BiIorxpeD_vgAzBTgpx9vd6EQezMODouWZWDbv8wY55bX4z56X4RuBEdeVbrYaCyxkc&usqp=CAU -->
+            <img class="profile-user-img img-responsive img-circle" id="imagePreview" src="../../../../../assets/images/profile-picture.png" alt="User profile picture">
+
+        </div>
+    </div>
+</div>
+          
+
+<span class="button-box">
+    <button class="btn" type="submit"  name="submit">
+        <span>Continuar</span>
+    </button>
+</span>
+
+<p class="text"><a (click)="back()">Atrás</a></p>

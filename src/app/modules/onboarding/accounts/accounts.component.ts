@@ -11,8 +11,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class AccountsComponent implements OnInit {
   public showAccount: boolean = false;
   public showBirthDay: boolean = false;
-  public showPhoneNumber: boolean = true;
+  public showPhoneNumber: boolean = false;
   public showCodePhone: boolean = false;
+  public showProfilePicture: boolean = true;
   
   public user: any; // OBTENER LOS DATOS DEL VIEW ACCOUNT
   public birthDay: any; // OBTENER LOS DATOS DEL CUMPLEAÑOS DEL USUARIO
@@ -25,8 +26,6 @@ export class AccountsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    //console.log("DEBUG: Account.component");
-    console.log("DEBUG: this.showAccount : " + this.showAccount);
   }
 
   // ESTA FUNCION TE REGRESARÁ A LA VISTA DE LOGUIN.
@@ -86,6 +85,8 @@ export class AccountsComponent implements OnInit {
     console.log(this.birthDay);
     console.log(this.codePone);
     console.log(this.phone);
+
+    // REGISTER USER.
     this.authService.SignUp(this.user.emailOrPhone, this.user.password);
   }
 }

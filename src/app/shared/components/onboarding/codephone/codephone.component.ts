@@ -46,7 +46,6 @@ export class CodephoneComponent implements OnInit {
     }
 
     public showToFeed(codePhone: string) {
-        
         this.codePhoneEvent.emit(codePhone);
     }
 

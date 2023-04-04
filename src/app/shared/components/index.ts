@@ -21,6 +21,7 @@ import { BirthdayComponent } from "./onboarding/birthday/birthday.component";
 import { FooterloginComponent } from "./onboarding/footerlogin/footerlogin.component";
 import { CodephoneComponent } from "./onboarding/codephone/codephone.component";
 import { PhonenumberComponent } from "./onboarding/phonenumber/phonenumber.component";
+import { ProfilePictureComponent } from "./onboarding/profile-picture/profile-picture.component";
 
 // IMPORT COMPONENTS
 export const components : any[] = [
@@ -45,7 +46,8 @@ export const components : any[] = [
     BirthdayComponent,
     FooterloginComponent,
     CodephoneComponent,
-    PhonenumberComponent
+    PhonenumberComponent,
+    ProfilePictureComponent
 ];
 
 // EXPORT ALL COMPONENTS
@@ -71,3 +73,4 @@ export * from './onboarding/birthday/birthday.component';
 export * from './onboarding/footerlogin/footerlogin.component';
 export * from './onboarding/codephone/codephone.component';
 export * from './onboarding/phonenumber/phonenumber.component';
+export * from './onboarding/profile-picture/profile-picture.component';
