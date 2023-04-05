@@ -1,58 +1,93 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '@core/http/authentication.service';
-import { User } from '@data/models/user';
-import { UserService } from '@data/services/api/user.service';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthenticationService } from "@core/http/authentication.service";
+import { User } from "@data/models/user";
+import { UserService } from "@data/services/api/user.service";
+import { BehaviorSubject, Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+    selector: "app-login",
+    templateUrl: "./login.component.html",
+    styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  // TODO: PROPERTIES
-  public hide = true;
-  public btnState = true;
+  
+    public hide = true;
+    public btnState = true;
+    public isValidPassword = false;
+    public showErrorValidPassword = false;
 
-  // TODO: LIFECYCLE
-  constructor(
-    public authService: AuthenticationService,
-    private router: Router
-  ) {
-    if (this.authService.isLoggedIn) {
-      this.router.navigate(['app/feed']);
+ 
+    constructor(
+        public authService: AuthenticationService,
+        private router: Router
+    ) {
+        if (this.authService.isLoggedIn) {
+            this.router.navigate(["app/feed"]);
+        }
     }
-  }
 
-  ngOnInit() {}
+    ngOnInit() {}
 
-  // TODO: HELPERS
-  public account() {
-    this.router.navigate(['account/emailsignup']);
-  }
+    
+    /**
+     * 
+     * @desc Esta funcion se encarga de validad los caracteres que 
+     * escribe en el campo inpput para email y password.
+     * @param event
+     * @return
+     * 
+     */
+    public checkPassword(event: any) {
+        /**
+         * Variable de verificación para saber el usuario
+         * escribe letras o números.
+         */
+        var text = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+$/;
+        var data = event.target.value;
 
-  public isValidPassword = false;
-  public showErrorValidPassword = false;
-  public checkPassword(event: any) {
-    var text = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+$/;
-    var data = event.target.value;
-
-    if (data.match(text)) {
-      // SE COMPRUEBA QUE ES TEXTO.
-      this.isValidPassword = true;
-      this.showErrorValidPassword = false;
-    } else {
-      if (data == '') {
-        // SE COMPRUEBA QUE NO HAY DATO.
-        this.isValidPassword = false;
-        this.showErrorValidPassword = false;
-        this.btnState = true;
-      } else {
-        // SE COMPRUEBA QUE NO ES TEXTO.
-        this.isValidPassword = false;
-        this.showErrorValidPassword = true;
-      }
+        /**
+         * 
+         * Se comprueba que el usuario escriba texto.
+         * Si es es texto, esntonces activamos el check de buena.
+         * 
+         */
+        if (data.match(text)) {
+            this.isValidPassword = true;
+            this.showErrorValidPassword = false;
+        } else {
+            /**
+             * 
+             * Se verifica si hay datos en el campo del imput.
+             * Si no hay datos entonces se advierte mediante un error de 
+             * que hay que ingresar datos.
+             * 
+             */
+            if (data == "") {
+                this.isValidPassword = false;
+                this.showErrorValidPassword = false;
+                this.btnState = true;
+            
+              /**
+              * Se verifica el campo input que el 
+              * dato no es texto
+              */
+            } else {
+                this.isValidPassword = false;
+                this.showErrorValidPassword = true;
+            }
+        }
     }
+
+    /**
+     * 
+     * @desc Esta funcion se encarga de navegar a otra url.
+     * En este caso se ira a la zona de registrar un usuario.
+     * @param event
+     * @return
+     * 
+     */
+    public account() {
+      this.router.navigate(["account/emailsignup"]);
   }
 }

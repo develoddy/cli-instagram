@@ -2,12 +2,10 @@ import { Injectable, NgZone } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { environment } from "environments/environment";
-import { delay, map, tap, catchError } from "rxjs/operators";
 import {Observable,of as observableOf,BehaviorSubject,of,Subscription,} from "rxjs";
 import { User, UserStats } from "@data/models/user";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import * as auth from "firebase/auth";
-import { UserService } from "@data/services/api/user.service";
 import { ProfileService } from "@data/services/api/profile.service";
 import {AngularFirestore,AngularFirestoreDocument,} from "@angular/fire/compat/firestore";
 
@@ -34,8 +32,10 @@ export interface TokenResponse {
 
 
 export class AuthenticationService {
-   
+
+    public errorResponse: any;
     userData: any; // Save logged in user data
+    public errorLogin: boolean = false;
     public isProduction = environment.production;
     public token: string = "";
     private email: string = "";
@@ -56,8 +56,6 @@ export class AuthenticationService {
     public showTextLogin: boolean = false;
 
     constructor(
-        private http: HttpClient,
-        private userService: UserService,
         private profileService: ProfileService,
         private firebase: AngularFirestore,
         public afs: AngularFirestore, // Inject Firestore service
@@ -100,7 +98,7 @@ export class AuthenticationService {
      * @return
      * */
     signIn(email: string, password: string) {
-        this.showTextLogin = !this.showTextLogin;
+        this.showTextLogin = true;
         this.spinner.next(true);
         return this.afAuth
             .signInWithEmailAndPassword(email, password)
@@ -116,8 +114,12 @@ export class AuthenticationService {
                 );
             })
             .catch((error) => {
-                console.log("DEBUG:" + error.message);
-                window.alert(error.message);
+                //console.log("DEBUG:" + error.message);
+                this.errorResponse = error;
+                this.errorLogin = true;
+                this.showTextLogin = false;
+                this.spinner.next(false);
+                //window.alert(error.message);
             });
     }
 
@@ -126,22 +128,6 @@ export class AuthenticationService {
      * @param email, password, photoURL
      * @return
      * */
-
-    /**
-     * 
-     * const userData: User = {
-                    lastname: "",
-                    email: user.email,
-                    phoneNumber: user.phoneNumber,
-                    profileImageURL: user.providerData[0]!.photoURL,
-                    username: "",
-                    emailVerified: user.emailVerified,
-                    uid: user.uid,
-                };
-                
-                console.log("DEBUG: 1. inicio");
-                console.log(userData);
-     */
     SignUp(email: string, password: string, fullname: string, phoneNumber: string, profileImageURL: string, username: string) {
         this.showTextLogin = !this.showTextLogin;
         this.spinner.next(true);
@@ -161,7 +147,8 @@ export class AuthenticationService {
                 );
             })
             .catch((error) => {
-                console.log("DEBUG: Method SignUp error: " + error);
+                this.errorLogin = true;
+                console.log("DEBUG: Method SignUp error....: " + error);
                 window.alert(error.message);
             });
     }
