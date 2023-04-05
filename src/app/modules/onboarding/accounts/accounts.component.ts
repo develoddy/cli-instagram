@@ -19,6 +19,7 @@ export class AccountsComponent implements OnInit {
   public birthDay: any; // OBTENER LOS DATOS DEL CUMPLEAÑOS DEL USUARIO
   public codePone: string; // GET DATA CODEPHONE
   public phone: string; // GET DATA NUMBERPHONE
+  public photoURL: string;
 
   constructor(
     public authService: AuthenticationService,
@@ -42,10 +43,17 @@ export class AccountsComponent implements OnInit {
   }
 
   // ESTA FUNCIÓN TE MOSTRARÁ LA VISTA DE PHONE NUMBER.
-  public showViewNumberPhone(data: any) {
+  /*public showViewNumberPhone(data: any) {
     this.showPhoneNumber = !this.showPhoneNumber;
     this.showBirthDay = !this.showBirthDay;
     this.birthDay = data; // Objc: 20 ene 2023
+  }*/
+
+  public showViewNumberPhone(data: any) {
+    console.log("DEBUG: showViewNumberPhone, me llega de picture");
+    this.photoURL = data;
+    console.log(this.photoURL);
+    
   }
 
   // ESTA FUNCION TE MOSTRARÁ LA VISTA DE CODEPHONE.
@@ -76,7 +84,7 @@ export class AccountsComponent implements OnInit {
     this.showPhoneNumber = true;
     this.showCodePhone = !this.showCodePhone;
   }
-
+  
   // ESTA FUNCION TE REDIRGE A LA VISTA DEL FEED.
   public showToFeed(data: string) {
     this.codePone = data; // String
@@ -85,6 +93,7 @@ export class AccountsComponent implements OnInit {
     console.log(this.birthDay);
     console.log(this.codePone);
     console.log(this.phone);
+    console.log(this.photoURL);
 
     // REGISTER USER.
     this.authService.SignUp(this.user.emailOrPhone, this.user.password);

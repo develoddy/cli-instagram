@@ -56,7 +56,7 @@
                                                                     PROFILE PICTURE
                                                                 -->
                                                                 <ng-container *ngIf="this.showProfilePicture">
-                                                                    <app-profile-picture></app-profile-picture>
+                                                                    <app-profile-picture (continueToPhonenumberEvent)="showViewNumberPhone($event)" ></app-profile-picture>
                                                                 </ng-container>
 
                                                                 <!-- 
