@@ -98,11 +98,19 @@ export class AuthenticationService {
      * @return
      * */
     signIn(email: string, password: string) {
+        /**
+         * Se activa el texto de 'entrar' login.
+         * Se activa el spinner
+         */
         this.showTextLogin = true;
         this.spinner.next(true);
+
+        /**
+         * Return una promesa si el usuario fue logueado correctamnente o * comprobar si las credenciales son correctas o no.
+         */
         return this.afAuth
             .signInWithEmailAndPassword(email, password)
-            .then((result) => {
+            .then( ( result)  => {
                 this.spinner.next(false);
                 this.setUserData(result.user, "", "", "", "");
                 this.clientesSubscription = this.afAuth.authState.subscribe(
