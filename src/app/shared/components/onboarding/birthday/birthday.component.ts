@@ -98,8 +98,6 @@ export class BirthdayComponent implements OnInit {
     ];
 
     ngOnInit() {
-        console.log("DEBUG: component.birthday : ");
-        console.log(this.user);
     }
 
     public continueViewNumberPhone(day: any, month: any, year: any) {

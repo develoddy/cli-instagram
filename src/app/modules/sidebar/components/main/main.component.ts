@@ -50,6 +50,8 @@ export class MainComponent implements OnInit {
     public getCurrrentUser() {
         this.clientesSubscription = this.authenticationService.getCurrentUser().subscribe(( snapshot ) => {
             this.currentUser = snapshot.payload.data();
+            console.log("DEBUG: header");
+            console.log(this.currentUser);
             this.username = this.currentUser.username!;  
         });
     }

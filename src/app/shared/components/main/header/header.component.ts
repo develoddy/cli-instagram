@@ -14,7 +14,11 @@ export class HeaderComponent implements OnInit/*, DoCheck*/  {
   // TODO: Leficycle
   constructor( private auth: AuthenticationService ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    //console.log("DEBUG: Header.component");
+    //console.log(this.currentUser);
+    
+  }
 
   // TODO: Helper
   //ngDoCheck() {}

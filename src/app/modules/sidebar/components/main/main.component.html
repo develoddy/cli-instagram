@@ -1,7 +1,7 @@
 <link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(cssUrl)" />
 
 <div class="page-header">
-    <app-header [currentUser]= "currentUser" ></app-header>
+    <app-header *ngIf="this.currentUser" [currentUser]= "currentUser" ></app-header>
 </div>
 
 <div class="page-body-wrapper">

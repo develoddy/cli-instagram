@@ -49,14 +49,17 @@
                                                                     BIRTTHDAY
                                                                 -->
                                                                 <ng-container *ngIf="this.showBirthDay">
-                                                                    <app-birthday (showCodePhoneEvent)="showViewNumberPhone($event)" (backEvent)="backAccount($event)" [user]="user" ></app-birthday>
+                                                                    <app-birthday (showCodePhoneEvent)="showViewProfilePicture($event)" (backEvent)="backAccount($event)" [user]="user" ></app-birthday>
                                                                 </ng-container>
 
                                                                 <!-- 
                                                                     PROFILE PICTURE
                                                                 -->
                                                                 <ng-container *ngIf="this.showProfilePicture">
-                                                                    <app-profile-picture (continueToPhonenumberEvent)="showViewNumberPhone($event)" ></app-profile-picture>
+                                                                    <app-profile-picture 
+                                                                        (continueToPhonenumberEvent)="showViewNumberPhone($event)"
+                                                                        (backTobirthdayEvent)="backBirthday($event)"
+                                                                    ></app-profile-picture>
                                                                 </ng-container>
 
                                                                 <!-- 
@@ -65,7 +68,7 @@
                                                                 <ng-container *ngIf="this.showPhoneNumber">
                                                                     <app-phonenumber 
                                                                         (phoneEvent)="showViewCodePhone($event)"
-                                                                        (backEvent)="backBirthday($event)" 
+                                                                        (backEvent)="backProfilePicture($event)" 
                                                                         [user]="user"
                                                                         [spinner] = "this.authService.spinner"
                                                                         [showTextContinue] = "this.authService.showTextLogin"

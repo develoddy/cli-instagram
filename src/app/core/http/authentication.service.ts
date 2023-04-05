@@ -3,24 +3,14 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { environment } from "environments/environment";
 import { delay, map, tap, catchError } from "rxjs/operators";
-import {
-    Observable,
-    of as observableOf,
-    BehaviorSubject,
-    of,
-    Subscription,
-} from "rxjs";
+import {Observable,of as observableOf,BehaviorSubject,of,Subscription,} from "rxjs";
 import { User, UserStats } from "@data/models/user";
-import {
-    AngularFirestore,
-    AngularFirestoreDocument,
-} from "@angular/fire/compat/firestore";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import * as auth from "firebase/auth";
 import { UserService } from "@data/services/api/user.service";
 import { ProfileService } from "@data/services/api/profile.service";
+import {AngularFirestore,AngularFirestoreDocument,} from "@angular/fire/compat/firestore";
 
-// FIREBASE
 
 export interface Identity {
     success: string;
@@ -41,8 +31,10 @@ export interface TokenResponse {
 @Injectable({
     providedIn: "root",
 })
+
+
 export class AuthenticationService {
-    // TODO: Properties
+   
     userData: any; // Save logged in user data
     public isProduction = environment.production;
     public token: string = "";
@@ -63,7 +55,6 @@ export class AuthenticationService {
     public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public showTextLogin: boolean = false;
 
-    // TODO: Lifecycle
     constructor(
         private http: HttpClient,
         private userService: UserService,
@@ -75,12 +66,24 @@ export class AuthenticationService {
         public ngZone: NgZone // NgZone service to remove outside scope warning
     ) {
         this.token = "";
-        // GUARDA LOS DATOS DEL USUARIO EN EL ALMACENAMIENTO
-        // LOCAL CUANDO INICIA SESIÓN Y CONFIGURA A NULL CUANDO CIERRA SESIÓN.
-        this.clientesSubscription = this.afAuth.authState.subscribe((user) => {
-            if (user) {
-                this.userData = user;
-                localStorage.setItem("user", JSON.stringify(this.userData));
+        /**
+         * Save data from usuer on storage local when you 
+         * loggin and set to when you logout.
+         **/
+        this.clientesSubscription = this.afAuth.authState.subscribe(
+            (user) => {
+                if ( user ) {
+                const userData: User = {
+                    fullname: "",
+                    email: user.email,
+                    phoneNumber: user.phoneNumber,
+                    profileImageURL: user.providerData[0]!.photoURL,
+                    username: "",
+                    emailVerified: user.emailVerified,
+                    uid: user.uid,
+                };
+                //this.userData = user;
+                localStorage.setItem("user", JSON.stringify(userData));
                 JSON.parse(localStorage.getItem("user")!);
                 this.fetchUserStats();
             } else {
@@ -90,9 +93,12 @@ export class AuthenticationService {
         });
     }
 
-    // TODO: Helpers
-
-    // INICIAR SESIÓN CON CORREO ELECTRONICO / CONTRASEÑA.
+  
+    /**
+     * @desc Login via email or password
+     * @param email password
+     * @return
+     * */
     signIn(email: string, password: string) {
         this.showTextLogin = !this.showTextLogin;
         this.spinner.next(true);
@@ -100,10 +106,10 @@ export class AuthenticationService {
             .signInWithEmailAndPassword(email, password)
             .then((result) => {
                 this.spinner.next(false);
-                this.setUserData(result.user);
+                this.setUserData(result.user, "", "", "", "");
                 this.clientesSubscription = this.afAuth.authState.subscribe(
-                    (user) => {
-                        if (user) {
+                    ( user ) => {
+                        if ( user ) {
                             this.router.navigate(["app/feed"]);
                         }
                     }
@@ -115,25 +121,56 @@ export class AuthenticationService {
             });
     }
 
-    // REGISTRAR CON CORREO ELECTRONICO / CONTRASEÑA.
-    SignUp(email: string, password: string) {
-      this.showTextLogin = !this.showTextLogin;
-      this.spinner.next(true);
+    /**
+     * @desc Register with email and password
+     * @param email, password, photoURL
+     * @return
+     * */
+
+    /**
+     * 
+     * const userData: User = {
+                    lastname: "",
+                    email: user.email,
+                    phoneNumber: user.phoneNumber,
+                    profileImageURL: user.providerData[0]!.photoURL,
+                    username: "",
+                    emailVerified: user.emailVerified,
+                    uid: user.uid,
+                };
+                
+                console.log("DEBUG: 1. inicio");
+                console.log(userData);
+     */
+    SignUp(email: string, password: string, fullname: string, phoneNumber: string, profileImageURL: string, username: string) {
+        this.showTextLogin = !this.showTextLogin;
+        this.spinner.next(true);
         return this.afAuth
             .createUserWithEmailAndPassword(email, password)
-            .then((result) => {
-              this.spinner.next(false);
-                // LLAME A LA FUNCIÓN SendVerificaitonMail() CUANDO UN
-                // NUEVO USUARIO SE REGISTRRE Y DEVUELVA LA PROMESA.
+            .then( ( result ) => {
+                this.spinner.next(false);
+                // Call fuction SendVerificaitonMail() when a new 
+                //user register and returns the priomise.
                 this.sendVerificationMail();
-                this.setUserData(result.user);
+                this.setUserData(
+                    result.user, 
+                    fullname, 
+                    phoneNumber, 
+                    profileImageURL, 
+                    username
+                );
             })
             .catch((error) => {
+                console.log("DEBUG: Method SignUp error: " + error);
                 window.alert(error.message);
             });
     }
 
-    // ENVIAR VERIFICACIÓN DE CORREO ELECTRÓNICO CUANDO SE REGISTRE UN NUEVO USUARIO.
+    /**
+     * @desc Send verification email when a new user signs up.
+     * @param 
+     * @return
+     * */
     sendVerificationMail() {
         return this.afAuth.currentUser
             .then((u: any) => u.sendEmailVerification())
@@ -144,7 +181,12 @@ export class AuthenticationService {
             });
     }
 
-    // RESTABLECER OLVIDÉ MI CONTRASEÑA.
+
+     /**
+     * @desc Reset i forgot my password.
+     * @param passwordResetEmail
+     * @return
+     * */
     forgotPassword(passwordResetEmail: string) {
         return this.afAuth
             .sendPasswordResetEmail(passwordResetEmail)
@@ -156,14 +198,21 @@ export class AuthenticationService {
             });
     }
 
-    // DEVUELVE VERDADERO CUANDO EL USUARIO INICIA SESSIÓN Y SE VERIFICA
-    // EL CORREO ELECTRÓNICO.
+     /**
+     * @desc Return true when user login session and email verified.
+     * @param 
+     * @return true or false
+     * */
     get isLoggedIn(): boolean {
         const user = JSON.parse(localStorage.getItem("user")!);
         return user !== null ? true : false; //return (user !== null || user.emailVerified !== false) ? true : false;
     }
 
-    // INICIA SESIÓN CON GOOGLE.
+    /**
+     * @desc Login with google.
+     * @param 
+     * @return promise
+     * */
     googleAuth() {
         return this.authLogin(new auth.GoogleAuthProvider()).then(
             (res: any) => {
@@ -172,7 +221,11 @@ export class AuthenticationService {
         );
     }
 
-    // OBTENER INFORMACIÓN DE USUARIO.
+    /**
+     * @desc Get user information.
+     * @param 
+     * @return promise
+     **/
     public getIdentity() {
         if (!this.identity) {
             this.identity = JSON.parse(localStorage.getItem("user")!);
@@ -189,76 +242,94 @@ export class AuthenticationService {
 
     public getCurrentUser(): Observable<any> {
         this.identity = this.getIdentity();
+        console.log("DEBUG: Service identity");
+        console.log(this.identity);
+        
+        
         var uid = this.identity.uid;
         return this.firebase.collection("users").doc(uid).snapshotChanges();
     }
 
-    // Auth logic to run auth providers
+
+    /**
+     * @desc Auth logic to run auth providers.
+     * @param provider
+     * @return promise
+     **/
     authLogin(provider: any) {
-        return this.afAuth
-            .signInWithPopup(provider)
-            .then((result) => {
-                this.router.navigate(["app/feed"]);
-                this.setUserData(result.user);
-            })
-            .catch((error) => {
-                window.alert(error);
-            });
+        return this.afAuth.signInWithPopup(provider)
+        .then((result) => {
+            this.router.navigate(["app/feed"]);
+            this.setUserData(result.user, "", "", "", "");
+        })
+        .catch((error) => {
+            window.alert(error);
+        });
     }
 
+    /**
+     * @desc obtain the statistics of the current user connected to the system.
+     * @param 
+     * @return
+     **/
     public fetchUserStats() {
         var uid = this.getIdentity().uid;
-        this.clientesSubscription = this.profileService
-            .fetchFollowersStat(uid)
+        this.clientesSubscription = this.profileService.fetchFollowersStat(uid)
             .subscribe((snapshot) => {
                 this.followersTotal = snapshot.length;
-
-                this.clientesSubscription = this.profileService
-                    .fetchFollowingsStat(uid)
+                this.clientesSubscription = this.profileService.fetchFollowingsStat(uid)
                     .subscribe((snapshot) => {
                         this.followingsTotal = snapshot.length;
-
                         this.clientesSubscription = this.profileService
-                            .fetchPostsStat(uid)
-                            .subscribe((snapshot) => {
+                            .fetchPostsStat(uid).subscribe((snapshot) => {
                                 this.postsTotal = snapshot.length;
                                 // SE RECUPERA TODO LOS STATS DEL USUARIO ACTUAL.
                                 this.stats.followers = this.followersTotal;
                                 this.stats.followings = this.followingsTotal;
                                 this.stats.posts = this.postsTotal;
-                                localStorage.setItem(
-                                    "stats",
-                                    JSON.stringify(this.stats)
-                                );
+                                localStorage.setItem("stats", JSON.stringify(this.stats));
                             });
                     });
             });
     }
 
-    // CONFIGURACIÓN DE DATOS DE USUARIO AL INICIAR SESIÓN CON NOMBRE DE USUARIO/CONTRASEÑA.
-    // REGISTRESE CON NOMBRE DE USUARIO/CONTRASEÑA E INICIE SESIÓN CON AUTENTICACIÓN SOCIAL
-    // PROVEEDOR EN LA BASE DE DATOS DE FIRESTORE USANDO ANGULARFIRESTORE + ANGULARFIRESTOREDOCCUMENTSERVICE
-    setUserData(user: any) {
-        const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-            `users/${user.uid}`
-        );
+    /**
+     * @desc Configuration of user data when loggin in with username and password.
+     * Sign up with username and password and login with social authentication.
+     * Provider in firestore database using angularfirestore + angularfirestoredocumentservice.
+     * @param user, photoURL
+     * @return promise
+     **/
+    setUserData(user: any,  fullname: string, phoneNumber: string, profileImageURL: string, username: string ) {
+        const userRef: AngularFirestoreDocument<any> = this.afs.doc( `users/${user.uid}` );
+
         const userData: User = {
-            uid: user.uid,
+            fullname: fullname,
             email: user.email,
-            displayName: user.displayName,
-            photoURL: user.photoURL,
+            phoneNumber: phoneNumber,
+            profileImageURL: profileImageURL,
+            username: username,
             emailVerified: user.emailVerified,
+            uid: user.uid,
         };
 
-        console.log("DEBUG: Authentication.services");
+        /*const userData: User = {
+            uid: user.uid,
+            email: user.email,
+            emailVerified: user.emailVerified,
+        };*/
+        console.log("DEBUG: Authentication.services setUserData");
         console.log(userData);
-        
         return userRef.set(userData, {
             merge: true,
         });
     }
 
-    // DESCONECTAR
+    /**
+     * @desc Disconnect from the social network.
+     * @param 
+     * @return
+     **/
     SignOut() {
         return this.afAuth.signOut().then(() => {
             localStorage.removeItem("user");
@@ -267,6 +338,11 @@ export class AuthenticationService {
         });
     }
 
+    /**
+     * @desc Error in services.
+     * @param 
+     * @return
+     **/
     error(error: HttpErrorResponse) {
         let errorMessage = "";
         if (error.error instanceof ErrorEvent) {
@@ -277,6 +353,11 @@ export class AuthenticationService {
         return of({ error: true, msg: errorMessage, data: null });
     }
 
+    /**
+     * @desc Services calls are destroyed.
+     * @param 
+     * @return
+     **/
     ngOnDestroy() {
         if (this.clientesSubscription) {
             this.clientesSubscription.unsubscribe();

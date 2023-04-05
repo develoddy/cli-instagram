@@ -22,8 +22,9 @@ export class ProfilePictureComponent implements OnInit {
   sampleProfilePic = "../../../../../assets/images/profile-picture.png";
   selectedFile: ImageSnippet;
   private file: File;
-  private path: string;
+  private path: string = "";
   @Output() continueToPhonenumberEvent = new EventEmitter();
+  @Output() backTobirthdayEvent = new EventEmitter();
 
   constructor(private af: AngularFireStorage) {}
 
@@ -37,8 +38,8 @@ export class ProfilePictureComponent implements OnInit {
       this.selectedFile = new ImageSnippet(event.target?.result, this.file);
     });
     reader.readAsDataURL(this.file);
-
     this.uploadImage();
+
     /*this.isLoading = true;
     setTimeout( () => { 
       this.isLoading = false;
@@ -55,7 +56,6 @@ export class ProfilePictureComponent implements OnInit {
       response => {
         this.isLoading = false;
         this.success = !this.success;
-        console.log(response);
       })
     .catch(
       error => {
@@ -66,11 +66,10 @@ export class ProfilePictureComponent implements OnInit {
   }
 
   // GET IMAGE FROM STORAGE FIREBASE.
-  public getImageStorage() {
+  public getImagePathStorage() {
     this.af.ref("files-account-images/"+this.path).getDownloadURL().subscribe(
       (response) => {
-        console.log("DEBUG: GEtDowloadReff image");
-        console.log(response);
+        this.continueToPhonenumberEvent.emit({path: response})
       }
     )
   }
@@ -79,7 +78,6 @@ export class ProfilePictureComponent implements OnInit {
   public getImageAllStorage() {
     this.af.ref("files-account-images").listAll().subscribe( 
       async (response) => {
-        console.log(response);
         for (let item of response.items) {
           const url = await getDownloadURL(item);
           console.log(url);
@@ -90,13 +88,12 @@ export class ProfilePictureComponent implements OnInit {
 
   // BUTTON CONTINUE.
   public continueToNumberPhone() {
-    console.log("DEBUG: Contine button");
-    console.log(this.path);
-    this.continueToPhonenumberEvent.emit({path: this.path})
-    
+    this.getImagePathStorage();
   }
 
   // BUTTON BACK TO BIRTDAY.
-  public back() {}
+  public back() {
+    this.backTobirthdayEvent.emit({"backTobirthdayEvent": "backTobirthdayEvent"});
+  }
 
 }

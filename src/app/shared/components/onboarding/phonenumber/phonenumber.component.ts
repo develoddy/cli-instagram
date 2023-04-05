@@ -21,7 +21,6 @@ export class PhonenumberComponent implements OnInit {
 
   ngOnInit() {
     let numPhone = (document.getElementById("phone") as HTMLInputElement).value;
-    console.log("DEBUG; Phone -> " + numPhone.length);
     
     if( numPhone.length != 0 && numPhone.length == 9 ) {
         this.btnState = false;
