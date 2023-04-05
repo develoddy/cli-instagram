@@ -33,35 +33,31 @@ export interface TokenResponse {
 
 export class AuthenticationService {
 
-    public errorResponse: any;
-    userData: any; // Save logged in user data
-    public errorLogin: boolean = false;
-    public isProduction = environment.production;
-    public token: string = "";
-    private email: string = "";
-    private username: string = "";
-    public identity: any;
+    public isProduction     = environment.production;
+    public errorResponse    : any;
+    public errorLogin       : boolean = false;
+    public token            : string    = "";
+    public identity         : any;
     public localStorageStats: any;
-    private readonly JWT_TOKEN = "JWT_TOKEN";
-    private readonly REFRESH_TOKEN = "REFRESH_TOKEN";
-    public authTokenNew: string = "new_auth_token";
-    public currentToken: string = "";
-    clientesSubscription: Subscription;
-    public followersTotal = 0;
-    public followingsTotal = 0;
-    public postsTotal = 0;
-    public user: User;
-    public stats: UserStats = { followers: 0, followings: 0, posts: 0 };
-    public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
-    public showTextLogin: boolean = false;
+    public authTokenNew     : string = "new_auth_token";
+    public currentToken     : string = "";
+    public followersTotal   : number = 0;
+    public followingsTotal  : number = 0;
+    public postsTotal       : number = 0;
+    public user             : User;
+    public stats            : UserStats = { followers: 0, followings: 0, posts: 0 };
+    public spinner          : BehaviorSubject<boolean> = new BehaviorSubject(false);
+    public showTextLogin    : boolean = false;
+    userData                : any; 
+    clientesSubscription    : Subscription;
 
     constructor(
-        private profileService: ProfileService,
-        private firebase: AngularFirestore,
-        public afs: AngularFirestore, // Inject Firestore service
-        public afAuth: AngularFireAuth, // Inject Firebase auth service
-        private router: Router,
-        public ngZone: NgZone // NgZone service to remove outside scope warning
+        private profileService  : ProfileService    ,
+        private firebase        : AngularFirestore  ,
+        private router          : Router            ,
+        public afs              : AngularFirestore  ,  // Inject Firestore service
+        public afAuth           : AngularFireAuth   ,  // Inject Firebase auth service
+        public ngZone           : NgZone            // NgZone service to remove outside scope warning
     ) {
         this.token = "";
         /**
@@ -69,7 +65,7 @@ export class AuthenticationService {
          * loggin and set to when you logout.
          **/
         this.clientesSubscription = this.afAuth.authState.subscribe(
-            (user) => {
+            ( user ) => {
                 if ( user ) {
                 const userData: User = {
                     fullname: "",
@@ -80,23 +76,31 @@ export class AuthenticationService {
                     emailVerified: user.emailVerified,
                     uid: user.uid,
                 };
-                //this.userData = user;
-                localStorage.setItem("user", JSON.stringify(userData));
-                JSON.parse(localStorage.getItem("user")!);
+
+                localStorage.setItem(
+                    "user", 
+                    JSON.stringify( userData )
+                );
+
+                JSON.parse(
+                    localStorage.getItem("user")!
+                );
+                
                 this.fetchUserStats();
             } else {
                 localStorage.setItem("user", "null");
-                JSON.parse(localStorage.getItem("user")!);
+                JSON.parse(
+                    localStorage.getItem("user")!
+                );
             }
         });
     }
-
   
     /**
      * @desc Login via email or password
      * @param email password
      * @return
-     * */
+     **/
     signIn(email: string, password: string) {
         /**
          * Se activa el texto de 'entrar' login.
@@ -106,11 +110,11 @@ export class AuthenticationService {
         this.spinner.next(true);
 
         /**
-         * Return una promesa si el usuario fue logueado correctamnente o * comprobar si las credenciales son correctas o no.
+         * Retorna una promesa si el usuario fue logueado correctamnente o 
+         * comprobar si las credenciales son correctas o no.
          */
-        return this.afAuth
-            .signInWithEmailAndPassword(email, password)
-            .then( ( result)  => {
+        return this.afAuth.signInWithEmailAndPassword(email, password)
+            .then( ( result )  => {
                 this.spinner.next(false);
                 this.setUserData(result.user, "", "", "", "");
                 this.clientesSubscription = this.afAuth.authState.subscribe(
@@ -118,16 +122,14 @@ export class AuthenticationService {
                         if ( user ) {
                             this.router.navigate(["app/feed"]);
                         }
-                    }
+                    },
                 );
             })
-            .catch((error) => {
-                //console.log("DEBUG:" + error.message);
-                this.errorResponse = error;
+            .catch( ( error ) => {
+                this.errorResponse = error.message;
                 this.errorLogin = true;
                 this.showTextLogin = false;
                 this.spinner.next(false);
-                //window.alert(error.message);
             });
     }
 
@@ -143,9 +145,17 @@ export class AuthenticationService {
             .createUserWithEmailAndPassword(email, password)
             .then( ( result ) => {
                 this.spinner.next(false);
-                // Call fuction SendVerificaitonMail() when a new 
-                //user register and returns the priomise.
+
+                /**
+                 * Call function SenderVerificationMail() when a new
+                 * user register and returns the promise.
+                 */
                 this.sendVerificationMail();
+                
+                /**
+                 * Call fuction setUserData for add 
+                 * data from user 
+                 */
                 this.setUserData(
                     result.user, 
                     fullname, 
@@ -154,7 +164,7 @@ export class AuthenticationService {
                     username
                 );
             })
-            .catch((error) => {
+            .catch( ( error ) => {
                 this.errorLogin = true;
                 console.log("DEBUG: Method SignUp error....: " + error);
                 window.alert(error.message);

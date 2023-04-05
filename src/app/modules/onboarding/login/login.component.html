@@ -1,11 +1,11 @@
 <span id="root">
     <section class="section-all">
         <!------------
-            - Role main
+        - Role main
         ------------>
         <main class="main" role="main">
             <!------------
-              - Wrapper 
+            - Wrapper 
             ------------>
                 <div class="wrapper">
                     <!------------
@@ -77,9 +77,6 @@
                                                                 </ng-container>
                                                             </div>
 
-
-                                                            <div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s x1q0g3np xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1"><div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x14vqqas xod5an3 x540dpk x1emribx x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1" id="optIntoOneTap"><label class="_aahb _aahc" for="f3c02fcf20c204c"><input class="_aahe" id="f3c02fcf20c204c" type="checkbox" value=""><div class="_aahg"></div><div class="_aacl _aacn _aacu _aacx _aad6">Guardar datos de inicio de sesión</div></label></div></div>
-
                                                         <!-- Button login -->
                                                             <span class="button-box">
                                                                 <button 
@@ -93,27 +90,27 @@
                                                                     - Cuando el usuario presiona el boton, entonces se activará
                                                                     - el spinner, ocultado el texto entrar.
                                                                     ----------------------------------------------------------->
-                                                                    <span *ngIf="!this.authService.showTextLogin">Entrar</span>
+                                                                        <span *ngIf="!this.authService.showTextLogin">Entrar</span>
 
                                                                     <!---------------------
                                                                     - Spinner loeading..
                                                                     ----------------------->
-                                                                    <ng-container *ngIf="this.authService.spinner | async">
-                                                                        <div class="spinner">
-                                                                            <div class="bar1"></div>
-                                                                            <div class="bar2"></div>
-                                                                            <div class="bar3"></div>
-                                                                            <div class="bar4"></div>
-                                                                            <div class="bar5"></div>
-                                                                            <div class="bar6"></div>
-                                                                            <div class="bar7"></div>
-                                                                            <div class="bar8"></div>
-                                                                            <div class="bar9"></div>
-                                                                            <div class="bar10"></div>
-                                                                            <div class="bar11"></div>
-                                                                            <div class="bar12"></div>
-                                                                        </div>
-                                                                    </ng-container>
+                                                                        <ng-container *ngIf="this.authService.spinner | async">
+                                                                            <div class="spinner">
+                                                                                <div class="bar1"></div>
+                                                                                <div class="bar2"></div>
+                                                                                <div class="bar3"></div>
+                                                                                <div class="bar4"></div>
+                                                                                <div class="bar5"></div>
+                                                                                <div class="bar6"></div>
+                                                                                <div class="bar7"></div>
+                                                                                <div class="bar8"></div>
+                                                                                <div class="bar9"></div>
+                                                                                <div class="bar10"></div>
+                                                                                <div class="bar11"></div>
+                                                                                <div class="bar12"></div>
+                                                                            </div>
+                                                                        </ng-container>
                                                                     <!---------------------
                                                                     - Spinner loeading end
                                                                     ---------------------->
@@ -150,7 +147,7 @@
                                                          <!--------------------------------------
                                                          - Url de recuperar contraseña del usuario.
                                                          ------------------------------------------>
-                                                        <a class="forgot" href="">¿Has olvidado la contraseña?</a>
+                                                        <a style="cursor: pointer;" class="forgot" (click)="passwordreset()">¿Has olvidado la contraseña?</a>
                                                     </form>
                                                 </div>
                                             <!-- Form-wrap end -->
@@ -161,22 +158,23 @@
                                     <!------------------------------------
                                     - Botton de registrar un nuevo usuario.
                                     -------------------------------------->
-                                    <div class="login-box">
-                                        <p class="text">¿No tienes una cuenta?<a (click)="account()">Regístrate</a></p>
-                                    </div>
-                                    <!-- Signup-box end -->
-                                    <div class="app">
-                                        <p>Descarga la aplicación.</p>
-                                        <div class="app-img">
-                                            <a href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&amp;ct=igweb.loginPage.badge&amp;mt=8">
-                                                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/4b70f6fae447.png" />
-                                            </a>
-                                            <a href="https://play.google.com/store/apps/details?id=com.instagram.android&amp;referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26utm_medium%3Dbadge">
-                                                <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/f06b908907d5.png" />
-                                            </a>
+                                        <div class="login-box">
+                                            <p class="text">¿No tienes una cuenta?<a (click)="account()">Regístrate</a></p>
                                         </div>
-                                        <!-- App-img end-->
-                                    </div>
+
+                                    <!-- App -->
+                                        <div class="app">
+                                            <p>Descarga la aplicación.</p>
+                                            <div class="app-img">
+                                                <a href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&amp;ct=igweb.loginPage.badge&amp;mt=8">
+                                                    <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/4b70f6fae447.png" />
+                                                </a>
+                                                <a href="https://play.google.com/store/apps/details?id=com.instagram.android&amp;referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26utm_medium%3Dbadge">
+                                                    <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/f06b908907d5.png" />
+                                                </a>
+                                            </div>
+                                            <!-- App-img end-->
+                                        </div>
                                     <!-- App end -->
                                 </div>
                             <!-- Content end -->

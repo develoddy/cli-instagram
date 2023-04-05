@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {}
 
-    
     /**
      * 
      * @desc Esta funcion se encarga de validad los caracteres que 
@@ -88,6 +87,22 @@ export class LoginComponent implements OnInit {
      * 
      */
     public account() {
-      this.router.navigate(["account/emailsignup"]);
-  }
+        //this.router.navigate(["account/emailsignup"]);
+        this.router.navigate([
+            'account/emailsignup/', "account"
+        ]);
+    }
+
+    /**
+     * 
+     * @desc Esta función se encargará de navegar a otra url.
+     * En este caso se ira a la zona de recuperar la contraseña
+     * del usuario que intenta loguearse.
+     */
+    public passwordreset() {
+        //this.router.navigate(["account/passwordreset"]);
+        this.router.navigate([
+            'account/emailsignup/', "passwordreset"
+        ]);
+    }
 }

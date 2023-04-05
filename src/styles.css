@@ -22878,6 +22878,13 @@ input {
                               width: 16px;
                             }
 
+                            ._9-1a {
+                              background-repeat: no-repeat;
+                              background-position: -130px 0;
+                              height: 96px;
+                              width: 96px;
+                            }
+
                             ._ab36 {
                               border: 0;
                               display: inline-block;
@@ -22895,7 +22902,7 @@ input {
                               background-image: url('../src/assets/images/Instagram_JdnP.png');
                             }
 
-                            ._a04s {
+                            ._a04s, ._9-1a {
                               background-image: url('../src/assets/images/TJztmXpWTmS.png');
                             }
 

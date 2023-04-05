@@ -22,6 +22,7 @@ import { FooterloginComponent } from "./onboarding/footerlogin/footerlogin.compo
 import { CodephoneComponent } from "./onboarding/codephone/codephone.component";
 import { PhonenumberComponent } from "./onboarding/phonenumber/phonenumber.component";
 import { ProfilePictureComponent } from "./onboarding/profile-picture/profile-picture.component";
+import { PasswordresetComponent } from "./onboarding/passwordreset/passwordreset.component";
 
 // IMPORT COMPONENTS
 export const components : any[] = [
@@ -47,7 +48,8 @@ export const components : any[] = [
     FooterloginComponent,
     CodephoneComponent,
     PhonenumberComponent,
-    ProfilePictureComponent
+    ProfilePictureComponent,
+    PasswordresetComponent
 ];
 
 // EXPORT ALL COMPONENTS
@@ -74,3 +76,4 @@ export * from './onboarding/footerlogin/footerlogin.component';
 export * from './onboarding/codephone/codephone.component';
 export * from './onboarding/phonenumber/phonenumber.component';
 export * from './onboarding/profile-picture/profile-picture.component';
+export * from './onboarding/passwordreset/passwordreset.component';

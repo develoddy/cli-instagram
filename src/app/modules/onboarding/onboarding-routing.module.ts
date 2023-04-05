@@ -10,7 +10,11 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'emailsignup',
+    path: 'emailsignup/:options',
+    component: AccountsComponent,
+  },
+  {
+    path: 'passwordreset/:options',
     component: AccountsComponent,
   },
 ];

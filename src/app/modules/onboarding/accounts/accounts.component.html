@@ -32,6 +32,11 @@
                                                             <ng-container *ngIf="this.showCodePhone">
                                                                 <span  class="_9--v _aa5a"></span>
                                                             </ng-container>
+
+                                                            <ng-container *ngIf="this.showPasswordReset">
+                                                                <span  class="_9-1a _aa5a"></span>
+                                                            </ng-container>
+
                                                         </div>
                                                     <!-- HEADER END-->
 
@@ -90,6 +95,15 @@
                                                                     >
                                                                     </app-codephone>
                                                                 </ng-container>
+
+
+                                                                <!-- 
+                                                                    CODEPHONE
+                                                                -->
+                                                                <ng-container *ngIf="this.showPasswordReset">
+                                                                    <app-passwordreset (gotoPassAccountEvent) = this.account()></app-passwordreset>
+                                                                </ng-container>
+
                                                             </form>
                                                         </div>
                                                     <!-- FORM END -->

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthenticationService } from '@core/http/authentication.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -9,11 +9,12 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./accounts.component.css'],
 })
 export class AccountsComponent implements OnInit {
-  public showAccount: boolean = true;
+  public showAccount: boolean = false;
   public showBirthDay: boolean = false;
   public showProfilePicture: boolean = false;
   public showPhoneNumber: boolean = false;
   public showCodePhone: boolean = false;
+  public showPasswordReset: boolean = false;
   
   
   public user: any; // OBTENER LOS DATOS DEL VIEW ACCOUNT
@@ -24,10 +25,38 @@ export class AccountsComponent implements OnInit {
 
   constructor(
     public authService: AuthenticationService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
+    const option = this.route.snapshot.paramMap.get("options")!; 
+    console.log("DEBUG: Account.componente load");
+    console.log(option);
 
-  ngOnInit() {
+    if( option == 'account') {
+      this.viewAccount();
+    } else {
+      this.viewPasswordReset();
+    } 
+  }
+
+  ngOnInit() {}
+
+  private viewAccount() {
+    this.showAccount = true;
+    this.showBirthDay = false;
+    this.showProfilePicture = false;
+    this.showPhoneNumber = false;
+    this.showCodePhone = false;
+    this.showPasswordReset = false;
+  }
+
+  private viewPasswordReset() {
+    this.showAccount = false;
+    this.showBirthDay = false;
+    this.showProfilePicture = false;
+    this.showPhoneNumber = false;
+    this.showCodePhone = false;
+    this.showPasswordReset = true;
   }
 
   // ESTA FUNCION TE REGRESARÁ A LA VISTA DE LOGUIN.
@@ -75,6 +104,15 @@ export class AccountsComponent implements OnInit {
     this.showCodePhone = true;
   }
 
+  public showViewPassordReset() {
+    this.showAccount = false;
+    this.showBirthDay = false;
+    this.showProfilePicture = false;
+    this.showPhoneNumber = false;
+    this.showCodePhone = false;
+    this.showPasswordReset = true;
+  }
+
   /* ---- Button continue end ---- */
 
   /* ---- Button back ---- */
@@ -115,6 +153,12 @@ export class AccountsComponent implements OnInit {
     this.showPhoneNumber = true;
     this.showCodePhone = false;
   }
+
+  public account() {
+    this.router.navigate([
+        'account/emailsignup/', "account"
+    ]);
+}
   
   // ESTA FUNCION TE REDIRGE A LA VISTA DEL FEED.
   public showToFeed(data: string) {

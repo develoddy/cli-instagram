@@ -12,7 +12,6 @@ import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import * as moment from "moment";
 import * as $ from "jquery";
 
-
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -21,14 +20,12 @@ import * as $ from "jquery";
 
 export class FeedComponent implements OnInit  {
 
-  // TODO: ----- Properties -----
   public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public cssUrl: string = "";
   posts: Post[] = [];
   public user: any;
   clientesSubscription: Subscription;
 
-  // TODO: ----- Lifecycle -----
   constructor( 
     public scripts: ScriptsService, 
     public sanitizer: DomSanitizer, 
@@ -36,17 +33,13 @@ export class FeedComponent implements OnInit  {
     private postService: PostService,
     private userService: UserService,
     private router: Router
-  ) {
-    
-  }
+  ) {}
 
   ngOnInit() {
     this.getCurrentUser();
     this.getPostsAll();
   }
 
-  // TODO: ----- Helpers -----
-  
   private getCurrentUser() {
     this.spinner.next(true);
     this.clientesSubscription = this.authService.getCurrentUser().subscribe((snapshot) => {
