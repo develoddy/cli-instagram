@@ -47,14 +47,14 @@
                                                                     ACCOUNT
                                                                 -->
                                                                 <ng-container *ngIf="this.showAccount">
-                                                                    <app-account (sigInEvent)="sigIn($event)" (showBirthdayEvent)="showBirthday($event)"></app-account>
+                                                                    <app-account (sigInEvent)="this.sigIn($event)" (showBirthdayEvent)="this.showBirthday($event)"></app-account>
                                                                 </ng-container>
 
                                                                 <!-- 
                                                                     BIRTTHDAY
                                                                 -->
                                                                 <ng-container *ngIf="this.showBirthDay">
-                                                                    <app-birthday (showCodePhoneEvent)="showViewProfilePicture($event)" (backEvent)="backAccount($event)" [user]="user" ></app-birthday>
+                                                                    <app-birthday (showCodePhoneEvent)="this.showViewProfilePicture($event)" (backEvent)="this.backAccount($event)" [user]="user" ></app-birthday>
                                                                 </ng-container>
 
                                                                 <!-- 
@@ -62,8 +62,8 @@
                                                                 -->
                                                                 <ng-container *ngIf="this.showProfilePicture">
                                                                     <app-profile-picture 
-                                                                        (continueToPhonenumberEvent)="showViewNumberPhone($event)"
-                                                                        (backTobirthdayEvent)="backBirthday($event)"
+                                                                        (continueToPhonenumberEvent)="this.showViewNumberPhone($event)"
+                                                                        (backTobirthdayEvent)="this.backBirthday($event)"
                                                                     ></app-profile-picture>
                                                                 </ng-container>
 
@@ -72,11 +72,11 @@
                                                                 -->
                                                                 <ng-container *ngIf="this.showPhoneNumber">
                                                                     <app-phonenumber 
-                                                                        (phoneEvent)="showViewCodePhone($event)"
-                                                                        (backEvent)="backProfilePicture($event)" 
-                                                                        [user]="user"
-                                                                        [spinner] = "this.authService.spinner"
-                                                                        [showTextContinue] = "this.authService.showTextLogin"
+                                                                        (phoneEvent)="this.showViewCodePhone($event)"
+                                                                        (backEvent)="this.backProfilePicture($event)" 
+                                                                        [user]="this.user"
+                                                                        [spinner]="this.authService.spinner"
+                                                                        [showTextContinue]="this.authService.showTextLogin"
                                                                     >
                                                                     </app-phonenumber>
                                                                 </ng-container>
@@ -88,10 +88,10 @@
                                                                     <app-codephone 
                                                                         (codePhoneEvent)="showToFeed($event)" 
                                                                         (backEvent)="backNumberPhone($event)" 
-                                                                        [user]="user"
-                                                                        [phone]="phone"
-                                                                        [spinner] = "this.authService.spinner"
-                                                                        [showTextContinue] = "this.authService.showTextLogin"
+                                                                        [user]="this.user"
+                                                                        [phone]="this.phone"
+                                                                        [spinner]="this.authService.spinner"
+                                                                        [showTextContinue]="this.authService.showTextLogin"
                                                                     >
                                                                     </app-codephone>
                                                                 </ng-container>
@@ -101,7 +101,7 @@
                                                                     CODEPHONE
                                                                 -->
                                                                 <ng-container *ngIf="this.showPasswordReset">
-                                                                    <app-passwordreset (gotoPassAccountEvent) = this.account()></app-passwordreset>
+                                                                    <app-passwordreset (gotoPassAccountEvent)="this.account()" (backRsetPasswordEvent)="this.onReset($event)" ></app-passwordreset>
                                                                 </ng-container>
 
                                                             </form>

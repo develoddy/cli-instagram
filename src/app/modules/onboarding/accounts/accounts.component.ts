@@ -146,11 +146,7 @@ export class AccountsComponent implements OnInit {
     this.showPhoneNumber = true;
     this.showCodePhone = false;
   }
-
-  public account() {
-    this.router.navigate(['account/emailsignup/']);
-}
-  
+ 
   // ESTA FUNCION TE REDIRGE A LA VISTA DEL FEED.
   public showToFeed(data: string) {
     this.codePone = data; 
@@ -172,4 +168,22 @@ export class AccountsComponent implements OnInit {
   }
 
   /* ---- Button back end ---- */
+
+  public account() {
+    this.router.navigate(['account/emailsignup/']);
+  }
+
+  async onReset(data: any) {
+    try {
+      const email = data.email;
+      await this.authService.resetPassword(email);
+      // Indicar al usuario que se ha enviaddo correctamente el email para restableces el password.
+      window.alert("Email setn check your inbox");
+      this.router.navigate(['/login']);
+      // Redirect to login
+    } catch (error) {
+      console.log(error); 
+      
+    }
+  }
 }

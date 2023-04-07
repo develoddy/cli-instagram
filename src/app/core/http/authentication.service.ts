@@ -116,7 +116,7 @@ export class AuthenticationService {
         return this.afAuth.signInWithEmailAndPassword(email, password)
             .then( ( result )  => {
                 this.spinner.next(false);
-                this.setUserData(result.user, "", "", "", "");
+                // this.setUserData(result.user, "", "", "", "");
                 this.clientesSubscription = this.afAuth.authState.subscribe(
                     ( user ) => {
                         if ( user ) {
