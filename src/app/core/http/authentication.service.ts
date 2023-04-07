@@ -172,6 +172,21 @@ export class AuthenticationService {
     }
 
     /**
+     * @desc Reset password
+     * @param email
+     * @return Promise
+     */
+
+    resetPassword(email: string) {
+        try {
+            this.afAuth.sendPasswordResetEmail(email);
+        } catch ( error ) {
+            console.log(error);
+            
+        }
+    }
+
+    /**
      * @desc Send verification email when a new user signs up.
      * @param 
      * @return
