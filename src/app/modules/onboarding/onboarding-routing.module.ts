@@ -9,8 +9,12 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
   },
+  // {
+  //   path: 'emailsignup/:options',
+  //   component: AccountsComponent,
+  // },
   {
-    path: 'emailsignup/:options',
+    path: 'emailsignup',
     component: AccountsComponent,
   },
   {

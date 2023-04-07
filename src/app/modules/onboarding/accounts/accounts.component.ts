@@ -9,34 +9,27 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./accounts.component.css'],
 })
 export class AccountsComponent implements OnInit {
-  public showAccount: boolean = false;
-  public showBirthDay: boolean = false;
-  public showProfilePicture: boolean = false;
-  public showPhoneNumber: boolean = false;
-  public showCodePhone: boolean = false;
-  public showPasswordReset: boolean = false;
+  public showAccount        : boolean = false;
+  public showBirthDay       : boolean = false;
+  public showProfilePicture : boolean = false;
+  public showPhoneNumber    : boolean = false;
+  public showCodePhone      : boolean = false;
+  public showPasswordReset  : boolean = false;
   
-  
-  public user: any; // OBTENER LOS DATOS DEL VIEW ACCOUNT
-  public birthDay: any; // OBTENER LOS DATOS DEL CUMPLEAÑOS DEL USUARIO
-  public codePone: string; // GET DATA CODEPHONE
-  public phone: string; // GET DATA NUMBERPHONE
-  public profileImageURL: string;
+  public user               : any; // Get data view account 
+  public birthDay           : any; // Get data view birthday 
+  public codePone           : string; // Get data view codephone 
+  public phone              : string; // Get data view phone 
+  public profileImageURL    : string; // get data view profile image
 
   constructor(
-    public authService: AuthenticationService,
-    private router: Router,
-    private route: ActivatedRoute,
+    public authService  : AuthenticationService ,
+    private router      : Router                ,
+    private route       : ActivatedRoute        ,
   ) {
     const option = this.route.snapshot.paramMap.get("options")!; 
-    console.log("DEBUG: Account.componente load");
-    console.log(option);
-
-    if( option == 'account') {
-      this.viewAccount();
-    } else {
-      this.viewPasswordReset();
-    } 
+    //option == 'account' ? this.viewAccount() : this.viewPasswordReset();
+    option == 'reset' ? this.viewPasswordReset(): this.viewAccount();
   }
 
   ngOnInit() {}
@@ -155,9 +148,7 @@ export class AccountsComponent implements OnInit {
   }
 
   public account() {
-    this.router.navigate([
-        'account/emailsignup/', "account"
-    ]);
+    this.router.navigate(['account/emailsignup/']);
 }
   
   // ESTA FUNCION TE REDIRGE A LA VISTA DEL FEED.

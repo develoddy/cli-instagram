@@ -68,8 +68,8 @@ export class LoginComponent implements OnInit {
                 this.btnState = true;
             
               /**
-              * Se verifica el campo input que el 
-              * dato no es texto
+              * Se verifica el campo input para saber si
+              * dato no es texto.
               */
             } else {
                 this.isValidPassword = false;
@@ -87,10 +87,10 @@ export class LoginComponent implements OnInit {
      * 
      */
     public account() {
-        //this.router.navigate(["account/emailsignup"]);
-        this.router.navigate([
+        this.router.navigate(["account/emailsignup"]);
+        /*this.router.navigate([
             'account/emailsignup/', "account"
-        ]);
+        ]);*/
     }
 
     /**
@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit {
     public passwordreset() {
         //this.router.navigate(["account/passwordreset"]);
         this.router.navigate([
-            'account/emailsignup/', "passwordreset"
+            'account/passwordreset/', "reset"
         ]);
     }
 }
