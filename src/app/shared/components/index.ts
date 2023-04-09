@@ -23,6 +23,7 @@ import { CodephoneComponent } from "./onboarding/codephone/codephone.component";
 import { PhonenumberComponent } from "./onboarding/phonenumber/phonenumber.component";
 import { ProfilePictureComponent } from "./onboarding/profile-picture/profile-picture.component";
 import { PasswordresetComponent } from "./onboarding/passwordreset/passwordreset.component";
+import { ModaladdpostComponent } from "./modals/modaladdpost/modaladdpost.component";
 
 // IMPORT COMPONENTS
 export const components : any[] = [
@@ -49,7 +50,8 @@ export const components : any[] = [
     CodephoneComponent,
     PhonenumberComponent,
     ProfilePictureComponent,
-    PasswordresetComponent
+    PasswordresetComponent,
+    ModaladdpostComponent
 ];
 
 // EXPORT ALL COMPONENTS
@@ -77,3 +79,4 @@ export * from './onboarding/codephone/codephone.component';
 export * from './onboarding/phonenumber/phonenumber.component';
 export * from './onboarding/profile-picture/profile-picture.component';
 export * from './onboarding/passwordreset/passwordreset.component';
+export * from './modals/modaladdpost/modaladdpost.component';

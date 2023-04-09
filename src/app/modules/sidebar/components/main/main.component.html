@@ -1,7 +1,7 @@
 <link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(cssUrl)" />
 
 <div class="page-header">
-    <app-header *ngIf="this.currentUser" [currentUser]= "currentUser" ></app-header>
+    <app-header *ngIf="this.currentUser" [currentUser]="currentUser"></app-header>
 </div>
 
 <div class="page-body-wrapper">
@@ -72,7 +72,7 @@
                                                     <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                                                 </a>
                                             </li>
-                                            
+
                                             <!-- EMAIL -->
                                             <li class="sidebar-list cursor-pointer" routerLink="email">
                                                 <a class="sidebar-link sidebar-title">
@@ -117,9 +117,9 @@
                                                     <span>Chat</span>
                                                 </a>
                                             </li>
-        
+
                                             <!-- BOOKMARKS -->
-                                            <li class="sidebar-list cursor-pointer" >
+                                            <li class="sidebar-list cursor-pointer">
                                                 <a class="sidebar-link sidebar-title link-nav" routerLink="bookmark">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmarks" viewBox="0 0 16 16">
                                                         <path
@@ -131,7 +131,7 @@
                                                     <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                                                 </a>
                                             </li>
-        
+
                                             <!-- BUSCAR -->
                                             <li class="sidebar-list cursor-pointer" routerLink="search">
                                                 <a class="sidebar-link sidebar-title link-nav" [routerLink]="['bookmarks']">
@@ -154,7 +154,7 @@
                                                     <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                                                 </a>
                                             </li>
-        
+
                                             <!-- EXPLORE -->
                                             <li class="sidebar-list cursor-pointer" [routerLinkActive]="['active']">
                                                 <a class="sidebar-link sidebar-title link-nav" [routerLink]="['explore']">
@@ -167,7 +167,7 @@
                                                     <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                                                 </a>
                                             </li>
-        
+
                                             <!-- PERFIL -->
                                             <li class="sidebar-list cursor-pointer" [routerLinkActive]="['active']">
                                                 <a class="sidebar-link sidebar-title" [routerLink]="['profile/', username]">
@@ -191,9 +191,9 @@
                                                     <span>Amigos</span>
                                                 </a>
                                             </li>
-        
+
                                             <!-- CREAR -->
-                                            <li  class="sidebar-list cursor-pointer nav-item" routerLink="/post">
+                                            <li class="sidebar-list cursor-pointer nav-item" (click)="openModal('custom-modal-1')">
                                                 <a
                                                     class="sidebar-link sidebar-title link-nav"
                                                     data-bs-toggle="modal"
@@ -206,10 +206,16 @@
                                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                                                     </svg>
-        
+
                                                     <span>Crear</span> <br />
                                                 </a>
                                             </li>
+
+                                            <!-- <div id="demo-modal" class="modal">
+                                                <app-modaladdpost></app-modaladdpost>
+                                            </div> -->
+
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -226,10 +232,18 @@
                 </div>
                 <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
             </nav>
-        </div>        
+        </div>
     </div>
 
     <div class="page-body">
-        <router-outlet></router-outlet> 
+        <router-outlet></router-outlet>
     </div>
 </div>
+
+<!-- Hay que revisar como se envia el id al post modal -->
+<!-- y revisar lo que hayd entro en el cuerpo de <app-modaladdpost> -->
+<app-modaladdpost id="custom-modal-1">
+    <!-- <h1>A Custom Modal!</h1>
+    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+    <button (click)="closeModal('custom-modal-1');">Close</button> -->
+</app-modaladdpost>

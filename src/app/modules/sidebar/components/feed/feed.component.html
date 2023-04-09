@@ -20,10 +20,19 @@
                                     <app-emptyalert></app-emptyalert>
                                 </ng-container>
                             </ng-template> -->
-                            <app-posts *ngIf="this.posts.length > 0" [posts]="posts" (eventGotoProfile)="goPostToProfile($event)" ></app-posts>
+                            
+                            <ng-container *ngIf="this.posts.length > 0; else postEmpty">
+                                <app-posts  [posts]="posts" (eventGotoProfile)="goPostToProfile($event)" ></app-posts>
+                            </ng-container>
+                            
+                            <ng-template #postEmpty>
+                                <ng-container *ngIf="this.spinner">
+                                    <app-emptyalert></app-emptyalert>        
+                                </ng-container>
+                            </ng-template>
                         </div>
 
-                        <div class="col-xl-3 xl-40 col-lg-12 col-md-5 box-col-4">
+                        <!-- <div class="col-xl-3 xl-40 col-lg-12 col-md-5 box-col-4">
                             <div class="default-according style-1 faq-accordion">
                                 <div class="card">
                                     <ng-container *ngIf="spinner | async">
@@ -35,7 +44,7 @@
                                     <app-loader-contacts></app-loader-contacts>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             <!-- / END TIMELINE -->
