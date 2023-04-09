@@ -179,8 +179,11 @@ export class AuthenticationService {
 
     resetPassword(email: string) {
         try {
+            console.log("DEBUG: resetPassword email Service -> " + email);
+            
             this.afAuth.sendPasswordResetEmail(email);
         } catch ( error ) {
+            console.log("DEBUG: resetPassword Service");
             console.log(error);
             
         }

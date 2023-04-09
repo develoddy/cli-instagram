@@ -175,13 +175,17 @@ export class AccountsComponent implements OnInit {
 
   async onReset(data: any) {
     try {
-      const email = data.email;
+      const email = data.reset;
+      //console.log("DEDBUG: data.reset : " + data.reset);
+      //console.log("DEBUG: onReset email  componente -> " + email);
+      //console.log(data);
       await this.authService.resetPassword(email);
       // Indicar al usuario que se ha enviaddo correctamente el email para restableces el password.
       window.alert("Email setn check your inbox");
       this.router.navigate(['/login']);
       // Redirect to login
     } catch (error) {
+      console.log("DEBUG: onReset componente");
       console.log(error); 
       
     }
