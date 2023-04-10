@@ -14,8 +14,6 @@ export class AuthGuard implements CanActivate {
         route: ActivatedRouteSnapshot, 
         state: RouterStateSnapshot
     ) : Observable<boolean> | Promise<boolean> | boolean {
-
-        console.log("DEBUG: Auth.guard -> " + this.authenticationService.isLoggedIn);
         if ( this.authenticationService.isLoggedIn !== true ) {
             this.router.navigate([ 'login' ])
         }

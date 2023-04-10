@@ -170,6 +170,7 @@
 
                                             <!-- PERFIL -->
                                             <li class="sidebar-list cursor-pointer" [routerLinkActive]="['active']">
+                                                
                                                 <a class="sidebar-link sidebar-title" [routerLink]="['profile/', username]">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                                                         <path
@@ -179,6 +180,8 @@
                                                     <span>Perfil</span>
                                                 </a>
                                             </li>
+
+                                            
 
                                             <!-- Friends -->
                                             <li class="sidebar-list cursor-pointer" [routerLinkActive]="['active']">
@@ -193,15 +196,25 @@
                                             </li>
 
                                             <!-- CREAR -->
-                                            <li class="sidebar-list cursor-pointer nav-item" (click)="openModal('custom-modal-1')">
-                                                <a
+
+                                            <!-- view modal -->
+                                            <!-- <button class="btn btn-primary btn-modal" data-toggle="modal" data-target="#fsModal">
+                                                View Modal
+                                            </button> -->
+                                            <!-- view modal -->
+
+    
+                                            
+                                            <li class="sidebar-list cursor-pointer nav-item" data-toggle="modal" data-target="#fsModal" (click)="this.openModal()">
+                                               <a
                                                     class="sidebar-link sidebar-title link-nav"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal10"
                                                     data-bs-original-title=""
                                                     title=""
                                                     style="background-color: rgba(115, 102, 255, 0.06); padding: 15px 17px; border-radius: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
-                                                >
+                                                > 
+                                              
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
@@ -211,11 +224,6 @@
                                                 </a>
                                             </li>
 
-                                            <!-- <div id="demo-modal" class="modal">
-                                                <app-modaladdpost></app-modaladdpost>
-                                            </div> -->
-
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -237,13 +245,13 @@
 
     <div class="page-body">
         <router-outlet></router-outlet>
+        <div id="fsModal" class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <app-modaladdpost></app-modaladdpost>
+        </div>
+        
     </div>
+                                                                                                
+                                                
 </div>
 
-<!-- Hay que revisar como se envia el id al post modal -->
-<!-- y revisar lo que hayd entro en el cuerpo de <app-modaladdpost> -->
-<app-modaladdpost id="custom-modal-1">
-    <!-- <h1>A Custom Modal!</h1>
-    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
-    <button (click)="closeModal('custom-modal-1');">Close</button> -->
-</app-modaladdpost>
+

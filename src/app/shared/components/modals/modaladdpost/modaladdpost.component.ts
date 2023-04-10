@@ -1,57 +1,118 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
-import { ModalServiceService } from '@shared/services/modal-service.service';
+import { Component, ElementRef, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { BehaviorSubject, Observable, interval, timer } from 'rxjs';
+
+
+
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 
 @Component({
   selector: 'app-modaladdpost',
   templateUrl: './modaladdpost.component.html',
   styleUrls: ['./modaladdpost.component.css']
 })
-export class ModaladdpostComponent implements OnInit, OnDestroy  {
+export class ModaladdpostComponent implements OnInit  {
 
-    @Input() id: string;
-    private element: any;
+  value = 100;
+  seconds: number = 0;
 
-    constructor(private modalService: ModalServiceService, private el: ElementRef) {
-      this.element = el.nativeElement;
-    }
+  private file: File;
+  //file:any;
+  selectedFile: ImageSnippet;
+  sampleProfilePic = "../../../../../assets/images/profile-picture.png";
 
-    ngOnInit(): void {
-      // asegúrese de que existe el atributo id
+  urls = new Array<string>();
 
-      if (!this.id) {
-          console.error('modal must have an id');
-          return;
+  constructor() {}
+
+  ngOnInit(){
+    /*const time = 60;
+    const timer$ = interval(1000);
+
+    const sub = timer$.subscribe(sec => {
+      this.value = 100 - (sec * 100) / 60;
+      this.seconds = sec;
+
+      if (this.seconds === 60) {
+        sub.unsubscribe();
       }
+    });*/
+    this.startProgress();
+  }
+  
 
-      // mover el elemento a la parte inferior de la página (justo antes de </body>) para que pueda mostrarse encima de todo lo demás
-      document.body.appendChild(this.element);
+  isOpen: boolean = false;
 
-      // close modal on background click
-      this.element.addEventListener('click', (el: any)  => {
-          if (el.target.className === 'jw-modal') {
-              this.close();
-          }
-      });
+  toggleExpansion() {
+    this.isOpen = !this.isOpen;
+  }
 
-      // agregue uno mismo (esta instancia modal) al servicio modal para que sea accesible desde los controladores
-      this.modalService.add(this);
+  startTimer(seconds: number) {}
+
+  progress = new BehaviorSubject(0);
+  startProgress() {
+    const interval = setInterval(() => {
+      this.progress.next(this.progress.value + 5);
+      if (this.progress.value >= 100) {
+        clearInterval(interval);
+      }
+    }, 500);
+  }
+
+  
+  
+  public proccessFile(photo:any) {
+    console.log(this.urls);
+    
+    this.file = photo.files[0];
+
+    console.log(this.file);
+    
+    const reader = new FileReader();
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target?.result, this.file);
+      this.urls.push(event.target.result);
+    });
+    reader.readAsDataURL(this.file);
+  }
+
+  // proccessFile(event:any) {
+  //   console.log(event);
+    
+  //   this.urls = [];
+  //   this.file = event.target.files;   
+  //     for (let file of this.file) {
+  //       let reader = new FileReader();
+  //       reader.onload = (e: any) => {
+  //         this.urls.push(e.target.result);
+  //       }
+  //       reader.readAsDataURL(file);
+  //     }
+  // }
+
+
+  deleteImage(): void {
+    this.selectedFile = new ImageSnippet('', this.file);
+    console.log("ArroLeft");
+    console.log(this.selectedFile);
+    console.log("this.urls.length : "+ this.urls.length );
+
+    if(this.urls.length === 1) {
+      this.urls = [];
     }
 
-    // eliminarse a sí mismo del servicio modal cuando se destruye el componente
-    ngOnDestroy(): void {
-      this.modalService.remove(this.id);
-      this.element.remove();
+  
+    /*if(this.urls.length === 1) {
+      this.urls = [];
+      return;
     }
+    this.urls = this.urls.filter((a) => a !== url);
+    console.log();*/
+  }
 
-    // open modal
-    open(): void {
-        this.element.style.display = 'block';
-        document.body.classList.add('jw-modal-open');
-    }
 
-    // close modal
-    close(): void {
-        this.element.style.display = 'none';
-        document.body.classList.remove('jw-modal-open');
-    }
+  
 }

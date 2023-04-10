@@ -265,10 +265,6 @@ export class AuthenticationService {
 
     public getCurrentUser(): Observable<any> {
         this.identity = this.getIdentity();
-        console.log("DEBUG: Service identity");
-        console.log(this.identity);
-        
-        
         var uid = this.identity.uid;
         return this.firebase.collection("users").doc(uid).snapshotChanges();
     }

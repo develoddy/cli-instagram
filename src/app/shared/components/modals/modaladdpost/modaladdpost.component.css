@@ -1,31 +1,148 @@
-.jw-modal {
-    display: none;
-  }
-  .jw-modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    overflow: auto;
-  }
-  .jw-modal .jw-modal-body {
-    padding: 20px;
-    background: #fff;
-    margin: 40px;
-  }
-  .jw-modal-background {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #000;
-    opacity: 0.75;
-    z-index: 900;
-  }
-  body.jw-modal-open {
-    overflow: hidden;
-  }
-  
+
+.made-by {
+    text-align: center;
+    padding-top: 50px;
+    color: #896746;
+}
+
+.file-wrapper {
+    width: 100%;
+    height: 650px;
+    position:relative;
+    margin: auto;
+    background: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.file-wrapper > p {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;margin: auto;
+    width: max-content; height: max-content; display: block;
+    max-height: 85px;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #000;
+}
+
+.file-wrapper >  button {
+    position: absolute;
+    left: 0; right: 0;
+    margin: auto;
+    top: 22rem;
+    /* bottom: 35px; */
+    width: max-content;
+    height: max-content;
+    font-size: 18px;
+    color: #fff;
+    border: 1px solid rgb(0, 149, 246);
+    padding: 5px 20px 5px 20px;
+    border-radius: 30px;
+    background: rgb(0, 149, 246);
+    color: #fff;
+    font-weight: 600;
+}
+
+.btnShared {
+    position: absolute;
+    left: 0; right: 0;
+    margin: auto;
+    top: 22rem;
+    /* bottom: 35px; */
+    width: max-content;
+    height: max-content;
+    font-size: 18px;
+    color: #fff;
+    border: 1px solid rgb(0, 149, 246);
+    padding: 5px 20px 5px 20px;
+    border-radius: 30px;
+    background: rgb(0, 149, 246);
+    color: #fff;
+    font-weight: 600;
+}
+
+.file-wrapper > p:hover {
+    color: red;
+}
+
+.file-wrapper > button:hover {
+    background-color: red;
+    transition: all 0.5s ease-out;
+}
+
+/*
+.file-wrapper:after{
+    content: 'Arrastra las fotos y los vídeos aquí';
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;margin: auto;
+    width: max-content; height: max-content; display: block;
+    max-height: 85px;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #000;
+}
+*/
+
+/*/
+.file-wrapper:before{
+    content: 'Seleccionar del ordenador';
+    display: block;
+    position: absolute;
+    left: 0; right: 0;
+    margin: auto;
+    bottom: 35px;
+    width: max-content;
+    height: max-content;
+    font-size: 18px;
+    color: #fff;
+    border: 1px solid rgb(0, 149, 246);
+    padding: 5px 20px 5px 20px;
+    border-radius: 30px;
+    background: rgb(0, 149, 246);
+    color: #fff;
+    font-weight: 600;
+}
+*/
+
+/*.file-wrapper:hover:after{
+    font-size: 20px;transition: all 0.5s ease-out;
+}*/
+
+
+.file-wrapper .close-btn{display: none;}
+    input[type="file"]{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 99999;
+    cursor: pointer;
+}
+.file-set{
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: transparent;
+    padding: 10px;
+    border-width: 0px;
+}
+.file-set:hover{
+    transition: all 0.5s ease-out;
+    filter:brightness(110%);
+}
+.file-set:before{color: transparent;}
+.file-set:after{color: transparent;}
+.file-set .close-btn{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    display: block;
+    background: #000;
+    color: #fff;
+    top: 0; right: 0;
+    font-size: 25px;
+    text-align: center;
+    line-height: 1.5;
+    cursor: pointer;
+    opacity: 0.8;
+}
+.file-set > input{pointer-events: none;}

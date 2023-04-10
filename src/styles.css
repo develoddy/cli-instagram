@@ -2770,11 +2770,11 @@ button:focus {
     1.2 Typography CSS start
 ==========================**/
 body {
-  font-size: 14px;
-  overflow-x: hidden;
-  font-family: Rubik, sans-serif;
-  color: #2F2F3B;
-  background-color: #fafafa;
+  font-size: 14px !important;
+  overflow-x: hidden !important;
+  font-family: Rubik, sans-serif !important;
+  color: #2F2F3B !important;
+  background-color: #fafafa !important;
 }
 
 h1,
@@ -2783,7 +2783,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
+  margin: 0 ;
 }
 
 ul {
@@ -2953,6 +2953,11 @@ pre {
 
 .note-editor.note-frame {
   border-color: #f4f4f4;
+}
+
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: .5 !important;
 }
 
 .modal .modal-body .card {

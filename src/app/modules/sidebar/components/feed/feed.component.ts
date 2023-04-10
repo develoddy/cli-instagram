@@ -55,10 +55,6 @@ export class FeedComponent implements OnInit  {
       this.clientesSubscription = this.postService.fetchPosts().subscribe(res => {
         this.spinner.next(false);
           this.posts = [];
-          console.log("DEBUG: GetPostAll: ");
-          console.log(this.posts);
-          
-          
           res.forEach( ( element:any ) => {
               this.posts.push({
                 id: element.payload.doc.id,

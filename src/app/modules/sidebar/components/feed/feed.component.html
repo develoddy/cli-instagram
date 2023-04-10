@@ -21,15 +21,15 @@
                                 </ng-container>
                             </ng-template> -->
                             
-                            <ng-container *ngIf="this.posts.length > 0; else postEmpty">
+                            <ng-container *ngIf="this.posts.length > 0">
                                 <app-posts  [posts]="posts" (eventGotoProfile)="goPostToProfile($event)" ></app-posts>
                             </ng-container>
                             
-                            <ng-template #postEmpty>
+                            <!-- <ng-template #postEmpty>
                                 <ng-container *ngIf="this.spinner">
                                     <app-emptyalert></app-emptyalert>        
                                 </ng-container>
-                            </ng-template>
+                            </ng-template> -->
                         </div>
 
                         <!-- <div class="col-xl-3 xl-40 col-lg-12 col-md-5 box-col-4">
