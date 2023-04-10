@@ -1,14 +1,16 @@
 
 
 
-<div class="progress">
-  <div class="progress-bar" role="progressbar" [style.width]="this.progress.value+'%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
 
 <!-- dialog -->
 <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    
+
     <!-- content -->
         <div class="modal-content">
+
+           
             <!------------- 
                 header 
             -------------->
@@ -29,7 +31,9 @@
                             <span style="color: rgb(0, 149, 246); font-size: 14px; font-weight: 600;">Compartir</span>
                         </button>
                     </ng-template>
-                    
+                </div>
+                <div class="progress" *ngIf="this.spinner |async">
+                    <div class="progress-bar" role="progressbar" [style.width]="this.progress.value+'%'" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             <!------------- 
                 header end
