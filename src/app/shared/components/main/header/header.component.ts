@@ -8,22 +8,17 @@ import { AuthenticationService } from '@core/http/authentication.service';
 })
 export class HeaderComponent implements OnInit/*, DoCheck*/  {
 
-  // TODO: Properties
-  @Input() currentUser: any;
 
-  // TODO: Leficycle
+  @Input() currentUser: any;
+  public show: boolean = false;
+
   constructor( private auth: AuthenticationService ) {}
 
-  ngOnInit() {
-    //console.log("DEBUG: Header.component");
-    //console.log(this.currentUser);
-    
-  }
+  ngOnInit() {}
 
-  // TODO: Helper
-  //ngDoCheck() {}
 
   logout() {
+
     this.auth.SignOut();
   }
 }

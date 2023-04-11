@@ -14,12 +14,12 @@ import { Subscription } from "rxjs";
 })
 export class MainComponent implements OnInit {
 
-    public cssUrl       : string = "";
-    modalSwitch: boolean = false;
-    public identity     = null;
-    public currentUser  : User;
-    public username     : string;
-    clientesSubscription: Subscription;
+    public cssUrl           : string = "";
+    public currentUser      : User;
+    public username         : string;
+    clientesSubscription    : Subscription;
+    modalSwitch: boolean    = false;
+    public identity         = null;
     
     constructor(
         public scripts                  : ScriptsService,
@@ -32,19 +32,26 @@ export class MainComponent implements OnInit {
             this.router.navigate([ 'login' ])
         }
         this.identity = this.authenticationService.getIdentity();
-        this.loadScripts();
-        
     }
 
     ngOnInit() {
+        this.setupView();
+    }
+
+    private setupView() {
         this.getCurrrentUser();
-        // this.cssUrl = '/assets/css/vendors/bootstrap.css';
-        // this.cssUrl = "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css";
+        this.loadScripts();
+        this.loadCss();
+    }
+
+    private loadCss() {
+        this.cssUrl = "/assets/css/vendors/feather-icon.css";
     }
 
     private loadScripts() {
         this.scripts.loadFiles(["sidebar-menu"]);
-        // this.scripts.loadFiles(["bootstrap/bootstrap.bundle.min"]);
+        this.scripts.loadFiles(["icons/feather-icon/feather.min"]);
+        this.scripts.loadFiles(["icons/feather-icon/feather-icon"]);
     }
 
     public getCurrrentUser() {
