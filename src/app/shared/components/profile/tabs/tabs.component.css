@@ -1,0 +1,47 @@
+
+.profile__section__tab {
+    overflow: hidden;
+    border-top: 1px solid #dbdbdb;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 10px 0;
+}
+.profile__section__tab button {
+    background-color: transparent;
+    border: none;
+    padding: 20px 0px 0px 0px;
+    margin: 0 20px;
+    transition: 0.3s;
+    font-size: 14px;
+    color: #8e8e8e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+.profile__section__tab button svg {
+    margin-right: 5px;
+}
+.profile__section__tab__tabcontent {
+    display: none;
+}
+.profile__section__tab__tabcontent__container {
+    max-width: 1300px;
+}
+.profile__section__tab__tabcontent__container__image {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.profile__section__tab__tabcontent__container__image img {
+    width: 30%;
+    object-fit: contain;
+    flex: 1;
+}
+.profile__section__tab__tabcontent__container__image img:nth-child(2) {
+    margin: 7px 14px;
+}
+.profile__section__tab .active {
+    border-top: 2px solid #5c5c5c;
+    color: #5c5c5c;
+}

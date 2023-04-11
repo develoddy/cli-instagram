@@ -1,53 +1,80 @@
-<!-- <link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(cssUrl)" /> -->
-
-<!-- CONTAINER -->
 <div class="container-fluid">
+    <!-- Spinne loadding -->
+        <!-- <ng-container *ngIf="spinner | async">
+            <app-spinner></app-spinner>
+        </ng-container>  -->
+    <!-- Spinne loadding end -->
    
-    <div class="user-profile social-app-profile">
-        <!-- <div class="row"> -->
-            <!-- PORTADA -->
-                <!-- <div class="col-sm-12 box-col-12"> -->
-                    <!-- <app-portada *ngIf="user" [user]="user" ></app-portada> -->
-                <!-- </div> -->
-            <!-- /END PORTADA -->
-        <!-- </div> -->
-        <div class="tab-content" id="top-tabContent">
-            <!-- TIMELINE -->
-                <!-- <div class="tab-pane fade" id="timeline" role="tabpanel" aria-labelledby="timeline"> -->
-                    <!-- <div class="row"> -->
-                        <!-- <div class="col-xl-6 xl-60 col-lg-12 col-md-7 box-col-8e"> -->
-                            <!-- <app-posts *ngIf="posts.length > 0" [posts]="posts" [noMore]="noMore" (eventViewMore)="viewMore($event)" ></app-posts> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-            <!-- / END TIMELINE -->
+    <!-- Profile -->
+        <div class="user-profile social-app-profile profile">
+            <!-- Header -->
+                <div class="profile__profile">
+                    <app-portada  [user]="user" [followButtonText] = "followButtonText" ></app-portada>    
+                </div>
+            <!-- Header end -->
 
-            <!-- PHOTOS -->
-                <!-- <div class="tab-pane fade show active" id="photos" role="tabpanel" aria-labelledby="photos"> -->
-                    <!-- <div class="row"> -->
-                    <!-- <div class="col-sm-12 col-xl-8"> -->
-                        <!-- <div style="display: grid; place-content: center;">
-                                    <div class="spinner"></div>
-                        </div> -->
-                        <!-- <app-loader-photos *ngIf="posts.length>0" [posts]="posts"></app-loader-photos> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-                <!-- </div> -->
-            <!-- / END PHOTOS -->
+            <!-- Boddy -->
+                <div class="tab-content profile__section" id="top-tabContent">
+                    <!-- Tabs -->
+                        <div>
+                            <app-tabs [user]="user"></app-tabs>    
+                        </div>
+                    <!-- Tabs end -->
 
-            <!-- FRIENDS -->
-                <!-- <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends"> -->
-                    <!-- <app-friends *ngIf="data" [data]="data"></app-friends> -->
-                <!-- </div> -->
-            <!-- / END FRIENDS -->
+                    <!-- Posts -->
+                        <div id="Posts" class="profile__section__tab__tabcontent">
+                            <app-profileposts *ngIf="this.posts.length > 0; else noPosts" [posts]="posts"></app-profileposts>
+                            <ng-template #noPosts>
+                                <app-emptyalert *ngIf="user"></app-emptyalert>    
+                            </ng-template>
+                        </div>
+                    <!-- Posts end -->
+                        <div id="Videos" class="profile__section__tab__tabcontent"></div>
+                        <div id="Saved" class="profile__section__tab__tabcontent"></div>
+                        <div id="Tagged" class="profile__section__tab__tabcontent"></div>
 
-            <app-userprofile 
-                *ngIf="posts.length>0" 
-                [posts]="posts" 
-                [user]="user" 
-                [followButtonText] = "followButtonText" 
-                (eventUser)="didTapActionbuttonfor($event)"></app-userprofile>
+                        <!-- TIMELINE -->
+                            <!-- <div class="tab-pane fade" id="timeline" role="tabpanel" aria-labelledby="timeline"> -->
+                                <!-- <div class="row"> -->
+                                    <!-- <div class="col-xl-6 xl-60 col-lg-12 col-md-7 box-col-8e"> -->
+                                        <!-- <app-posts *ngIf="posts.length > 0" [posts]="posts" [noMore]="noMore" (eventViewMore)="viewMore($event)" ></app-posts> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                        <!-- / END TIMELINE -->
+
+                        <!-- PHOTOS -->
+                            <!-- <div class="tab-pane fade show active" id="photos" role="tabpanel" aria-labelledby="photos"> -->
+                                <!-- <div class="row"> -->
+                                <!-- <div class="col-sm-12 col-xl-8"> -->
+                                    <!-- <div style="display: grid; place-content: center;">
+                                                <div class="spinner"></div>
+                                    </div> -->
+                                    <!-- <app-loader-photos *ngIf="posts.length>0" [posts]="posts"></app-loader-photos> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                            <!-- </div> -->
+                        <!-- / END PHOTOS -->
+
+                        <!-- FRIENDS -->
+                            <!-- <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends"> -->
+                                <!-- <app-friends *ngIf="data" [data]="data"></app-friends> -->
+                            <!-- </div> -->
+                        <!-- / END FRIENDS *ngIf="posts.length>0" -->
+
+
+
+
+                        
+                       <!--  <app-userprofile 
+                            [posts]="posts" 
+                            [user]="user" 
+                            [followButtonText] = "followButtonText" 
+                            (eventUser)="didTapActionbuttonfor($event)"
+                        >
+                        </app-userprofile> -->
+                </div>
+            <!-- Boddy end -->
         </div>
-    </div>
+    <!-- Profile end -->
 </div>
-<!-- / END CONTAINER -->

@@ -13,6 +13,7 @@ export class PortadaComponent implements OnInit {
 
   // TODO: ----- Properties -----
   @Input() user: User;
+  @Input() followButtonText: string;
 
   // TODO: ----- Lifecycle -----
   constructor( private userService: UserService, private authService: AuthenticationService ) {

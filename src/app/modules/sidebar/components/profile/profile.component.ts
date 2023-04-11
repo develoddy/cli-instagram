@@ -8,6 +8,7 @@ import { Post } from "@data/models/post";
 import { UserService } from "@data/services/api/user.service";
 import { PostService } from "@data/services/api/post.service";
 import { ProfileService } from "@data/services/api/profile.service";
+// import { ScriptsService } from 'app/services/scripts/scripts.service';
 import * as moment from "moment";
 import * as $ from "jquery";
 
@@ -18,44 +19,47 @@ import * as $ from "jquery";
 })
 export class ProfileComponent implements OnInit {
 
-    // TODO: - PROPERTIES
-    public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
-    public cssUrl: string = "";
-    public identity = null;
-    public currentUser: any;
-    public noDataPosts: boolean = false;
-    public followersTotal = 0;
-    public followingsTotal = 0;
-    public postsTotal = 0;
+    public spinner              : BehaviorSubject<boolean> = new BehaviorSubject(false);
+    public cssUrl               : string = "";
+    public currentUser          : any;
+    public noDataPosts          : boolean = false;
     private clientesSubscription: Subscription;
-    public posts: Post[] = [];
-    public user: User;
-    public stats: UserStats = { followers: 0, followings: 0, posts: 0 };
-    public followButtonText: string = "";
-    public username: string = "";
+    public posts                : Post[] = [];
+    public user                 : User;
+    public stats                : UserStats = { followers: 0, followings: 0, posts: 0 };
+    public followButtonText     : string = "";
+    public username             : string = "";
+    public followersTotal       = 0;
+    public followingsTotal      = 0;
+    public postsTotal           = 0;
+    public identity             = null;
 
-    // TODO: - LIFECYCLE
     constructor(
-        public sanitizer: DomSanitizer,
-        private authService: AuthenticationService,
-        private userService: UserService,
-        private postService: PostService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private profileService: ProfileService
+        public sanitizer        : DomSanitizer,
+        private authService     : AuthenticationService,
+        private userService     : UserService,
+        private postService     : PostService,
+        private route           : ActivatedRoute,
+        private router          : Router,
+        private profileService  : ProfileService,
+        // public scripts: ScriptsService,
     ) {
         this.username = this.route.snapshot.paramMap.get("username")!; 
+        // this.scripts.loadFiles(["loader"]);
     }
 
     ngOnInit() {
         this.fetchUser();
     }
 
-    // TODO: - VIEWMODEL 
-    // SE RECUPERA LOS DATOS DEL USUARIO POR LA PROPIEDAD USERNAME.
+    /**
+     * @desc Get data user.
+     * @param
+     * @return promise
+     **/
     public fetchUser() {
         this.spinner.next(true);
-        this.clientesSubscription = this.userService.fetchUserByUsername( this.username ).subscribe(( snapshot ) => {
+        this.clientesSubscription = this.userService.fetchUserByUsername(this.username).subscribe(( snapshot ) => {
             this.spinner.next(false);
             this.user = snapshot[0];
             this.fetchPostsByUid(this.user.uid!);
@@ -64,19 +68,28 @@ export class ProfileComponent implements OnInit {
         });
     }
 
-    // SE RECUPERA LAS PUBLICACIONES DEL USUARIO QUE SE VISITA EN EL PERFIL.
+    /**
+     * @desc Get all the posts of the user profile we visited.
+     * @param uid
+     * @return
+     **/
     private fetchPostsByUid( uid: string ) {
         this.spinner.next(true);
         this.clientesSubscription = this.postService.fetchPostsByUid(uid).subscribe((snapshot) => {
             this.spinner.next(false);
             this.posts = snapshot;
             if ( this.posts.length == 0 ) {
+                console.log("DEBUG: Profile.componente -> No hay posts" )
                 this.noDataPosts = true;
             }
         });
     }
 
-    // SE RECUPERA EL TOTAL DE STATS.
+    /**
+     * @desc Get the total stats of the connected user
+     * @param uid
+     * @return
+     **/
     public fetchUserStats() {
         if ( this.user ) {
             var uid = this.user.uid!;

@@ -24,6 +24,9 @@ import { PhonenumberComponent } from "./onboarding/phonenumber/phonenumber.compo
 import { ProfilePictureComponent } from "./onboarding/profile-picture/profile-picture.component";
 import { PasswordresetComponent } from "./onboarding/passwordreset/passwordreset.component";
 import { ModaladdpostComponent } from "./modals/modaladdpost/modaladdpost.component";
+import { TabsComponent } from './profile/tabs/tabs.component';
+import { ProfilepostsComponent } from './profile/profileposts/profileposts.component';
+
 
 // IMPORT COMPONENTS
 export const components : any[] = [
@@ -51,7 +54,9 @@ export const components : any[] = [
     PhonenumberComponent,
     ProfilePictureComponent,
     PasswordresetComponent,
-    ModaladdpostComponent
+    ModaladdpostComponent,
+    TabsComponent,
+    ProfilepostsComponent
 ];
 
 // EXPORT ALL COMPONENTS
@@ -80,3 +85,5 @@ export * from './onboarding/phonenumber/phonenumber.component';
 export * from './onboarding/profile-picture/profile-picture.component';
 export * from './onboarding/passwordreset/passwordreset.component';
 export * from './modals/modaladdpost/modaladdpost.component';
+export * from './profile/tabs/tabs.component';
+export * from './profile/profileposts/profileposts.component';
