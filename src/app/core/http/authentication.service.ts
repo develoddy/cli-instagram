@@ -244,6 +244,13 @@ export class AuthenticationService {
         );
     }
 
+    public getIdentityUID(): string {
+        if (!this.identity) {
+            this.identity = JSON.parse(localStorage.getItem("user")!);
+        }
+        return this.identity.uid;
+    }
+
     /**
      * @desc Get user information.
      * @param 

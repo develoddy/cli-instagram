@@ -1,60 +1,21 @@
-<div class="row">
-    <!-- <ng-container *ngFor="let item of data.users.profiles">
-        <div class="col-xl-3 col-sm-6 col-xxl-3 col-ed-3 box-col-3">
-            <div class="card social-profile">
-                <div class="card-body pt-3 pb-3">
-                    <div class="social-img-wrap">
-                        <div class="social-img"><img src="{{ url + 'users/get-image-user/' + item.profile.image_header }}" alt="profile" /></div>
-                        <div class="edit-icon">
-                            <svg>
-                                <use href="../assets/svg/icon-sprite.svg#profile-check"></use>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="social-details">
-                        <h5 class="mb-1"><a href="social-app.html">{{ item.username }}</a></h5>
-                        <span class="f-light">@brookly.simmons</span>
-                        <ul class="card-social">
+<div class="card-body social-status filter-cards-view">
+    <div class="row">
+      <div class="col-6 mb-4" *ngFor="let item of this.users_followings">
+        <div class="media" style="padding: 10px 50px;border: 1px solid #ccc6;">
+          <img class="img-50 rounded-circle m-r-15" src="../assets/images/user/2.png" alt="" />
+          <div class="media-body"><span class="f-w-600 d-block">{{ item.username }}</span><span class="d-block">winter@gmail.com</span></div>
 
-                            <ng-container *ngIf="followings.indexOf(item.id) < 0 && item.id == identity.id">
-                                <li>
-                                    <button class="btn btn-primary">Es usted</button>
-                                </li>
-                            </ng-container>
-                        
-                            <ng-container *ngIf="followings.indexOf(item.id) < 0 && item.id != identity.id">
-                                <li class="btn btn-outline-dark">
-                                    <button class="btn btn-dark">Seguir</button>
-                                    <span>Seguir</span>
-                                </li>
-                            </ng-container>
-                           
-                            <li class="btn btn-outline-dark" *ngIf="followings.indexOf(item.id) >= 0" (mouseenter)="mouseEnter(item.id)" (mouseleave)="mouseleave(item.id)">
-                                <ng-container *ngIf="item.id === followUserOver; else following">
-                                    <span ><a  [class.text-success]="item.profile.id === followUserOver"><span>Eliminar</span></a></span>
-                                </ng-container>
-                                <ng-template #following>
-                                    <span>Siguiendo</span>
-                                </ng-template>
-                            </li>
-                        </ul>
-                        <ul class="social-follow">
-                            <li>
-                                <h6 class="mb-0 ">1,908</h6>
-                                <span class="f-light">Posts</span>
-                            </li>
-                            <li>
-                                <h6 class="mb-0">34.0k</h6>
-                                <span class="f-light">Followers</span>
-                            </li>
-                            <li>
-                                <h6 class="mb-0">897</h6>
-                                <span class="f-light">Following</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+          <button class="_abl-" type="button" style="top: 20px;right: 50px;position: absolute;padding: 5px 10px;border-radius: 5px;background: #ccc6;">
+            <div class="_abm0 _abm1">
+              <div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x6s0dn4 x1oa3qoh xl56j7k">
+                <span>Follow</span>
+              </div>
             </div>
+          </button>
         </div>
-    </ng-container> -->
-</div>
+      </div>
+
+      
+
+    </div>
+  </div>

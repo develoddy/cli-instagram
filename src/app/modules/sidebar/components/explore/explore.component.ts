@@ -26,7 +26,6 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit() {
     this.fetchPosts();
-
   }
 
   private fetchPosts() {

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AuthenticationService } from '@core/http/authentication.service';
-import { UserService } from '@data/services/api/user.service';
+import { User } from '@data/models/user';
 
 @Component({
   selector: 'app-friends',
@@ -9,29 +8,36 @@ import { UserService } from '@data/services/api/user.service';
 })
 export class FriendsComponent implements OnInit {
 
+  @Input() users_followings: User[] = [];
+
+  constructor() {}
+
   ngOnInit() {
+    console.log("DEBUG: FriendsComponent me llega de mi padre..");
+    console.log(this.users_followings);
   }
+
   /*public url: string;
-  public friends = 2;
-  public identity: any;
-  @Input() data: any;
-  public followings:number[] = [];
-  public followUserOver: number = 0;
+    public friends = 2;
+    public identity: any;
+    @Input() data: any;
+    public followings:number[] = [];
+    public followUserOver: number = 0;
 
-  constructor( 
-    private userService: UserService,
-    private _auth: AuthenticationService
-  ) {
-    this.url = this.userService.url;
-    this.identity = _auth.getIdentity();
-  }
-  
+    constructor( 
+      private userService: UserService,
+      private _auth: AuthenticationService
+    ) {
+      this.url = this.userService.url;
+      this.identity = _auth.getIdentity();
+    }
+    
 
-  mouseEnter( userId: number ) {
-    this.followUserOver = userId;
-  }
+    mouseEnter( userId: number ) {
+      this.followUserOver = userId;
+    }
 
-  mouseleave(userId: number ) {
-    this.followUserOver = 0;
-  }*/
+    mouseleave(userId: number ) {
+      this.followUserOver = 0;
+    }*/
 }
