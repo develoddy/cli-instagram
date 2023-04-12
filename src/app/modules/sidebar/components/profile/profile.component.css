@@ -190,7 +190,9 @@
     margin-right: 5px;
 }
 .profile__section__tab__tabcontent {
-    display: none;
+/*    display: none;*/
+    display: flex !important;
+    justify-content: center !important;
 }
 .profile__section__tab__tabcontent__container {
     max-width: 1300px;

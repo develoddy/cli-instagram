@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     <!-- Spinne loadding -->
         <!-- <ng-container *ngIf="spinner | async">
             <app-spinner></app-spinner>
@@ -22,7 +22,7 @@
                     <!-- Tabs end -->
 
                     <!-- Posts -->
-                        <div id="Posts" class="profile__section__tab__tabcontent">
+                        <div id="Posts" class="profile__section__tab__tabcontent" style="display: flex;justify-content: center;">
                             <app-profileposts *ngIf="this.posts.length > 0; else noPosts" [posts]="posts"></app-profileposts>
                             <ng-template #noPosts>
                                 <app-emptyalert *ngIf="user"></app-emptyalert>    

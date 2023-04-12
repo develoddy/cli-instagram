@@ -25013,7 +25013,8 @@ html {
 
 .timeline-content p {
   margin-top: 5px;
-  color: #999999;
+  color: rgb(115, 115, 115);
+  letter-spacing: 0!important;
 }
 .timeline-content .comment-number i {
   color: #999999;
@@ -25028,8 +25029,22 @@ html {
 .timeline-content .comments-box .input-group .input-txt-bx {
   border: none;
 }
+
+.timeline-content .comments-box .input-group .input-txt-bx:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+
 .timeline-content .comments-box .input-group .input-txt-bx::placeholder {
-  color: #999999;
+  color: rgb(115, 115, 115);
+  font-size: 14px !important;
+  font-weight: 400;
+  font: inherit !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 .timeline-content .comments-box .input-group .input-group-append .btn i {
   font-size: 20px;
