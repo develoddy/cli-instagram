@@ -88,9 +88,6 @@ export class LoginComponent implements OnInit {
      */
     public account() {
         this.router.navigate(["account/emailsignup"]);
-        /*this.router.navigate([
-            'account/emailsignup/', "account"
-        ]);*/
     }
 
     /**
@@ -100,7 +97,6 @@ export class LoginComponent implements OnInit {
      * del usuario que intenta loguearse.
      */
     public passwordreset() {
-        //this.router.navigate(["account/passwordreset"]);
         this.router.navigate([
             'account/passwordreset/', "reset"
         ]);
