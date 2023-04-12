@@ -1,3 +1,10 @@
 <div class="collapse show" id="collapseTwotwo" aria-labelledby="headingTwotwo" data-bs-parent="#accordionExample1">
-  <app-friends [users_followings]="this.users_followings"></app-friends>
+
+  <app-friends  
+    *ngIf="this.users.length > 0"  
+    [users_followings]="this.users_followings"
+    [users]="this.users"
+    (linkEvent)="gotoProfile($event)">
+  </app-friends>
+  
 </div>

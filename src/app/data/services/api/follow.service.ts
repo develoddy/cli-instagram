@@ -16,19 +16,10 @@ export class FollowService {
       --------------------------- */
 
   public fetchFollowings(uid:string): Observable<any> {
-
-    //return this.firebase.collection("followings").snapshotChanges();
     return this.firebase.collection("followings").doc(uid).collection("user-followings").snapshotChanges();
   }
 
-  /*
-  func fetchFollowings(uid: String, completion: @escaping([User]) -> Void) {
-        Constants.Collections.COLLECTION_FOLLOWINGS.document(uid).collection("user-followings")
-            .getDocuments { snapshot, _ in
-                guard let documents = snapshot?.documents else { return }
-                let posts = documents.compactMap({ User(dictionary: $0.data() ) })
-                completion(posts)
-        }
-    }
-  */
+  public fetchFollowers(uid:string): Observable<any> {
+    return this.firebase.collection("followers").doc(uid).collection("user-followers").snapshotChanges();
+  }
 }

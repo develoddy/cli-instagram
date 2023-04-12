@@ -43,9 +43,9 @@ export class MainComponent implements OnInit {
         this.loadScripts();
         this.loadCss();
     }
-
+    
     private loadCss() {
-        this.cssUrl = "/assets/css/vendors/feather-icon.css";
+        //this.cssUrl = "/assets/css/vendors/feather-icon.css";
     }
 
     private loadScripts() {

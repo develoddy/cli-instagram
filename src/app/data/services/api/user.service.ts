@@ -2,10 +2,8 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable, resolveForwardRef } from "@angular/core";
 import { environment } from "environments/environment";
-//import { }
 import { of, BehaviorSubject, Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
-// FIREBASE
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
@@ -13,20 +11,23 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class UserService {
 
-    // Properties
+
     public isProduction = environment.production;
     public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public stats: any;
     private filePath: any;
     private dowloadURL: Observable<string>;
 
-    // Lifecycle
+ 
     constructor(
         private _http: HttpClient, 
         private firebase: AngularFirestore
     ) {}
 
-    // Helpers 
+    
+    public fetchAllUsers(): Observable<any> {
+        return this.firebase.collection("users").snapshotChanges();
+    }
 
      /** ---------------------------
       * @description: Se recupera de Firebase los datos del usuario
@@ -56,12 +57,6 @@ export class UserService {
     --------------------------- */
 
     
-
-
-
-
-
-
 
     /*
     // Get users.

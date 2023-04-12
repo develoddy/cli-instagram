@@ -1,21 +1,46 @@
 <div class="card-body social-status filter-cards-view">
     <div class="row">
-      <div class="col-6 mb-4" *ngFor="let item of this.users_followings">
-        <div class="media" style="padding: 10px 50px;border: 1px solid #ccc6;">
-          <img class="img-50 rounded-circle m-r-15" src="../assets/images/user/2.png" alt="" />
-          <div class="media-body"><span class="f-w-600 d-block">{{ item.username }}</span><span class="d-block">winter@gmail.com</span></div>
+        <div class="col-6 mb-4" *ngFor="let item of this.users">
+                <div class="media" style="padding: 10px 50px; border: 1px solid #ccc6;">
+                <img class="img-50 rounded-circle m-r-15" src="{{ item.profileImageURL }}" style="width: 50px; height: 50px" />
+                <div class="media-body">
+                    <span style="cursor: pointer;" class="f-w-600 d-block" (click)="navigate(item.username!)" >{{ item.username }} </span>
+                    <span class="d-block">{{ item.fullname }}</span>
+                </div>
 
-          <button class="_abl-" type="button" style="top: 20px;right: 50px;position: absolute;padding: 5px 10px;border-radius: 5px;background: #ccc6;">
-            <div class="_abm0 _abm1">
-              <div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x6s0dn4 x1oa3qoh xl56j7k">
-                <span>Follow</span>
-              </div>
+                <!-- Button Es usted -->
+                <ng-container *ngIf="(this.users_followings.indexOf(item.uid!) < 0) && (item.uid === this.authService.getIdentityUID())">
+                    <button  class="_abl-" type="button" style="top: 20px; right: 50px; position: absolute; padding: 5px 10px; border-radius: 5px; background: #ccc6;">
+                        <div class="_abm0 _abm1">
+                            <div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x6s0dn4 x1oa3qoh xl56j7k">
+                                <span>Es usted</span>
+                            </div>
+                        </div>
+                    </button>
+                </ng-container>
+
+                <!-- Button Siguiendo -->
+                <ng-container *ngIf="this.users_followings.indexOf(item.uid!) >= 0">
+                    <button class="_abl-" type="button" style="top: 20px; right: 50px; position: absolute; padding: 5px 10px; border-radius: 5px; background: #ccc6;">
+                        <div class="_abm0 _abm1">
+                            <div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x6s0dn4 x1oa3qoh xl56j7k">
+                                <span>Siguiendo</span>
+                            </div>
+                        </div>
+                    </button>
+                </ng-container>
+
+                <!-- Button Seguir -->
+                <ng-container *ngIf="(this.users_followings.indexOf(item.uid!) < 0) && (item.uid !== this.authService.getIdentityUID())">
+                    <button class="_abl-" type="button" style="top: 20px; right: 50px; position: absolute; padding: 5px 10px; border-radius: 5px; color:#fff; background: rgb(0, 128, 255);">
+                        <div class="_abm0 _abm1">
+                            <div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x6s0dn4 x1oa3qoh xl56j7k">
+                                <span>Seguir</span>
+                            </div>
+                        </div>
+                    </button>
+                </ng-container>
             </div>
-          </button>
         </div>
-      </div>
-
-      
-
     </div>
-  </div>
+</div>

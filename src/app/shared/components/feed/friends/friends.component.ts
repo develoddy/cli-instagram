@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthenticationService } from '@core/http/authentication.service';
 import { User } from '@data/models/user';
 
 @Component({
@@ -8,36 +9,54 @@ import { User } from '@data/models/user';
 })
 export class FriendsComponent implements OnInit {
 
-  @Input() users_followings: User[] = [];
+    @Input() users_followings : string[] = [];
+    @Input() users            : User[] = [];
+    @Output() followedEvent   = new EventEmitter();
+    @Output() unfollowedEvent = new EventEmitter();
+    @Output() linkEvent       = new EventEmitter();
+    public followUserOver     : any;
 
-  constructor() {}
+    constructor(
+      public authService: AuthenticationService
+    ) {}
 
-  ngOnInit() {
-    console.log("DEBUG: FriendsComponent me llega de mi padre..");
-    console.log(this.users_followings);
-  }
-
-  /*public url: string;
-    public friends = 2;
-    public identity: any;
-    @Input() data: any;
-    public followings:number[] = [];
-    public followUserOver: number = 0;
-
-    constructor( 
-      private userService: UserService,
-      private _auth: AuthenticationService
-    ) {
-      this.url = this.userService.url;
-      this.identity = _auth.getIdentity();
-    }
-    
-
-    mouseEnter( userId: number ) {
-      this.followUserOver = userId;
+    ngOnInit() {
+      console.log("DEBUG: FriendsComponent load..");
     }
 
-    mouseleave(userId: number ) {
-      this.followUserOver = 0;
-    }*/
+    /**
+    * @desc 
+    * @param followedId 
+    */
+    public followUser(followedId:number) {
+      this.followedEvent.emit(followedId);
+    }
+
+    /**
+    * @desc 
+    * @param followedId 
+    */
+    public unfollowUser(followedId:number) {
+        this.unfollowedEvent.emit(followedId);
+    }
+
+    /**
+    * AL PASAR EL RATON SOBRE EL BOTON FOLLOWING SE DETECTA EL USER DEL ID
+    * @param user_id 
+    */
+    mouseEnter(user_id:string) {
+        this.followUserOver = user_id;
+    }
+
+    /**
+     * AL PASAR EL RATON SOBRE EL BOTON FOLLOWING SE DETECTA EL USER DEL ID
+     * @param user_id 
+     */
+    mouseleave(user_id:string) {
+        this.followUserOver = 0;
+    }
+
+    public navigate(username:string) {
+      this.linkEvent.emit({username:username});
+    }
 }
