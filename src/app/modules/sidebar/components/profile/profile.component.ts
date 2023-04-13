@@ -11,6 +11,7 @@ import { ProfileService } from "@data/services/api/profile.service";
 // import { ScriptsService } from 'app/services/scripts/scripts.service';
 import * as moment from "moment";
 import * as $ from "jquery";
+import { ScriptsService } from "app/services/scripts/scripts.service";
 
 @Component({
     selector: "app-profile",
@@ -43,14 +44,15 @@ export class ProfileComponent implements OnInit {
         private postService     : PostService,
         private route           : ActivatedRoute,
         private router          : Router,
-        private profileService  : ProfileService
+        private profileService  : ProfileService,
+        public scripts          : ScriptsService,
     ) {
         this.username = this.route.snapshot.paramMap.get("username")!; 
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     ngOnInit() {
-        this.fetchUser();
+        this.setupView()
     }
 
     // ---------------------- [ VIEWMODEL ] ------------------------------
@@ -80,6 +82,8 @@ export class ProfileComponent implements OnInit {
         this.clientesSubscription = this.postService.fetchPostsByUid(uid).subscribe((snapshot) => {
             this.spinner.next(false);
             this.posts = snapshot;
+            console.log(this.posts);
+            
             if ( this.posts.length == 0 ) {
                 console.log("DEBUG: Profile.componente -> No hay posts" )
                 this.noDataPosts = true;
@@ -117,6 +121,36 @@ export class ProfileComponent implements OnInit {
 
 
     // ---------------------- [ HELPERS ] ------------------------------
+    /**
+     * @desc
+     * @param
+     */
+    private setupView() {
+        this.fetchUser();
+        //this.loadScripts();
+        //this.loadCss();
+        
+    }
+
+    /**
+     * @desc
+     * @param
+     */
+    private loadCss() {
+        this.cssUrl = "/assets/css/vendors/photoswipe.css";
+    }
+
+    /**
+     * @desc
+     * @param
+     */
+    private loadScripts() {
+        console.log("Load script....");
+        this.scripts.loadFiles(["photoswipe/photoswipe.min"]);
+        this.scripts.loadFiles(["photoswipe/photoswipe-ui-default.min"]);
+        this.scripts.loadFiles(["photoswipe/photoswipe"]);
+    }
+
     /**
      * @desc Verificar si el usuario actual se encuentra en su perfil 
      * o si ha entrado a otro perfil y comprobar si sigue a otro o lo 

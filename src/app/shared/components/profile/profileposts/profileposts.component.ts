@@ -14,4 +14,10 @@ export class ProfilepostsComponent implements OnInit  {
 
   ngOnInit() {}
 
+  openModal(uid:string) {
+    console.log("DEBUG: Profileposts.componente load..");
+    console.log("uid: " + uid);
+    
+  }
+
 }

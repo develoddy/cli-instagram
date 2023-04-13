@@ -1,40 +1,97 @@
-<!-- <div class="profile__section__tab__tabcontent__container">
-    <div class="profile__section__tab__tabcontent__container__image">
-        <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80" class="img-fluid" />
-        <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80" class="img-fluid" />
-        <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80" class="img-fluid" />
-    </div>
-    <div class="profile__section__tab__tabcontent__container__image">
-        <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80" class="img-fluid" />
-        <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80" class="img-fluid" />
-        <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80" class="img-fluid" />
-    </div>
-    <div class="profile__section__tab__tabcontent__container__image">
-        <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80" class="img-fluid" />
-        <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80" class="img-fluid" />
-        <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=668&q=80" class="img-fluid" />
-    </div>
-</div>
- -->
-
-<!-- <div class="profile__section__tab__tabcontent__container">
-    <div class="profile__section__tab__tabcontent__container__image">
-        <ng-container *ngFor="let post of this.posts">
-            <img src="{{ post.imageURL }}" class="img-fluid" />
-        </ng-container>
-    </div>
-</div> -->
-
-
+<!-- <div><img src="https://images.unsplash.com/photo-1552253230-eb7a9b0481ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"></div>-->
 <article>
     <ng-container *ngFor="let post of this.posts">
-    <div><img src="{{ post.imageURL }}"></div>
-    <!-- <div><img src="https://images.unsplash.com/photo-1552253230-eb7a9b0481ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"></div>
-    <div><img src="https://images.unsplash.com/photo-1583112042152-c9323a32fa0c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"></div>
-    <div><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"></div>
-    <div><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"></div>
-    <div><img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"></div> -->
-    </ng-container>
+    <div data-toggle="modal" data-target="#fsModal" (click)="this.openModal(post.postId)" style="cursor: pointer;" ><img src="{{ post.imageURL }}"></div>
+    </ng-container> 
 </article>
 
+<!-- 
+<div class="tab-pane fade active show" id="" role="tabpanel" aria-labelledby="">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                    <div class="my-gallery card-body row gallery-with-description" itemscope="" data-pswp-uid="1">
+                        <figure class="col-xl-3 col-sm-6" itemprop="associatedMedia" itemscope="">
+                            <a href="../assets/images/big-lightgallry/02.jpg" itemprop="contentUrl" data-size="1600x950">
+                                <img src="../assets/images/lightgallry/02.jpg" itemprop="thumbnail" alt="Image description" />
+                                <div class="caption">
+                                    <h4>Dev John</h4>
+                                    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
+                                </div>
+                            </a>
+                            <figcaption itemprop="caption description">
+                                <h4>Dev John</h4>
+                                <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
+                            </figcaption>
+                        </figure>
+                        
+                        <figure class="col-xl-3 col-sm-6" itemprop="associatedMedia" itemscope="">
+                            <a href="../assets/images/big-lightgallry/03.jpg" itemprop="contentUrl" data-size="1600x950">
+                                <img src="../assets/images/lightgallry/03.jpg" itemprop="thumbnail" alt="Image description" />
+                                <div class="caption">
+                                    <h4>Johan Deo</h4>
+                                    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
+                                </div>
+                            </a>
+                            <figcaption itemprop="caption description">
+                                <h4>Johan Deo</h4>
+                                <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
+                            </figcaption>
+                        </figure> 
+                    </div>
 
+            
+                    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="pswp__bg"></div>
+                        <div class="pswp__scroll-wrap">
+                            <div class="pswp__container" style="transform: translate3d(0px, 0px, 0px);">
+                                <div class="pswp__item" style="display: block; transform: translate3d(-1193px, 0px, 0px);">
+                                    <div class="pswp__zoom-wrap" style="transform: translate3d(159px, 44px, 0px) scale(1);">
+                                        <img class="pswp__img" src="../assets/images/big-lightgallry/08.jpg" style="opacity: 1; width: 746px; height: 443px;" />
+                                    </div>
+                                </div>
+                                <div class="pswp__item" style="transform: translate3d(0px, 0px, 0px);">
+                                    <div class="pswp__zoom-wrap" style="transform: translate3d(322px, 302.797px, 0px) scale(0.443637);">
+                                        <img class="pswp__img pswp__img--placeholder" src="../assets/images/lightgallry/01.jpg" style="width: 746px; height: 443px; display: none;" />
+                                        <img class="pswp__img" src="../assets/images/big-lightgallry/01.jpg" style="display: block; width: 746px; height: 443px;" />
+                                    </div>
+                                </div>
+                                <div class="pswp__item" style="display: block; transform: translate3d(1193px, 0px, 0px);">
+                                    <div class="pswp__zoom-wrap" style="transform: translate3d(159px, 44px, 0px) scale(1);">
+                                        <img class="pswp__img" src="../assets/images/big-lightgallry/02.jpg" style="opacity: 1; width: 746px; height: 443px;" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pswp__ui pswp__ui--fit pswp__ui--hidden">
+                                <div class="pswp__top-bar">
+                                    <div class="pswp__counter">1 / 8</div>
+                                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                    <button class="pswp__button pswp__button--share" title="Share"></button>
+                                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                                    <div class="pswp__preloader">
+                                        <div class="pswp__preloader__icn">
+                                            <div class="pswp__preloader__cut">
+                                                <div class="pswp__preloader__donut"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                    <div class="pswp__share-tooltip"></div>
+                                </div>
+                                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                                <div class="pswp__caption">
+                                    <div class="pswp__caption__center">
+                                        <h4>Johan Deo</h4>
+                                        <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div> -->

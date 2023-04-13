@@ -1,11 +1,12 @@
+<link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(cssUrl)" />
 <!--------------- 
 -  Container 
 ---------------->
 <div class="container">
     <!------------ [ Spinner loadding  ] ---------------->
-        <ng-container *ngIf="spinner | async">
+        <!-- <ng-container *ngIf="spinner | async">
             <app-spinner></app-spinner>
-        </ng-container> 
+        </ng-container>  -->
     <!------------ [ Spinner loadding end ] ---------------->
    
     <!--------------- 
@@ -16,7 +17,7 @@
             -  Header
             ---------------->
                 <div class="profile__profile">
-                    <app-portada  [user]="user" [followButtonText] = "followButtonText" ></app-portada>    
+                    <app-portada  [user]="user" [followButtonText]="followButtonText" ></app-portada>    
                 </div>
             <!--------------- 
             -  Header end
@@ -34,11 +35,14 @@
 
                    
                     <!------------ [ Post grid ] ---------------->
-                        <div id="Posts" class="profile__section__tab__tabcontent" style="display: flex;justify-content: center;">
-                            <app-profileposts *ngIf="this.posts.length > 0; else noPosts" [posts]="posts"></app-profileposts>
+                        <!-- <div id="Posts" class="profile__section__tab__tabcontent" style="display: flex;justify-content: center;"> -->
+                        <div id="Posts" class="profile__section__tab__tabcontent">
+                            <!-- <app-profileposts *ngIf="this.posts.length > 0; else noPosts" [posts]="posts"></app-profileposts>
                             <ng-template #noPosts>
                                 <app-emptyalert *ngIf="user"></app-emptyalert>    
-                            </ng-template>
+                            </ng-template> -->
+                            <app-profileposts *ngIf="this.posts.length > 0" [posts]="posts"></app-profileposts>
+                           
                         </div>
                     
                         <div id="Videos" class="profile__section__tab__tabcontent"></div>
@@ -57,3 +61,7 @@
 <!--------------- 
 -  Container end
 ---------------->
+
+<div id="fsModal" class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <app-modalpostfullscreen></app-modalpostfullscreen>
+</div>

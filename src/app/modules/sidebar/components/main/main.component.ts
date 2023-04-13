@@ -50,8 +50,8 @@ export class MainComponent implements OnInit {
 
     private loadScripts() {
         this.scripts.loadFiles(["sidebar-menu"]);
-        this.scripts.loadFiles(["icons/feather-icon/feather.min"]);
-        this.scripts.loadFiles(["icons/feather-icon/feather-icon"]);
+        // this.scripts.loadFiles(["icons/feather-icon/feather.min"]);
+        // this.scripts.loadFiles(["icons/feather-icon/feather-icon"]);
     }
 
     public getCurrrentUser() {
