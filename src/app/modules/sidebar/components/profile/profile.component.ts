@@ -19,6 +19,7 @@ import * as $ from "jquery";
 })
 export class ProfileComponent implements OnInit {
 
+    // ---------------------- [ PORPERTIES ] ------------------------------
     public spinner              : BehaviorSubject<boolean> = new BehaviorSubject(false);
     public cssUrl               : string = "";
     public currentUser          : any;
@@ -34,6 +35,7 @@ export class ProfileComponent implements OnInit {
     public postsTotal           = 0;
     public identity             = null;
 
+    // ---------------------- [ LIFECYCLE ] ------------------------------
     constructor(
         public sanitizer        : DomSanitizer,
         private authService     : AuthenticationService,
@@ -41,11 +43,9 @@ export class ProfileComponent implements OnInit {
         private postService     : PostService,
         private route           : ActivatedRoute,
         private router          : Router,
-        private profileService  : ProfileService,
-        // public scripts: ScriptsService,
+        private profileService  : ProfileService
     ) {
         this.username = this.route.snapshot.paramMap.get("username")!; 
-        // this.scripts.loadFiles(["loader"]);
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
@@ -53,6 +53,7 @@ export class ProfileComponent implements OnInit {
         this.fetchUser();
     }
 
+    // ---------------------- [ VIEWMODEL ] ------------------------------
     /**
      * @desc Get data user.
      * @param
@@ -114,8 +115,15 @@ export class ProfileComponent implements OnInit {
         }
     }
 
-    // VERIFICAR SI EL USUARIO ACTUAL SE ENCUENTRA EN SU PERFIL O SI HA ENTRADO EN OTRO 
-    // Y COMPROBAR SI SIGUE O LO SIGUEN.
+
+    // ---------------------- [ HELPERS ] ------------------------------
+    /**
+     * @desc Verificar si el usuario actual se encuentra en su perfil 
+     * o si ha entrado a otro perfil y comprobar si sigue a otro o lo 
+     * están siguiendo.
+     * @param uid
+     * @return
+     **/
     private checkIfUserIsFollowed() {
         if ( this.checkIfItsYourProfile() ) {
             this.followButtonText = "Edit Profile";
@@ -131,18 +139,26 @@ export class ProfileComponent implements OnInit {
         }
     }
 
-
-    // SE VERIFICA SI EL USUARIO ACTUAL HA ENTRADO EN SU PERFIL O 
-    // HA ENTRADO EN OTRO PERFIL.
+    /**
+     * @desc Verificar si el usuario actual se encuentra en su perfil 
+     * o si ha entrado a otro perfil y comprobar si sigue a otra persona o si lo 
+     * están siguiendo al perfil actualemente conectado.
+     * @param uid
+     * @return
+     **/
     public checkIfItsYourProfile(): boolean {
         return this.authService.getIdentity().uid == this.user.uid;
     }
 
- 
-    // TODO: - HELPERS
-    
 
-    // TODO: - ACTIONS
+    // ---------------------- [ ACTIONS ] ------------------------------
+    /**
+     * @desc Verificar si el usuario actual se encuentra en su perfil 
+     * o si ha entrado a otro perfil y comprobar si sigue a otra persona o si lo 
+     * están siguiendo al perfil actualemente conectado.
+     * @param uid
+     * @return
+     **/
     public didTapActionbuttonfor(user: User) {
         if ( this.checkIfItsYourProfile() ) {
             console.log("DEBUG: Show edit profile here..");
@@ -160,6 +176,11 @@ export class ProfileComponent implements OnInit {
         }
     }
 
+    /**
+     * @desc Action de destrucción.
+     * @param uid
+     * @return
+     **/
     ngOnDestroy() {
         if (this.clientesSubscription) {
             this.clientesSubscription.unsubscribe();

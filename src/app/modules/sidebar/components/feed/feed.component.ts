@@ -17,19 +17,19 @@ import * as $ from "jquery";
     styleUrls: ["./feed.component.css"],
 })
 export class FeedComponent implements OnInit {
-    public spinner        : BehaviorSubject<boolean> = new BehaviorSubject(false);
-    public cssUrl         : string = "";
-    public user           : any;
-    clientesSubscription  : Subscription;
-    posts: Post[]         = [];
+    public spinner          : BehaviorSubject<boolean> = new BehaviorSubject(false);
+    public cssUrl           : string = "";
+    public user             : any;
+    clientesSubscription    : Subscription;
+    posts                   : Post[] = [];
 
     constructor(
-        public scripts: ScriptsService,
-        public sanitizer: DomSanitizer,
-        private authService: AuthenticationService,
-        private postService: PostService,
-        private userService: UserService,
-        private router: Router
+        public scripts          : ScriptsService,
+        public sanitizer        : DomSanitizer,
+        private authService     : AuthenticationService,
+        private postService     : PostService,
+        private userService     : UserService,
+        private router          : Router
     ) {}
 
     ngOnInit() {
@@ -37,23 +37,32 @@ export class FeedComponent implements OnInit {
         this.getPostsAll();
     }
 
-    /* Se recuperar todas las publicaciones */
+    /**
+     * @des Fetch all posts.
+     * @param 
+     * @return
+     **/
     public getPostsAll() {
-      this.spinner.next(true);
-      this.clientesSubscription = this.postService
-          .fetchPosts()
-          .subscribe((res) => {
-              this.spinner.next(false);
-              this.posts = [];
-              res.forEach((element: any) => {
-                  this.posts.push({
-                      id: element.payload.doc.id,
-                      ...element.payload.doc.data(),
-                  });
-              });
-          });
-  }
-  
+        this.spinner.next(true);
+        this.clientesSubscription = this.postService
+            .fetchPosts()
+            .subscribe((res) => {
+                this.spinner.next(false);
+                this.posts = [];
+                res.forEach((element: any) => {
+                    this.posts.push({
+                        id: element.payload.doc.id,
+                        ...element.payload.doc.data(),
+                    });
+                });
+            });
+    }
+
+    /**
+     * @des Fetch currentuser.
+     * @param 
+     * @return
+     **/
     private getCurrentUser() {
         this.spinner.next(true);
         this.clientesSubscription = this.authService
@@ -64,20 +73,31 @@ export class FeedComponent implements OnInit {
             });
     }
 
-    /* Se navega al perfil del usuario enviadole por 
-  parametros el username del usuario */
+    /**
+     * @des Navigate goto Profile.
+     * @param user
+     * @return
+     **/
     public goToProfile(user: User) {
         this.router.navigate(["app/profile/", user.username]);
     }
 
-    /* Se navega al el feed (publicaciones) enviadole por 
-  parametro el username del usuario */
+
+    /**
+     * @des Navigate goto Profile.
+     * @param username
+     * @return
+     **/
     public goPostToProfile(username: string) {
         this.router.navigate(["app/profile/", username]);
     }
 
+    /**
+     * @des Action destruction
+     * @param 
+     * @return
+     **/
     ngOnDestroy() {
-        // acciones de destrucción
         if (this.clientesSubscription) {
             this.clientesSubscription.unsubscribe();
             console.log("DEBUG: ngDestroy feed.component");

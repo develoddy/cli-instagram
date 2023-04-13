@@ -15,8 +15,6 @@ export class TabsComponent implements OnInit  {
     this.scripts.loadFiles(["loader"]);
   }
   
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

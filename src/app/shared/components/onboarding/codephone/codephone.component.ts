@@ -52,5 +52,4 @@ export class CodephoneComponent implements OnInit {
     public back() {
         this.backEvent.emit("codePhoneToBirthday");
     }
-
 }

@@ -8,25 +8,13 @@ import { AuthenticationService } from "@core/http/authentication.service";
     styleUrls: ["./carduser.component.css"],
 })
 export class CarduserComponent implements OnInit {
-    // TODO: Properties
+    
     @Input() currentUser: any;
     @Output() eventUser = new EventEmitter();
-
-    // TODO: Lifecycle
-    constructor(
-        public authService: AuthenticationService,
-        private router: Router,
-        private route: ActivatedRoute
-    ) {}
-
-    ngOnInit() {
-    }
-
-    // TODO: ViewModel
-
-    // TODO: Helpers
-
     
+    constructor(public authService: AuthenticationService,private router: Router,private route: ActivatedRoute) {}
+
+    ngOnInit() {}
 
     gotToProfile(user: any) {
         this.eventUser.emit(user);

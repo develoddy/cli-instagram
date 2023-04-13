@@ -6,32 +6,42 @@
             <!-- TIMELINE -->
                 <div class="tab-pane fade show active" id="timeline" role="tabpanel" aria-labelledby="timeline">
                     <div class="row">
-                        <div class="col-xl-6 xl-60 col-lg-12 col-md-7 box-col-8e">
-                            <ng-container *ngIf="this.spinner |async">
-                                <!-- <app-posts-loaders></app-posts-loaders> -->
-                                <app-spinner></app-spinner>
-                            </ng-container>
-                            <ng-container *ngIf="this.posts.length > 0">
-                                <app-posts  [posts]="posts" (eventGotoProfile)="goPostToProfile($event)" ></app-posts>
-                            </ng-container>
-                        </div>
-
-                        <div class="col-xl-3 xl-40 col-lg-12 col-md-5 box-col-4">
-                            <div class="default-according style-1 faq-accordion">
-                                <div class="card">
-                                    <!-- <ng-container *ngIf="spinner | async">
-                                        <app-card-info-user></app-card-info-user>
-                                    </ng-container> -->
-                                    <app-carduser *ngIf="user" [currentUser]= 'user' [routerLinkActive]="['active']" (eventUser)="goToProfile($event)"></app-carduser>
-                                </div>
-                                
-                                <div class="card">
-                                    <!-- <app-loader-contacts></app-loader-contacts> -->
-                                    <app-contacts></app-contacts>
-                                </div>
-                               
+                        <!--------------- 
+                        - Feed posts
+                        ---------------->
+                            <div class="col-xl-6 xl-60 col-lg-12 col-md-7 box-col-8e">
+                                <ng-container *ngIf="this.spinner |async">
+                                    <app-spinner></app-spinner>
+                                </ng-container>
+                                <ng-container *ngIf="this.posts.length > 0">
+                                    <app-posts [posts]="posts" (eventGotoProfile)="goPostToProfile($event)" ></app-posts>
+                                </ng-container>
                             </div>
-                        </div> 
+                        <!---------------- 
+                        - Feed posts
+                        ----------------->
+
+                        <!---------------------------------- 
+                        - Feed card user && list contact
+                        ----------------------------------->
+                            <div class="col-xl-3 xl-40 col-lg-12 col-md-5 box-col-4">
+                                <div class="default-according style-1 faq-accordion">
+                                    <!-- Info current user -->
+                                    <div class="card">
+                                        <app-carduser *ngIf="user" [currentUser]= 'user' [routerLinkActive]="['active']" (eventUser)="goToProfile($event)"></app-carduser>
+                                    </div>
+                                    <!-- Info current user end -->
+
+                                    <!-- List contacts -->
+                                    <div class="card">
+                                        <app-contacts *ngIf="user"></app-contacts>
+                                    </div>
+                                    <!-- List contacts end -->
+                                </div>
+                            </div> 
+                        <!-----------------------------------
+                        - Feed card user && list contact end
+                        ------------------------------------->
                     </div>
                 </div>
             <!-- / END TIMELINE -->

@@ -12,9 +12,6 @@ export class ProfilepostsComponent implements OnInit  {
 
   @Input() posts: Post[] = [];
 
-  ngOnInit() {
-    console.log("DEBUG: ProfilepostsComponent");
-    console.log(this.posts);
-  }
+  ngOnInit() {}
 
 }

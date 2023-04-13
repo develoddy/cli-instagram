@@ -28,7 +28,6 @@ export class AccountsComponent implements OnInit {
     private route       : ActivatedRoute        ,
   ) {
     const option = this.route.snapshot.paramMap.get("options")!; 
-    //option == 'account' ? this.viewAccount() : this.viewPasswordReset();
     option == 'reset' ? this.viewPasswordReset(): this.viewAccount();
   }
 
@@ -176,9 +175,6 @@ export class AccountsComponent implements OnInit {
   async onReset(data: any) {
     try {
       const email = data.reset;
-      //console.log("DEDBUG: data.reset : " + data.reset);
-      //console.log("DEBUG: onReset email  componente -> " + email);
-      //console.log(data);
       await this.authService.resetPassword(email);
       // Indicar al usuario que se ha enviaddo correctamente el email para restableces el password.
       window.alert("Email setn check your inbox");

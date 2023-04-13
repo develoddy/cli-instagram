@@ -17,9 +17,7 @@ export class FriendsComponent implements OnInit {
 
     constructor(public authService: AuthenticationService) {}
 
-    ngOnInit() {
-        console.log("DEBUG: FriendsComponent load..");
-    }
+    ngOnInit() {}
 
     /**
      * @desc

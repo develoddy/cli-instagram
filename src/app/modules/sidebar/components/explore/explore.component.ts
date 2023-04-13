@@ -12,22 +12,29 @@ import { Post } from '@data/models/post';
 })
 export class ExploreComponent implements OnInit {
 
+  // ---------------------- [ PORPERTIES ] ------------------------------
   public spinner: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public cssUrl: string = "";
   public posts: Post[] = [];
   clientesSubscription: Subscription;
 
+  // ---------------------- [ LIFECYCLE ] ------------------------------
   constructor(
     private _loadScripts: ScriptsService,
     public sanitizer: DomSanitizer, 
     public postService: PostService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.fetchPosts();
   }
 
+  // ---------------------- [ VIEWMODEL ] ------------------------------
+  /**
+   * @desc Recuperar todas las publicaciones.
+   * @parm
+   * @return
+   **/
   private fetchPosts() {
     this.spinner.next(true);
     this.clientesSubscription = this.postService.fetchPosts().subscribe(res => {
@@ -42,12 +49,20 @@ export class ExploreComponent implements OnInit {
     });
   }
 
+  // ---------------------- [ HELPERS ] ------------------------------
+  // --
+  // --
+  // --
+
+  // ---------------------- [ ACTIONS ] ------------------------------
+  /**
+   * @desc Accción de destrucción
+   * @parm
+   * @return
+   **/
   ngOnDestroy() {
-    // acciones de destrucción
     if (this.clientesSubscription) {
         this.clientesSubscription.unsubscribe();
-        console.log("DEBUG: ngDestroy explore.component");
-        console.log(this.clientesSubscription.unsubscribe);
     }
   }
 

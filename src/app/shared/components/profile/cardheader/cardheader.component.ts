@@ -10,11 +10,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class CardheaderComponent implements OnInit {
 
-  // TODO: Properties
-  constructor( private route: ActivatedRoute ) {
-  }
+  constructor( private route: ActivatedRoute ) {}
 
-  ngOnInit(){
-  }
+  ngOnInit() {}
 
 }

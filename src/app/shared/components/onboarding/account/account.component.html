@@ -1,158 +1,156 @@
-<!-- <div class="input-box"> -->
-  <h2 class="_aahw">Regístrate para ver fotos y vídeos de tus amigos.</h2>
-<!-- </div> -->
+<h2 class="_aahw">Regístrate para ver fotos y vídeos de tus amigos.</h2>
 
 <div class="button-box">
-  <button class="btn" type="button">
-      <i class="_aah_ icofont icofont-social-facebook"></i>
-      Iniciar sesión con Facebook
-  </button>
+    <button class="btn" type="button">
+        <i class="_aah_ icofont icofont-social-facebook"></i>
+        Iniciar sesión con Facebook
+    </button>
 </div>
 
 <div class="_aai0">
-  <div class="x78zum5 x1q0g3np">
-      <div class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"></div>
-      <div class="x1qjc9v5 x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1roi4f4 x78zum5 xdt5ytf x1c4vz4f x2lah0s x1nxh6w3 x1s688f x1ly1vsg xdj266r xpdqn1h xat24cr x1sliqq xexx8yu x4uap5 x18d9i69 xkhd6sd x1n2onr6 xtvhhri x11njtxf">
-          o
-      </div>
-      <div class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"></div>
-  </div>
+    <div class="x78zum5 x1q0g3np">
+        <div class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"></div>
+        <div class="x1qjc9v5 x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1roi4f4 x78zum5 xdt5ytf x1c4vz4f x2lah0s x1nxh6w3 x1s688f x1ly1vsg xdj266r xpdqn1h xat24cr x1sliqq xexx8yu x4uap5 x18d9i69 xkhd6sd x1n2onr6 xtvhhri x11njtxf">
+            o
+        </div>
+        <div class="x1iyjqo2 xs83m0k xjm9jq1 x1n2onr6 xwtuau4 x11mr3az"></div>
+    </div>
 </div>
 
 <div class="input-box inputWithIcon">
-  <input
-      class="form-input"
-      (input)="checkEmailOrPhone($event)"
-      type="text"
-      id="emailOrPhone"
-      placeholder=" "
-      aria-describedby=""
-      aria-required="true"
-      maxlength="30"
-      autocapitalize="off"
-      autocorrect="off"
-      name="emailOrPhone"
-      value=""
-      #emailOrPhone
-      required
-  />
-  <label for="emailOrPhone" class="form-label">Correo electrónico</label>
-  <ng-container *ngIf="this.isValidEmaiOrPhone">
-      <i class="icofont icofont-check-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: '#aaa' }"></i>
-  </ng-container>
+    <input
+        class="form-input"
+        (input)="checkEmailOrPhone($event)"
+        type="text"
+        id="emailOrPhone"
+        placeholder=" "
+        aria-describedby=""
+        aria-required="true"
+        maxlength="30"
+        autocapitalize="off"
+        autocorrect="off"
+        name="emailOrPhone"
+        value=""
+        #emailOrPhone
+        required
+    />
+    <label for="emailOrPhone" class="form-label">Correo electrónico</label>
+    <ng-container *ngIf="this.isValidEmaiOrPhone">
+        <i class="icofont icofont-check-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: '#aaa' }"></i>
+    </ng-container>
 
-  <ng-container *ngIf="this.showError">
-      <i class="icofont icofont-close-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: 'red' }"></i>
-  </ng-container>
+    <ng-container *ngIf="this.showError">
+        <i class="icofont icofont-close-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: 'red' }"></i>
+    </ng-container>
 </div>
 
 <div class="input-box inputWithIcon">
-  <input
-      (input)="checkFullname($event)"
-      class="form-input"
-      type="text"
-      id="fullname"
-      aria-describedby=""
-      placeholder=" "
-      aria-required="true"
-      maxlength="30"
-      autocapitalize="off"
-      autocorrect="off"
-      value=""
-      name="fullname"
-      #fullname
-      required
-  />
-  <label for="fullname" class="form-label">Nombre completo</label>
-  <ng-container *ngIf="this.isValidFullname">
-      <i class="icofont icofont-check-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: '#aaa' }"></i>
-  </ng-container>
+    <input
+        (input)="checkFullname($event)"
+        class="form-input"
+        type="text"
+        id="fullname"
+        aria-describedby=""
+        placeholder=" "
+        aria-required="true"
+        maxlength="30"
+        autocapitalize="off"
+        autocorrect="off"
+        value=""
+        name="fullname"
+        #fullname
+        required
+    />
+    <label for="fullname" class="form-label">Nombre completo</label>
+    <ng-container *ngIf="this.isValidFullname">
+        <i class="icofont icofont-check-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: '#aaa' }"></i>
+    </ng-container>
 
-  <ng-container *ngIf="this.showErrorValidFullname">
-      <i class="icofont icofont-close-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: 'red' }"></i>
-  </ng-container>
+    <ng-container *ngIf="this.showErrorValidFullname">
+        <i class="icofont icofont-close-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: 'red' }"></i>
+    </ng-container>
 </div>
 
 <div class="input-box inputWithIcon">
-  <input
-      (input)="checkUsername($event)"
-      class="form-input"
-      type="text"
-      id="username"
-      aria-describedby=""
-      placeholder=" "
-      aria-required="true"
-      maxlength="30"
-      autocapitalize="off"
-      autocorrect="off"
-      name="username"
-      value=""
-      #userName
-      required
-  />
-  <label for="username" class="form-label">Nombre de usuario</label>
-  <ng-container *ngIf="this.isValidUsername">
-      <i class="icofont icofont-check-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: '#aaa' }"></i>
-  </ng-container>
+    <input
+        (input)="checkUsername($event)"
+        class="form-input"
+        type="text"
+        id="username"
+        aria-describedby=""
+        placeholder=" "
+        aria-required="true"
+        maxlength="30"
+        autocapitalize="off"
+        autocorrect="off"
+        name="username"
+        value=""
+        #userName
+        required
+    />
+    <label for="username" class="form-label">Nombre de usuario</label>
+    <ng-container *ngIf="this.isValidUsername">
+        <i class="icofont icofont-check-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: '#aaa' }"></i>
+    </ng-container>
 
-  <ng-container *ngIf="this.showErrorValidUsername">
-      <i class="icofont icofont-close-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: 'red' }"></i>
-  </ng-container>
+    <ng-container *ngIf="this.showErrorValidUsername">
+        <i class="icofont icofont-close-circled fa-lg fa-fw" aria-hidden="true" [ngStyle]="{ color: 'red' }"></i>
+    </ng-container>
 </div>
 
 <div class="input-box inputWithIcon">
-  <input
-      (input)="checkPassword($event)"
-      class="form-input"
-      [type]="hide ? 'password' : 'text'"
-      name="password"
-      id="password"
-      placeholder=" "
-      aria-describedby=""
-      maxlength="30"
-      aria-required="true"
-      autocapitalize="off"
-      autocorrect="off"
-      value=""
-      #password
-      required
-  />
-  <label for="password" class="form-label">Contraseña</label>
-  <ng-container *ngIf="this.isValidPassword">
-      <button class="_acan _acat _aj1-" type="button" (click)="hide = !hide">
-          {{ hide ? "Mostrar" : "Ocultar" }}
-      </button>
-  </ng-container>
+    <input
+        (input)="checkPassword($event)"
+        class="form-input"
+        [type]="hide ? 'password' : 'text'"
+        name="password"
+        id="password"
+        placeholder=" "
+        aria-describedby=""
+        maxlength="30"
+        aria-required="true"
+        autocapitalize="off"
+        autocorrect="off"
+        value=""
+        #password
+        required
+    />
+    <label for="password" class="form-label">Contraseña</label>
+    <ng-container *ngIf="this.isValidPassword">
+        <button class="_acan _acat _aj1-" type="button" (click)="hide = !hide">
+            {{ hide ? "Mostrar" : "Ocultar" }}
+        </button>
+    </ng-container>
 </div>
 
 <p class="_aai1">
-  <span
-      class="x1lliihq x1plvlek xryxfnj x1n2onr6 x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1i0vuye x1fhwpqd xo1l8bm x1roi4f4 x1s3etm8 x676frb x10wh9bi x1wdrske x8viiok x18hxmgj"
-      style="line-height: var(--base-line-clamp-line-height); --base-line-clamp-line-height: 16px;"
-  >
-      Al registrarte, aceptas nuestras
-      <a
-          class="forgot x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _a6hd"
-          href="https://help.instagram.com/581066165581870/?locale=es_ES"
-          role="link"
-          tabindex="0"
-          target="_blank"
-      >
-          Condiciones
-      </a>
-      . Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la
-      <a class="forgot" href="https://www.facebook.com/privacy/policy" rel="nofollow noopener" role="link" tabindex="0" target="_blank"> Política de privacidad </a>, así como el uso que hacemos de las cookies y tecnologías similares en
-      nuestra <a class="forgot" href="/legal/cookies/" role="link" tabindex="0" target="_blank"> Política de cookies </a>.
-  </span>
+    <span
+        class="x1lliihq x1plvlek xryxfnj x1n2onr6 x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1i0vuye x1fhwpqd xo1l8bm x1roi4f4 x1s3etm8 x676frb x10wh9bi x1wdrske x8viiok x18hxmgj"
+        style="line-height: var(--base-line-clamp-line-height); --base-line-clamp-line-height: 16px;"
+    >
+        Al registrarte, aceptas nuestras
+        <a
+            class="forgot x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz _a6hd"
+            href="https://help.instagram.com/581066165581870/?locale=es_ES"
+            role="link"
+            tabindex="0"
+            target="_blank"
+        >
+            Condiciones
+        </a>
+        . Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la
+        <a class="forgot" href="https://www.facebook.com/privacy/policy" rel="nofollow noopener" role="link" tabindex="0" target="_blank"> Política de privacidad </a>, así como el uso que hacemos de las cookies y tecnologías similares en
+        nuestra <a class="forgot" href="/legal/cookies/" role="link" tabindex="0" target="_blank"> Política de cookies </a>.
+    </span>
 </p>
 
 <span class="button-box">
-  <button
-      class="btn"
-      type="submit"
-      [disabled]="btnState"
-      name="submit"
-      (click)="
+    <button
+        class="btn"
+        type="submit"
+        [disabled]="btnState"
+        name="submit"
+        (click)="
     showBirthday(
       emailOrPhone.value,
       fullname.value,
@@ -160,7 +158,7 @@
       password.value
     )
   "
-  >
-      <span>Continuar</span>
-  </button>
+    >
+        <span>Continuar</span>
+    </button>
 </span>

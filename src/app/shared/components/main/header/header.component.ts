@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit/*, DoCheck*/  {
   @Input() currentUser: any;
   public show: boolean = false;
 
-  constructor( private auth: AuthenticationService ) {}
+  constructor( private auth: AuthenticationService ){}
 
   ngOnInit() {}
 

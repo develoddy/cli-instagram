@@ -11,15 +11,13 @@ import { Observable } from 'rxjs';
 })
 export class PortadaComponent implements OnInit {
 
-  // TODO: ----- Properties -----
+  // ------------- [Properties] -------------
   @Input() user: User;
   @Input() followButtonText: string;
 
-  // TODO: ----- Lifecycle -----
-  constructor( private userService: UserService, private authService: AuthenticationService ) {
-  }
+  // ------------- [Lifecycle] -------------
+  constructor( private userService: UserService, private authService: AuthenticationService ) {}
 
-  // TODO: ----- Helpers -----
-  ngOnInit() {
-  }
+  // ------------- [Helpers] -------------
+  ngOnInit() {}
 }

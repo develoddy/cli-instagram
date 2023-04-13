@@ -1,7 +1,9 @@
 <link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(cssUrl)" />
+<!------------------------ 
+- Container all posts
+------------------------->
 <div class="container-fluid">
   <div class="row">
-    <!-- <div class="col-sm-8 box-col-8"> -->
     <div class="col-sm-12 col-xl-8">
       <ng-container *ngIf="spinner | async">
         <app-spinner></app-spinner>
@@ -10,3 +12,6 @@
     </div>
   </div>
 </div>
+<!------------------------ 
+- Container all posts end
+------------------------->

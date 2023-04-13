@@ -15,11 +15,13 @@ import * as $ from "jquery";
     styleUrls: ["./users.component.css"],
 })
 export class UsersComponent implements OnInit {
+    // ---------------------- [ PORPERTIES ] ------------------------------
     public cssUrl           : string = "";
     public users_followings : string[] = [];
     public users_followers  : User[] = [];
     public users: User[]    = [];
 
+    // ---------------------- [ LIFECYCLE ] ------------------------------
     constructor(
         private followService   : FollowService         ,
         private usersService    : UserService           ,
@@ -34,6 +36,7 @@ export class UsersComponent implements OnInit {
         this.fetchAllUsers();
     }
 
+    // ---------------------- [ VIEWMODEL ] ------------------------------
     /**
      * @des Fetch all users.
      * Se agrega los usuarios al array de User
@@ -85,6 +88,12 @@ export class UsersComponent implements OnInit {
         });
     }
 
+    // ---------------------- [ HELPER ] ------------------------------
+    //--
+    //--
+    //--
+
+    // ---------------------- [ ACTIONS ] ------------------------------
     /**
      * @des Navegar e ir al perfil del usuario clickado.
      * @parm data

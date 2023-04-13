@@ -10,13 +10,8 @@ export class ContactsComponent implements OnInit  {
 
   public cssUrl: string = "";
 
-  constructor( public sanitizer: DomSanitizer ) {
-  }
+  constructor( public sanitizer: DomSanitizer ) {}
 
-  ngOnInit() {
-    // this.cssUrl = '/assets/css/responsive.css';
-    // this.cssUrl = '/assets/css/vendors/themify.css';
-    // this.cssUrl = '/assets/css/vendors/flag-icon.css';
-  }
+  ngOnInit() {}
 
 }

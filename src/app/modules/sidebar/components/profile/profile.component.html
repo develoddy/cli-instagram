@@ -1,80 +1,59 @@
+<!--------------- 
+-  Container 
+---------------->
 <div class="container">
-    <!-- Spinne loadding -->
-        <!-- <ng-container *ngIf="spinner | async">
+    <!------------ [ Spinner loadding  ] ---------------->
+        <ng-container *ngIf="spinner | async">
             <app-spinner></app-spinner>
-        </ng-container>  -->
-    <!-- Spinne loadding end -->
+        </ng-container> 
+    <!------------ [ Spinner loadding end ] ---------------->
    
-    <!-- Profile -->
+    <!--------------- 
+    -  Profile
+    ---------------->
         <div class="user-profile social-app-profile profile">
-            <!-- Header -->
+            <!--------------- 
+            -  Header
+            ---------------->
                 <div class="profile__profile">
                     <app-portada  [user]="user" [followButtonText] = "followButtonText" ></app-portada>    
                 </div>
-            <!-- Header end -->
+            <!--------------- 
+            -  Header end
+            ---------------->
 
-            <!-- Boddy -->
+            <!------------------ 
+            -  Boddy section
+            ------------------->
                 <div class="tab-content profile__section" id="top-tabContent">
-                    <!-- Tabs -->
+                    <!------------ [ Tabs ] ---------------->
                         <div>
                             <app-tabs [user]="user"></app-tabs>    
                         </div>
-                    <!-- Tabs end -->
+                    <!------------ [ Tabs end ] --------------->
 
-                    <!-- Posts -->
+                   
+                    <!------------ [ Post grid ] ---------------->
                         <div id="Posts" class="profile__section__tab__tabcontent" style="display: flex;justify-content: center;">
                             <app-profileposts *ngIf="this.posts.length > 0; else noPosts" [posts]="posts"></app-profileposts>
                             <ng-template #noPosts>
                                 <app-emptyalert *ngIf="user"></app-emptyalert>    
                             </ng-template>
                         </div>
-                    <!-- Posts end -->
+                    
                         <div id="Videos" class="profile__section__tab__tabcontent"></div>
                         <div id="Saved" class="profile__section__tab__tabcontent"></div>
                         <div id="Tagged" class="profile__section__tab__tabcontent"></div>
-
-                        <!-- TIMELINE -->
-                            <!-- <div class="tab-pane fade" id="timeline" role="tabpanel" aria-labelledby="timeline"> -->
-                                <!-- <div class="row"> -->
-                                    <!-- <div class="col-xl-6 xl-60 col-lg-12 col-md-7 box-col-8e"> -->
-                                        <!-- <app-posts *ngIf="posts.length > 0" [posts]="posts" [noMore]="noMore" (eventViewMore)="viewMore($event)" ></app-posts> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                        <!-- / END TIMELINE -->
-
-                        <!-- PHOTOS -->
-                            <!-- <div class="tab-pane fade show active" id="photos" role="tabpanel" aria-labelledby="photos"> -->
-                                <!-- <div class="row"> -->
-                                <!-- <div class="col-sm-12 col-xl-8"> -->
-                                    <!-- <div style="display: grid; place-content: center;">
-                                                <div class="spinner"></div>
-                                    </div> -->
-                                    <!-- <app-loader-photos *ngIf="posts.length>0" [posts]="posts"></app-loader-photos> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                            <!-- </div> -->
-                        <!-- / END PHOTOS -->
-
-                        <!-- FRIENDS -->
-                            <!-- <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends"> -->
-                                <!-- <app-friends *ngIf="data" [data]="data"></app-friends> -->
-                            <!-- </div> -->
-                        <!-- / END FRIENDS *ngIf="posts.length>0" -->
-
-
-
-
-                        
-                       <!--  <app-userprofile 
-                            [posts]="posts" 
-                            [user]="user" 
-                            [followButtonText] = "followButtonText" 
-                            (eventUser)="didTapActionbuttonfor($event)"
-                        >
-                        </app-userprofile> -->
+                    <!------------ [ Post grid end ] ---------------->
                 </div>
-            <!-- Boddy end -->
+            <!------------------- 
+            -  Boddy section end
+            -------------------->
         </div>
-    <!-- Profile end -->
+    <!--------------- 
+    -  Profile end
+    ---------------->
 </div>
+<!--------------- 
+-  Container end
+---------------->

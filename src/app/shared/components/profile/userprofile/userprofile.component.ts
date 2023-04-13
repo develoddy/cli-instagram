@@ -11,28 +11,18 @@ import { ScriptsService } from 'app/services/scripts/scripts.service';
 })
 export class UserprofileComponent implements OnInit {
 
-  // TODO: - PROPERTIES
   @Input() posts: Post[] = [];
   @Input() identity: any;
   @Input() user: User;
   @Input() followButtonText: string;
   @Output() eventUser = new EventEmitter();
   
-
-  // TODO: - LIFECYCLE
-  constructor(
-    public scripts: ScriptsService,
-    private authService: AuthenticationService,
-  ) {
+  constructor(public scripts: ScriptsService, private authService: AuthenticationService,) {
     this.scripts.loadFiles(["loader"]);
     this.identity = this.authService.getIdentity();
   }
 
   ngOnInit() {}
-
-  // TODO: - HELPERS
-
-  // TODO: - ACTIONS
 
   // AL HACER CLICK EN EL BOTON DE EDITAR O SEGUIR SE ENVIARA 
   // LOS DATOS DEL USUARIO DEL PERFIL QUE SE VISITA AL COMPONENTE PADRE.
