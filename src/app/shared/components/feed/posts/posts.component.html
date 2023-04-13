@@ -22,13 +22,14 @@
                                             <h6 class="mb-0 f-w-700">{{ post.ownerUsername }}</h6>
                                             <!-- <p> {{ post.timestamp.toDate() | date: 'medium' }} </p> -->
                                         </div>
-                                        <span class="pull-right mt-2">
+                                        <span class="pull-right mt-2" data-toggle="modal" data-target="#open-alert-option-post">
                                             <svg aria-label="Más opciones" class="_ab6-" color="rgb(115, 115, 115)" fill="rgb(115, 115, 115)" height="24" role="img" viewBox="0 0 24 24" width="24">
                                                 <circle cx="12" cy="12" r="1.5"></circle>
                                                 <circle cx="6" cy="12" r="1.5"></circle>
                                                 <circle cx="18" cy="12" r="1.5"></circle>
                                             </svg>
                                         </span>
+                                        
                                     </div>
                                 </div> 
                             <!------------------------ 
@@ -45,7 +46,7 @@
                                         <div class="like-content pt-2">
                                             <!--- Button like --->
                                                 <span class="_aamw">
-                                                    <button class="_abl-" type="button" style="">
+                                                    <button class="_abl-" type="button">
                                                         <div class="_abm0 _abl_">
                                                             <span class="">
                                                                 <svg aria-label="Me gusta" class="x1lliihq x1n2onr6" color="rgb(38, 38, 38)" fill="rgb(38, 38, 38)" height="24" role="img" viewBox="0 0 24 24" width="24">
@@ -62,7 +63,7 @@
 
                                             <!--- Button comment --->
                                                 <span class="_aamx">
-                                                    <button class="_abl-" type="button" style="">
+                                                    <button class="_abl-" type="button">
                                                         <div class="_abm0 _abl_">
                                                             <svg aria-label="Comentar" class="x1lliihq x1n2onr6" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="24" role="img" viewBox="0 0 24 24" width="24">
                                                                 <title>Comentar</title>
@@ -75,7 +76,7 @@
 
                                             <!--- Button send --->
                                                 <span class="_aamy">
-                                                    <button class="_abl-" type="button" style="">
+                                                    <button class="_abl-" type="button">
                                                         <div class="_abm0 _abl_">
                                                             <svg aria-label="Compartir publicación" class="x1lliihq x1n2onr6" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="24" role="img" viewBox="0 0 24 24" width="24">
                                                                 <title>Compartir publicación</title>
@@ -88,10 +89,10 @@
                                             <!--- Button send end --->
 
                                             <!--- Button bookmark --->
-                                                <span class="_aamz" style="">
+                                                <span class="_aamz">
                                                     <div>
                                                         <div aria-disabled="false" role="button" tabindex="0" style="cursor: pointer;">
-                                                            <button class="_abl-" type="button" style="">
+                                                            <button class="_abl-" type="button">
                                                                 <div class="_abm0 _abl_">
                                                                     <svg aria-label="Guardar" class="x1lliihq x1n2onr6" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="24" role="img" viewBox="0 0 24 24" width="24">
                                                                         <title>Guardar</title>
@@ -116,31 +117,31 @@
 
 
                                     <!----------- [ Contenido de la publicación ] --------------->
-                                        <div style="display: flex; gap: 20px; margin-bottom: 8px;">
+                                        <div class="content-post">
                                             <div class="xt0psk2">
-                                                <a class="" href="/endbackpain/" role="link" tabindex="0" style="font-weight: 900;">
+                                                <a class="" href="/endbackpain/" role="link" tabindex="0">
                                                     <span class="_aacl _aaco _aacw _aacx _aad7 _aade">
-                                                        <div class="">endbackpain</div>
+                                                        <div class="">{{ post.ownerUsername }}</div>
                                                     </span>
                                                 </a>
                                             </div>
 
                                             <span class="">
-                                                <h1 class="" style="font-size: 14px; font-weight: 400;">
-                                                    TAG your partner kjdkjaskdksa ksadkjsakdjkjs ksajkjsakjdkajs ksadksakdjk kasdkjsakdjk askdjksjdkjs 😍<br />
+                                                <h1 class="content-text">
+                                                    {{ post.caption }}
                                                 </h1>
                                             </span>
                                         </div>
                                     <!----------- [ Contenido de la publicación end  ] --------------->
 
                                     <!----------- [ Button ver más comentarios ] --------------->
-                                        <div style="display:flex; flex-direction: row;">
-                                            <a href="#" style="color: rgb(115, 115, 115);">Ver los 2 comentarios</a>
+                                        <div class="button-comment">
+                                            <a href="#">Ver los 2 comentarios</a>
                                         </div>
                                     <!----------- [ Button ver más comentarios end ] --------------->
                                     
 
-                                    <!-- COMENTARIOS -->
+                                    <!----------- [ Commentarios ] --------------->
                                     <!-- <div class="social-chat">
                                         <div class="your-msg">
                                             <div class="media">
@@ -187,10 +188,10 @@
                                             </div>
                                         </div> 
                                     </div> -->
-                                    <!-- / END COMENTARIOS -->
+                                    <!----------- [ Commentarios end ] --------------->
 
                                     
-                                    <!----------- [ input comentar sobre publicación] --------------->
+                                    <!----------- [ Input comentar sobre publicación ] --------------->
                                         <div class="comments-box">
                                             <div class="media">
                                                 <div class="media-body">

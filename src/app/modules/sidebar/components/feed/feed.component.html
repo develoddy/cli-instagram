@@ -13,6 +13,7 @@
                                 <ng-container *ngIf="this.spinner |async">
                                     <app-spinner></app-spinner>
                                 </ng-container>
+
                                 <ng-container *ngIf="this.posts.length > 0">
                                     <app-posts [posts]="posts" (eventGotoProfile)="goPostToProfile($event)" ></app-posts>
                                 </ng-container>
@@ -65,3 +66,14 @@
     </div>
 </div>
 <!-- / END CONTAINER -->
+
+
+<!--------------------------- 
+- Modal open option post    
+---------------------------->
+    <div id="open-alert-option-post" class="modal animated bounceIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <app-modaloptionpost></app-modaloptionpost>
+    </div>
+<!--------------------------- 
+- Modal open option post end    
+---------------------------->

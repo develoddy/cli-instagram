@@ -26,7 +26,7 @@ import { PasswordresetComponent } from "./onboarding/passwordreset/passwordreset
 import { ModaladdpostComponent } from "./modals/modaladdpost/modaladdpost.component";
 import { TabsComponent } from './profile/tabs/tabs.component';
 import { ProfilepostsComponent } from './profile/profileposts/profileposts.component';
-
+import { ModaloptionpostComponent } from "./modals/modaloptionpost/modaloptionpost.component";
 
 // IMPORT COMPONENTS
 export const components : any[] = [
@@ -42,7 +42,6 @@ export const components : any[] = [
     EmptyalertComponent,
     EmptyPhotosComponent,
     PostsLoadersComponent,
-    
     LoaderContactsComponent,
     SpinnerComponent,
     LoaderPhotosComponent,
@@ -56,7 +55,8 @@ export const components : any[] = [
     PasswordresetComponent,
     ModaladdpostComponent,
     TabsComponent,
-    ProfilepostsComponent
+    ProfilepostsComponent,
+    ModaloptionpostComponent
 ];
 
 // EXPORT ALL COMPONENTS
@@ -87,3 +87,4 @@ export * from './onboarding/passwordreset/passwordreset.component';
 export * from './modals/modaladdpost/modaladdpost.component';
 export * from './profile/tabs/tabs.component';
 export * from './profile/profileposts/profileposts.component';
+export * from './modals/modaloptionpost/modaloptionpost.component';

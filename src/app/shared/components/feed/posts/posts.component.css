@@ -1,30 +1,63 @@
-.avatarLoader {
-    height:58px; 
-    width:58px;
-    background: #ccc;
-    /* background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0) !important; */
-    margin-right: 15px;
+@import url('https://fonts.googleapis.com/css?family=Quicksand:700&display=swap');
+
+
+.btn {
+  padding: 1em 3em;
+  margin-bottom: 2rem;
+  border: none;
+  border-radius: 1.5em;
+  background-color: var(--clr-main);
+  font-family: inherit;
+  color: var(--clr-light);
+  transition: filter .15s ease-in-out;
+  cursor: pointer;
 }
 
-.h6 {
-    width: 150px; 
-    height:15px; 
-    background: #ccc;
-    /* background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0) !important; */
+.btn:hover {
+ filter: brightness(1.1); 
 }
 
-.p {
-    width: 100px; 
-    height:15px; 
-    background: #ccc;
-    /* background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0) !important; */
-    margin-top: 5px;
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
-
-.imagePostLoader {
-    height: 28.1rem;
-    width: 100%;
-    border: 0;
-    background: #ccc;
-    /* background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0) !important; */
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem 2.5rem;
+  width: 30em;
+  border-radius: 0.5rem;
+}
+.close-button {
+  float: right;
+  width: 1.5rem;
+  font-size: 1.2em;
+  line-height: 1;
+  padding: 0 .2em .15em;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: var(--clr-neutral);
+  color: var(--clr-dark);
+  transition: color 0.12s ease-in-out;
+}
+.close-button:hover {
+  color: var(--clr-main);
+}
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }

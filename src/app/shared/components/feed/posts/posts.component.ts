@@ -3,6 +3,7 @@ import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef, 
 import { AuthenticationService } from "@core/http/authentication.service";
 import { Post } from "@data/models/post";
 import { UserService } from "@data/services/api/user.service";
+import * as $ from "jquery";
 
 @Component({
       selector: "app-posts",
@@ -21,7 +22,8 @@ export class PostsComponent implements OnInit {
             this.identity = this._authService.getIdentity();
       }
 
-      ngOnInit() {}
+      ngOnInit() {
+      }
 
       gotoProfile( username: string ) {
             this.eventGotoProfile.emit( username );

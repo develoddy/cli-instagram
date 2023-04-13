@@ -24942,10 +24942,6 @@ html {
 
 .new-users-social {
   padding: 10px 0px;
-  /* margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px; */
 }
 .new-users-social svg {
   cursor: pointer;
@@ -24960,57 +24956,14 @@ html {
   color: #999999;
 }
 
-/* Buttons contents likes */
 
-.like-content {
-   display: flex;
-   flex-direction: row;
-}
-
-.like-content ._aamw {
-  display: inline-block;
-  margin-left: -8px;
-}
-
-.like-content ._aamw, ._aamx, ._aamy, ._aamz button._abl- {
-  align-items: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  padding: 8px;
-}
-
-.like-content ._aamz {
-  border: 0;
-  display: inline-block;
-  font: inherit;
-  font-size: 100%;
-  margin: 0;
-  margin-left: auto;
-  margin-right: -10px;
-  padding: 0;
-  vertical-align: baseline;
-}
-
-/* Buttons contents likes end */
-
-
-
-
-
+/* Time Line */
 .timeline-content {
-  /* margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px; */
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
   margin-top: 0px;
 }
-
 .timeline-content p {
   margin-top: 5px;
   color: rgb(115, 115, 115);
@@ -25029,7 +24982,6 @@ html {
 .timeline-content .comments-box .input-group .input-txt-bx {
   border: none;
 }
-
 .timeline-content .comments-box .input-group .input-txt-bx:focus {
   outline: none !important;
   outline-width: 0 !important;
@@ -25037,8 +24989,6 @@ html {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
 }
-
-
 .timeline-content .comments-box .input-group .input-txt-bx::placeholder {
   color: rgb(115, 115, 115);
   font-size: 14px !important;
@@ -25051,6 +25001,68 @@ html {
   display: flex;
   color: #999999;
 }
+/* Time Line end */
+
+/* Buttons contents likes */
+.like-content {
+   display: flex;
+   flex-direction: row;
+}
+.like-content ._aamw {
+  display: inline-block;
+  margin-left: -8px;
+}
+.like-content ._aamw, ._aamx, ._aamy, ._aamz button._abl- {
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+.like-content ._aamz {
+  border: 0;
+  display: inline-block;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  margin-left: auto;
+  margin-right: -10px;
+  padding: 0;
+  vertical-align: baseline;
+}
+/* Buttons contents likes end */
+
+
+/* Content Post */
+.content-post {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+.content-post a {
+  font-weight: 900;
+}
+.content-post h1.content-text {
+  font-size: 14px; 
+  font-weight: 400;
+  margin-top: 3px;
+}
+/* Content Post end */
+
+
+/* button comentario */
+.button-comment {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-comment a {
+  color: rgb(115, 115, 115);
+}
+/* button comentario end*/
+
 
 .social-chat {
   margin-top: 0px;
