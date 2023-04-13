@@ -46,6 +46,7 @@ export class ProfileComponent implements OnInit {
     ) {
         this.username = this.route.snapshot.paramMap.get("username")!; 
         // this.scripts.loadFiles(["loader"]);
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     ngOnInit() {

@@ -30700,7 +30700,6 @@ body[class*=dark-] .for-light {
 }
 
 .default-according .card .card-header {
-  padding: 0;
   border: none;
   border-radius: 0;
   border-top-left-radius: 5px;
