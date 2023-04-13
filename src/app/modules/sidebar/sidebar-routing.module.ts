@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: '', redirectTo: "feed", pathMatch: "full" },
       { path: 'feed', component: FeedComponent, canActivate: [AuthGuard]},
       { path: 'profile/:username', component: ProfileComponent},
+      { path: 'profile/:postId', component: ProfileComponent},
       { path: 'explore', component: ExploreComponent},
       { path: 'inbox', component: InboxComponent},
       { path: 'users', component: UsersComponent},
